@@ -1,12 +1,20 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
+
 h1 {
     font-size: 2.2rem;
     font-weight: bold;
     color: #17254E;
     text-transform: capitalize;
     line-height: 1.3;
+}
+h2{
+padding: 15px;
+font-weight: 700;
+font-size: 22px;
+line-height: 24px;
+color: #0E2A46;
 }
 
 .button2 {
@@ -44,4 +52,8 @@ h1 {
 .instructor-card p span {
     color: #704FE6;
     font-weight: bold;
+}
+.categories {
+    margin:10px;
+    padding:20px;
 }
