@@ -1,7 +1,6 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
-
 h1 {
     font-size: 2.2rem;
     font-weight: bold;
@@ -16,7 +15,14 @@ font-size: 22px;
 line-height: 24px;
 color: #0E2A46;
 }
-
+h6{
+font-weight: 700;
+font-size: 17px;
+line-height: 19px;
+text-transform: uppercase;
+color: #0E2A46;
+margin-top: 10px;
+}
 .button2 {
     background-color: #1e2a47;
     color: white;
@@ -56,4 +62,40 @@ color: #0E2A46;
 .categories {
     margin:10px;
     padding:20px;
+}
+/* .circle {
+    position: relative;
+    display: inline-block;
+    z-index: 1; 
+    padding: 5px; 
+}
+.circle::before {
+    content: "";
+    position: absolute;
+    width: 100%;  
+    height: 100%; 
+    background: url('/images/home/circle.png') no-repeat center;
+    background-size: contain;
+    z-index: -1; 
+} */
+.experience {
+    position: absolute;
+    top: 50%;   
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: #FFD25D;
+    color: #333931;
+    width: 200px;
+    height: 200px;
+    border: 5px solid #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 2;
 }

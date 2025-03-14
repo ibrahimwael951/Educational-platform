@@ -34,8 +34,6 @@ const CategoriesSection: React.FC = () => {
     </div>
   ))}
 </div>
-
-
     </section>
   );
 };
