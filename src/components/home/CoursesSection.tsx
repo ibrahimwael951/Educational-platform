@@ -20,7 +20,7 @@ const CoursesSection = () => {
         </div>
         <div className="grid grid-cols-3 md:grid-cols-3 justify-center items-center">
         <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -30,11 +30,11 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
           <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -44,11 +44,11 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
         <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -58,11 +58,11 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
       <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -72,11 +72,11 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
         <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -86,11 +86,11 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
         <CourseCard
-          image="/assets/images/home/card1.png"
+          image="/home/card1.png"
           title="It Statistics Data Science And Business Analysis"
           category="Digital Marketing"
           price="$50.00"
@@ -100,7 +100,7 @@ const CoursesSection = () => {
           students="20+"
           instructor={{
             name: "Samantha",
-            avatar: "/assets/images/home/person1.png",
+            avatar: "/home/person1.png",
           }}
         />
       </div>
