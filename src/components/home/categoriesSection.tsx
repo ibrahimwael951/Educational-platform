@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 const categories = [
@@ -15,11 +14,11 @@ const categories = [
 
 const CategoriesSection: React.FC = () => {
   return (
-    <section className="container mx-auto text-center py-10">
+    <section className="container mx-auto text-center py-10 max-w-screen-xl">
       <h1>Browse By Categories</h1>
 
     
-    <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3  gap-8 px-4 ">
+  <div className="grid max-[600px]:grid-cols-1 max-[769]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4">
   {categories.map((category) => (
     <div
       key={category.id}

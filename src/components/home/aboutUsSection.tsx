@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const AboutUsSection = () => {
   return (
-    <section className="container mx-auto my-10 px-6 mt-3">
-      <div className="flex flex-col-2 md:flex-col-2 sm:flex-col-1 gap-8">
+    <section className="container mx-auto my-10 px-6 mt-3 flex justify-center items-center">
+      <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center">
         {/* Section Left */}
         <div className="relative w-full lg:w-1/2 md:w-1/2 flex flex-col gap-4 md:items-start">
           <div className="flex gap-4">
@@ -19,7 +19,7 @@ const AboutUsSection = () => {
         </div>
 
         {/* Section Right */}
-        <div className="w-full lg:w-1/2 md:w-1/2  md:text-left">
+        <div className="w-full lg:w-1/2 md:w-1/2  md:text-right">
           <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 rounded-md font-medium inline-block">
             Our About Us
           </p>
@@ -43,7 +43,7 @@ const AboutUsSection = () => {
           </p>
 
           {/* Features */}
-          <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-col-1 gap-6 mt-6">
+          <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center justify-center">
             <div>
               <h6>Flexible classNamees</h6>
               <p className="text-[#0E2A46]">

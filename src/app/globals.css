@@ -1,6 +1,9 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
+html, body {
+    overflow-x: hidden;
+}
 h1 {
     font-size: 2.2rem;
     font-weight: bold;
@@ -26,7 +29,7 @@ margin-top: 10px;
 .button2 {
     background-color: #1e2a47;
     color: white;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 50px;
     text-decoration: none;
     font-size: 18px;
