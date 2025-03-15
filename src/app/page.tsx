@@ -5,6 +5,11 @@ import AboutUsSection from "@/components/home/aboutUsSection";
 import NewSessionSection from "@/components/home/newSessionSection";
 import WhyChooseUsSection from "@/components/home/chooseUsSection";
 import SkillsSection from "@/components/home/skillsSection";
+import TestimonialSection from "@/components/home/testimonialSection";
+import InstructorsSection from "@/components/home/InstructorsSection";
+import CareerSection from "@/components/home/chooseCareerSection";
+import PopularPosts from "@/components/home/postsSection";
+import NewsletterSection from "@/components/home/newsLetterSection";
 
 
 export default function Home() {
@@ -17,6 +22,11 @@ export default function Home() {
       <NewSessionSection />
       <WhyChooseUsSection />
       <SkillsSection />
+      <TestimonialSection />
+      <InstructorsSection />
+      <CareerSection />
+      <PopularPosts/>
+      <NewsletterSection />
     </main>
   );
 }
