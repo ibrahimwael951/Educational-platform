@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const AboutUsSection = () => {
   return (
-    <section className="container mx-auto my-10 px-6 mt-3 flex justify-center items-center">
+    <section className="container px-6 mt-3 flex justify-center items-center min-h-screen ">
       <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center">
         {/* Section Left */}
         <div className="relative w-full lg:w-1/2 md:w-1/2 flex flex-col gap-4 md:items-start">

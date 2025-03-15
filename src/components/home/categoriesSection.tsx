@@ -18,7 +18,7 @@ const CategoriesSection: React.FC = () => {
       <h1>Browse By Categories</h1>
 
     
-  <div className="grid max-[600px]:grid-cols-1 max-[769]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4">
+  <div className="grid max-[600px]:grid-cols-1 max-[760]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4">
   {categories.map((category) => (
     <div
       key={category.id}
