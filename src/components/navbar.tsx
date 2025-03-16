@@ -10,7 +10,7 @@ import { CiMenuFries } from "react-icons/ci";
 //data
 import data from "@/Data/Links.json";
 
-const navbar = () => {
+const Navbar = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -87,4 +87,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

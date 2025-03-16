@@ -11,7 +11,7 @@ import { TiSocialYoutube } from "react-icons/ti";
 import data from "@/Data/Links.json";
 import Link from "next/link";
 
-const footer = () => {
+const Footer = () => {
 
     const socialStyle ="w-10 border border-purple-400 p-3 rounded-full text-white bg-purple-400 hover:text-purple-400 hover:bg-transparent duration-150 cursor-pointer"
 
@@ -69,4 +69,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer ;
