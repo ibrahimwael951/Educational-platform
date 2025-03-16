@@ -3,32 +3,30 @@ import Image from "next/image";
 
 const AboutUsSection = () => {
   return (
-    <section className="container px-6 mt-3 flex justify-center items-center min-h-screen ">
-      <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center">
+    <section className="m-auto px-6 mt-3 flex flex-col lg:flex-row justify-center items-center gap-20 min-h-screen ">
+     
         {/* Section Left */}
-        <div className="relative w-full lg:w-1/2 md:w-1/2 flex flex-col gap-4 md:items-start">
-          <div className="flex gap-4">
+      
             <Image
               src="/home/about.png"
-              width={150}
-              height={150}
+              width={500}
+              height={500}
               alt="about"
-              className="rounded-lg w-[50%] sm:w-[60%] md:w-[90%] lg:w-[80%]"
+              className="rounded-lg w-full   max-w-[300px] md:max-w-[400px]  lg:max-w-[600px]"
             />
-          </div>
-        </div>
+          
+        
 
         {/* Section Right */}
-        <div className="w-full lg:w-1/2 md:w-1/2  md:text-right">
-          <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 rounded-md font-medium inline-block">
+        <div className="w-full flex flex-col gap-10 items-center text-center">
+          <p className="bg-[#E9E2FF] text-[#704FE6] w-fit px-4 py-2 rounded-md font-medium inline-block">
             Our About Us
           </p>
 
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-4">
-            Learn & Grow Your{" "}
+            Learn & Grow Your 
             <span className="relative inline-block">
-              <span className="absolute -z-10 w-full h-full rounded-full px-3 py-1"></span>
-              Skills
+               Skills
             </span>
             <br />
             From Anywhere
@@ -43,7 +41,7 @@ const AboutUsSection = () => {
           </p>
 
           {/* Features */}
-          <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center justify-center">
+          <div className=" flex gap-4 mt-6 items-center w-fit">
             <div>
               <h6>Flexible classNamees</h6>
               <p className="text-[#0E2A46]">
@@ -65,11 +63,11 @@ const AboutUsSection = () => {
           </div>
 
           {/* Button */}
-          <a href="#" className="button2">
-            Load More →
+          <a href="#" className="button2 w-fit ">
+            Learn More →
           </a>
         </div>
-      </div>
+ 
     </section>
   );
 };

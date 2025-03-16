@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-white  ">
+    <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-white select-none ">
       <div className="flex justify-center gap-2 items-center w-fit ">
         {/* <Image
           className="w-15"

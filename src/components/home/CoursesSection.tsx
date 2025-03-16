@@ -1,5 +1,6 @@
 import React from "react";
 import CourseCard from "./CourseCard";
+import Link from "next/link";
 
 const CoursesSection = () => {
   return (
@@ -13,13 +14,13 @@ const CoursesSection = () => {
           Edunity Course
           <span className="circle"> Student</span> can <br /> join with us.
         </h1>
-        <a href="#" className="button2">
+        <Link href="/curses" className="button2">
           Load More Courses →
-        </a>
+        </Link>
       </div>
 
-      <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-3 gap-4 mt-6 items-center justify-center">
-        {Array(6)
+      <div className=" flex flex-wrap mt-6 items-center justify-center select-none">
+        {Array(3)
           .fill(null)
           .map((_, index) => (
             <CourseCard

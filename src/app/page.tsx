@@ -2,7 +2,7 @@ import HeroSection from "@/components/home/heroSection";
 import CategoriesSection from "@/components/home/categoriesSection";
 import CoursesSection from "@/components/home/CoursesSection";
 import AboutUsSection from "@/components/home/aboutUsSection";
-import NewSessionSection from "@/components/home/newSessionSection";
+// import NewSessionSection from "@/components/home/newSessionSection";
 import WhyChooseUsSection from "@/components/home/chooseUsSection";
 import SkillsSection from "@/components/home/skillsSection";
 import TestimonialSection from "@/components/home/testimonialSection";
@@ -19,7 +19,7 @@ export default function Home() {
       <CategoriesSection />
       <CoursesSection />
       <AboutUsSection />
-      <NewSessionSection />
+      {/* <NewSessionSection /> */}
       <WhyChooseUsSection />
       <SkillsSection />
       <TestimonialSection />

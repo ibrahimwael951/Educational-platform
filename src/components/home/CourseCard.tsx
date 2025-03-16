@@ -29,9 +29,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
   instructor,
 }) => {
   return (
-    <div className="w-8/12 h-[20rem] border-dashed border-[#704FE6] border-2 bg-white shadow-lg rounded-xl p-6 m-5 justify-center items-center">
+    <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-white shadow-lg rounded-xl p-6 m-5 justify-center items-center">
       {/* Course Cover*/}
-      <div className="relative w-full h-48">
+      <div className="relative  w-full h-48">
         <Image src={image} alt={title} layout="fill" objectFit="cover" className="rounded-lg" />
       </div>
 

@@ -5,6 +5,7 @@
 body {
     @apply overflow-x-hidden duration-150 scroll-smooth
 }
+
 h1 {
     font-size: 2.2rem;
     font-weight: bold;
