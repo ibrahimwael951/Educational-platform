@@ -1,0 +1,70 @@
+{
+  "navbar": [
+    {
+      "title": "Home",
+      "url": "/"
+    },
+    {
+      "title": "About",
+      "url": "/About"
+    },
+    {
+      "title": "Courses",
+      "url": "/Courses"
+    },
+    {
+      "title": "Pages",
+      "url": "/Pages"
+    },
+    {
+      "title": "Blog",
+      "url": "/Blog"
+    },
+    {
+      "title": "Contact",
+      "url": "/Contact"
+    }
+  ],
+  "footer": {
+    "our_services": [
+      {
+        "title": "Web Development",
+        "url": ""
+      },
+      {
+        "title": "Ui/Ux Design",
+        "url": ""
+      },
+      {
+        "title": " Digital Marketing",
+        "url": ""
+      },
+      {
+        "title": " Content Writing",
+        "url": ""
+      },
+      {
+        "title": "Management",
+        "url": ""
+      }
+    ],
+    "Quick_Links":[
+        {
+            "title": "Templates",
+            "url": ""
+        },
+        {
+            "title": "Blog And Article",
+            "url": "" 
+        },
+        {
+            "title": "webinars",
+            "url": "" 
+        },
+        {
+            "title": "privacy & policy",
+            "url": "" 
+        }
+    ]
+  }
+}
