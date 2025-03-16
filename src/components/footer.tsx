@@ -1,6 +1,5 @@
 //icons
 import { SiDatabricks } from "react-icons/si";
-import { FaFacebookF } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
 import { IoLogoWhatsapp } from "react-icons/io5";
