@@ -1,26 +1,18 @@
-import React from "react";
-import CourseCard from "./CourseCard";
-import Link from "next/link";
+import React from 'react';
+import CourseCard from '@/components/home/CourseCard';
 
-const CoursesSection = () => {
-  return (
-    <section className="container mx-auto px-6 py-10">
-      <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 rounded-md font-medium text-left inline-block">
-        Top Popular Courses
-      </p>
-
-      <div className="flex justify-between items-center mt-6">
+const CoursesPage = () => {
+return (
+<section className="container mx-auto px-6 py-10 mt-10">
+      <div className="flex justify-between items-center mt-10">
         <h1 className="capitalize">
           EduQuest Courses
           <span className="circle"> Student</span> can <br /> join with us.
         </h1>
-        <Link href="/courses" className="button2">
-          Load More Courses →
-        </Link>
       </div>
 
       <div className=" flex flex-wrap mt-6 items-center justify-center select-none">
-        {Array(3)
+        {Array(8)
           .fill(null)
           .map((_, index) => (
             <CourseCard
@@ -41,7 +33,7 @@ const CoursesSection = () => {
           ))}
       </div>
     </section>
-  );
+);
 };
 
-export default CoursesSection;
+export default CoursesPage;

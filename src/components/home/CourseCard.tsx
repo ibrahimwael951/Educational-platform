@@ -75,7 +75,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
             <p className="font-medium text-gray-800">{instructor.name}</p>
           </div>
-          <a href="" className="button2">
+          <a href="/courseDetails" className="button2">
             Enroll →
           </a>
         </div>
