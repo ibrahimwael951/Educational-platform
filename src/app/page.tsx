@@ -11,11 +11,13 @@ import CareerSection from "@/components/home/chooseCareerSection";
 import PopularPosts from "@/components/home/postsSection";
 import NewsletterSection from "@/components/home/newsLetterSection";
 
+import { ModeToggle } from "@/components/themeToggole";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
+      <ModeToggle/>
       <CategoriesSection />
       <CoursesSection />
       <AboutUsSection />
