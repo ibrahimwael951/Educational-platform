@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 // import Image from "next/image";
 import Link from "next/link";
 
@@ -10,11 +10,26 @@ import { CiMenuFries } from "react-icons/ci";
 //data
 import data from "@/Data/Links.json";
 
+
 const Navbar = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
+
+   // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!(event.target as Element).closest(".dropdown-container")) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
 
   return (
     <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-white select-none ">
@@ -38,15 +53,59 @@ const Navbar = () => {
       {/* links */}
       <div className="hidden lg:flex justify-center items-center gap-2">
         {data.navbar.map((item, index) => (
-          <Link
-            key={index}
-            href={item.url}
-            className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150 "
-          >
-            {item.title}
-          </Link>
-        ))}
-      </div>
+    item.title === "Pages" ? (
+      <div
+        key={index}
+        className="relative dropdown-container"
+        onMouseEnter={() => setIsDropdownOpen(true)}
+        onMouseLeave={() => setIsDropdownOpen(false)}
+      >
+        {/* Pages Link */}
+        <Link
+          href={item.url}
+          className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+        >
+          {item.title}
+        </Link>
+
+        {/* Dropdown Menu */}
+        {isDropdownOpen && (
+          <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-md">
+            <ul className="py-2">
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">Events</Link>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">Instructors</Link>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">Services</Link>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">FAQ</Link>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">Certifications </Link>
+              </li>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <Link href="/">Shop Details</Link>
+              </li>
+            </ul>
+          </div>
+  )}
+</div>
+    ) : (
+      <Link
+        key={index}
+        href={item.url}
+        className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+      >
+        {item.title}
+      </Link>
+    )
+  ))}
+</div>
+
       <Link
         className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
         href="/sign in"
