@@ -72,7 +72,7 @@ const CategoriesSection: React.FC = () => {
       
       <h1>Browse By Categories</h1>
 
-      <div className="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-3 justify-center items-center gap-4 mt-5 text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center items-center mt-5 text-left">
         {categories.map((category) => (
           <div
             key={category.id}

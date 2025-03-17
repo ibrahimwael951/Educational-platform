@@ -56,7 +56,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Course Data*/}
         <div className="flex flex-wrap gap-4 mt-3 text-sm">
           <div className="flex items-center gap-1">
-          <FaFileInvoice />
+          <FaFileInvoice className="text-purple-600"/>
             <p>{lessons} Lessons</p>
           </div>
           <div className="flex items-center gap-1">
