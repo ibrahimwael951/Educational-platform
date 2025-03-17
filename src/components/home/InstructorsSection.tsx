@@ -52,19 +52,19 @@ const InstructorsSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-14 relative max-[600px]:grid-cols-1">
+        <div className="grid grid-cols-2 gap-14 w-full h-full relative max-[600px]:grid-cols-1">
           {instructors.map((instructor, index) => (
             <div key={index} className="relative">
               <Image
                 src={instructor.image}
                 alt={instructor.name}
-                width={500}
-                height={500}
+                width={600}
+                height={600}
                 className="relative w-full rounded-lg border-4 border-[#704FE6]"
               />
               <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105"  />
 
-              <div className="absolute -bottom-5 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer ">
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer ">
                 <h2 className="text-base md:text-lg ">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1 ">
                   <p className="text-sm text-[#704FE6]">
