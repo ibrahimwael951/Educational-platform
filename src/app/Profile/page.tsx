@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome, FaGraduationCap, FaCertificate, FaPlay, FaHeart, FaList, FaBriefcase, FaCog, FaSignOutAlt, FaAngleDown } from "react-icons/fa";
+import { FaHome, FaGraduationCap, FaCertificate, FaPlay, FaHeart, FaList, FaBriefcase, FaCog, FaSignOutAlt } from "react-icons/fa";
 
 const Profile = () => {
 return (
