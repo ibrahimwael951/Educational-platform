@@ -64,7 +64,7 @@ const InstructorsSection = () => {
               />
               <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105"  />
 
-              <div className="absolute -bottom-0 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer ">
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer ">
                 <h2 className="text-base md:text-lg ">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1 ">
                   <p className="text-sm text-[#704FE6]">
