@@ -73,6 +73,7 @@ const Navbar = () => {
           <div className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 border border-gray-300 shadow-lg rounded-md">
            {data.footer.Quick_Links.map((item,index)=>(
             <Link 
+            key={index}
               className="p-2 w-full hover:text-purple-400 cursor-pointer"
               href={item.url}
             >
