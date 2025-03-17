@@ -82,7 +82,7 @@ const Navbar = () => {
                 <Link href="/">Services</Link>
               </li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">FAQ</Link>
+                <Link href="/faq">FAQ</Link>
               </li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 <Link href="/">Certifications </Link>

@@ -14,7 +14,7 @@
     },
     {
       "title": "Pages",
-      "url": "/Pages"
+      "url": ""
     },
     {
       "title": "Contact",
@@ -46,21 +46,25 @@
     ],
     "Quick_Links":[
         {
-            "title": "Templates",
+            "title": "Events",
             "url": ""
         },
         {
-            "title": "Blog And Article",
+            "title": "Instructors",
             "url": "" 
         },
         {
-            "title": "webinars",
+            "title": "Services",
             "url": "" 
         },
         {
-            "title": "privacy & policy",
-            "url": "" 
-        }
+            "title": "FAQ",
+            "url": "/faq" 
+        },
+        {
+          "title": "Shop Details",
+          "url": "/" 
+      }
     ]
   }
 }
