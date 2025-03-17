@@ -34,10 +34,10 @@ const posts = [
       </p>
 
       <div className="flex justify-between items-center mt-4">
-        <h1>Most Popular Post.</h1>
+        <h1 className="text-neutral-800 dark:text-white">Most Popular Post.</h1>
         <a
           href="#"
-          className="button2"
+          className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
         >
           All Blog Posts →
         </a>
@@ -63,20 +63,20 @@ const posts = [
               <div className="flex items-center gap-4 text-[#4D5756] text-sm mb-4">
                 <div className="flex items-center gap-2">
                   <FaCalendarAlt className="text-[#704FE6]" />
-                  <p>{post.date}</p>
+                  <p className="text-neutral-800 dark:text-slate-400">{post.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaComments className="text-[#704FE6]" />
-                  <p>Comment ({post.comments})</p>
+                  <p className="text-neutral-800 dark:text-slate-400">Comment ({post.comments})</p>
                 </div>
               </div>
 
 
-              <p className="text-sm font-semibold text-[#0E2A46]">{post.text}</p>
+              <p className="text-sm font-semibold text-neutral-800 dark:text-white">{post.text}</p>
 
               <a
                 href="#"
-                className="button1"
+                className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
               >
                 Read More →
               </a>

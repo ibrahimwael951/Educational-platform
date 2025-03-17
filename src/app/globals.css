@@ -6,7 +6,7 @@
 @plugin "tailwindcss-animate";
 
 body {
-    @apply overflow-x-hidden duration-150 scroll-smooth bg-slate-200 dark:bg-neutral-900
+    @apply overflow-x-hidden duration-150 scroll-smooth bg-slate-100 dark:bg-neutral-900
 }
 
 h1 {

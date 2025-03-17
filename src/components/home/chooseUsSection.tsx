@@ -29,11 +29,11 @@ const WhyChooseUsSection = () => {
           </p>
           <Image src="/home/design2.png" alt="design" width={50} height={10} />
         </div>
-        <h1 className="text-[#0E2A46] text-3xl sm:text-4xl font-bold leading-tight mt-3">
+        <h1 className="text-neutral-800 dark:text-white text-3xl sm:text-4xl font-bold leading-tight mt-3">
           Creating A Community Of <br />
           Life Long Learners.
         </h1>
-        <p className="px-10 text-[#333931] text-base sm:text-lg">
+        <p className="px-10 text-neutral-800 dark:text-slate-300 text-base sm:text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris..

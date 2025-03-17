@@ -10,11 +10,11 @@ const CoursesSection = () => {
       </p>
 
       <div className="flex justify-between items-center mt-6">
-        <h1 className="capitalize">
+        <h1 className="capitalize text-neutral-800 dark:text-white">
           EduQuest Courses
           <span className="circle"> Student</span> can <br /> join with us.
         </h1>
-        <Link href="/courses" className="button2">
+        <Link href="/courses" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
           Load More Courses →
         </Link>
       </div>

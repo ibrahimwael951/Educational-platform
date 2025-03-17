@@ -27,26 +27,26 @@ const instructors = [
 
 const InstructorsSection = () => {
   return (
-    <section className="container mx-auto text-center relative mt-5 px-4 lg:px-0">
+    <section className="container mx-auto text-center relative my-15 px-4 lg:px-0">
       <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-2 gap-8 items-center">
-        <div className="bg-[url('/home/back.png')] p-6 text-left">
+        <div className=" p-6 text-left">
           <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
             Our Instructor
           </p>
-          <h1>
+          <h1 className="text-neutral-800 dark:text-white">
             Meet Our Expert <br /> Instructor
           </h1>
-          <p className="text-[#333931] mt-12 leading-7">
+          <p className="text-neutral-800 dark:text-slate-300 mt-12 leading-7">
             Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed
             do eiusmod tempor incididunt ut labore et <br />
             dolore magna aliqua. Ut enim ad minim veniam, quis <br />
             nostrud exercitation ullamco laboris..
           </p>
           <div className="flex gap-[7px] m-[5px]">
-            <a href="#" className="button1 ">
+            <a href="#" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 ">
               Contact us →
             </a>
-            <a href="#" className="button2">
+            <a href="#" className="p-3 rounded-xl bg-purple-600 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
               Find Courses →
             </a>
           </div>

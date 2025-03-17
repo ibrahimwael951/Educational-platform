@@ -70,7 +70,7 @@ const CategoriesSection: React.FC = () => {
   return (
     <section className="container mx-auto text-center px-5 py-20 max-w-screen-xl">
       
-      <h1>Browse By Categories</h1>
+      <h1 className="text-neutral-800 dark:text-white">Browse By Categories</h1>
 
       <div className="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-3 justify-center items-center gap-4 mt-5 text-left">
         {categories.map((category) => (
@@ -88,7 +88,7 @@ const CategoriesSection: React.FC = () => {
               className="rounded-full border-2 border-dashed bg-white object-cover w-16 h-16 "
             />
 
-            <h2 className="ml-4 text-xl font-bold text-[#0E2A46]">
+            <h2 className="ml-4 text-xl font-bold text-neutral-800  ">
               {category.name}
             </h2>
           </div>

@@ -32,7 +32,7 @@ const Navbar = () => {
 
 
   return (
-    <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-white select-none ">
+    <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none ">
       <div className="flex justify-center gap-2 items-center w-fit ">
         {/* <Image
           className="w-15"
@@ -45,7 +45,7 @@ const Navbar = () => {
           className="w-15 text-purple-400"
           size="100%"
         />
-        <Link className="text-2xl font-bold text-black" href="/">
+        <Link className="text-2xl font-bold text-neutral-800 dark:text-white" href="/">
           EduQuest
         </Link>
       </div>
@@ -122,18 +122,18 @@ const Navbar = () => {
 
       <div
         className={`
-            fixed right-0 top-0 h-screen  bg-white px-2  border border-purple-400 duration-200
+            fixed right-0 top-0 h-screen  bg-slate-200 dark:bg-neutral-900 px-2  border border-purple-400 duration-200
             ${isSidebarVisible ? "translate-x-0" : " translate-x-full"}
           `}
       >
-        <button onClick={toggleSidebar} className="text-purple-400 w-10 ">
+        <button onClick={toggleSidebar} className=" text-purple-400 w-10 mx-2 mt-4 ">
           <CiMenuFries size="100%" />
         </button>
 
         <div className="flex flex-col gap-5 p-20">
           {data.navbar.map((item, index) => (
             <Link
-              className="text-purple-800 text-xl"
+              className="text-purple-800 dark:text-white text-xl"
               key={index}
               href={item.url}
             >

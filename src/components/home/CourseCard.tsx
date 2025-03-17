@@ -29,7 +29,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   instructor,
 }) => {
   return (
-    <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-white shadow-lg rounded-xl p-6 m-5 justify-center items-center">
+    <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-slate-200 dark:bg-neutral-900 shadow-lg rounded-xl p-6 m-5 justify-center items-center">
       {/* Course Cover*/}
       <div className="relative  w-full h-48">
         <Image src={image} alt={title} layout="fill" objectFit="cover" className="rounded-lg" />
@@ -73,9 +73,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <div className="flex justify-between items-center mt-6">
           <div className="flex items-center gap-3">
             <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
-            <p className="font-medium text-gray-800">{instructor.name}</p>
+            <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
-          <a href="/courseDetails" className="button2">
+          <a href="/courseDetails" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
             Enroll →
           </a>
         </div>
