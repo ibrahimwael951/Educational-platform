@@ -33,22 +33,23 @@ const FAQPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: "url('/SectionBackground.png')" }}>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center bg-no-repeat bg-slate-100 dark:bg-neutral-900"
+    // style={{ backgroundImage: "url('/SectionBackground.png')" }}
+    >
       <div className="w-full max-w-2xl shadow-xl rounded-lg p-6">
-        <h1 className='text-center mb-5'>FAQs</h1>
+        <h1 className='text-center mb-5 text-neutral-800 dark:text-white'>FAQs</h1>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div key={index} className="border rounded-lg overflow-hidden">
               <button
-                className="w-full text-left p-4 bg-[gray-200] hover:bg-[#7768E5] cursor-pointer flex justify-between"
+                className="w-full text-left p-4 bg-[gray-200] hover:bg-[#7768E5] cursor-pointer flex justify-between group duration-150"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="font-medium text-[#0E2A46] hover:text-white">{faq.question}</span>
+                <span className="font-medium text-neutral-800 dark:text-white group-hover:text-white">{faq.question}</span>
                 <span>{openIndex === index ? '−' : '+'}</span>
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-white text-[#333931] border-t">
+                <div className="p-4 bg-slate-100 dark:bg-neutral-900 text-neutral-800 dark:text-slate-300 border-t">
                   {faq.answer}
                 </div>
               )}

@@ -16,7 +16,7 @@ const Footer = () => {
     const socialStyle ="w-10 border border-purple-400 p-3 rounded-full text-white bg-purple-400 hover:text-purple-400 hover:bg-transparent duration-150 cursor-pointer"
 
   return (
-    <section className="p-10 bg-black flex flex-col text-center justify-center items-center md:text-start md:flex-row md:justify-evenly md:items-start gap-20 lg:gap-5 ">
+    <section className="p-10 bg-neutral-950 flex flex-col text-center justify-center items-center md:text-start md:flex-row md:justify-evenly md:items-start gap-20 lg:gap-5 ">
 
       <div className="flex flex-col gap-5">
         <div className="flex items-center ">

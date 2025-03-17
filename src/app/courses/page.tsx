@@ -5,7 +5,7 @@ const CoursesPage = () => {
 return (
 <section className="container mx-auto px-6 py-10 mt-10">
       <div className="flex justify-between items-center mt-10">
-        <h1 className="capitalize">
+        <h1 className="capitalize text-neutral-800 dark:text-white">
           EduQuest Courses
           <span className="circle"> Student</span> can <br /> join with us.
         </h1>

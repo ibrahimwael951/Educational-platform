@@ -70,27 +70,15 @@ const Navbar = () => {
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
-          <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-md">
-            <ul className="py-2">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">Events</Link>
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">Instructors</Link>
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">Services</Link>
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/faq">FAQ</Link>
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">Certifications </Link>
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <Link href="/">Shop Details</Link>
-              </li>
-            </ul>
+          <div className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 border border-gray-300 shadow-lg rounded-md">
+           {data.footer.Quick_Links.map((item,index)=>(
+            <Link 
+              className="p-2 w-full hover:text-purple-400 cursor-pointer"
+              href={item.url}
+            >
+                {item.title}
+            </Link >
+           ))}
           </div>
   )}
 </div>

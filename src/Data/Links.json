@@ -6,11 +6,11 @@
     },
     {
       "title": "About",
-      "url": "/About"
+      "url": "/about"
     },
     {
       "title": "Courses",
-      "url": "/Courses"
+      "url": "/courses"
     },
     {
       "title": "Pages",
@@ -18,7 +18,7 @@
     },
     {
       "title": "Contact",
-      "url": "/Contact"
+      "url": "/contact"
     }
   ],
   "footer": {
