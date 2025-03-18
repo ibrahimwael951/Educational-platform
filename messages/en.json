@@ -175,6 +175,23 @@
                         "answer": "Research schools based on rankings, curriculum, tuition fees, and student reviews."
                       }
                     ]
-                  }
+                  },
+                    "profileSection": {
+                      "title": "My Profile",
+                      "account": "My Account",
+                      "courses": "My Courses",
+                      "certificates": "Certificates",
+                      "featured": "Featured Courses",
+                      "favorites": "Favorite Courses",
+                      "list": "Course Lists",
+                      "resume": "Resume",
+                      "settings": "Settings",
+                      "logout": "Logout",
+                      "contact": "If you face any issue, feel free to contact us.",
+                      "certified": "Certified Certificates",
+                      "training": "Training Courses",
+                      "user_id": "User ID",
+                      "support_note": "Use this ID when contacting support."
+                    }          
 
 }
