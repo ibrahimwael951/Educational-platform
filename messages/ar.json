@@ -198,5 +198,22 @@
                               "training": "الدورات التدريبية",
                               "user_id": "معرّف المستخدم",
                               "support_note": "استخدم هذا المعرف عند التواصل مع الدعم."
-                            }
+                            },
+                            "studentsSection": {
+                              "hero_title": "أفضل طلابنا",
+                              "hero_description": "نجاحهم مصدر إلهام لنا جميعًا!",
+                              "join_now": "انضم إلينا الآن",
+                              "students_testimonials": "آراء الطلاب",
+                              "highlighted_projects": "المشاريع المميزة",
+                              "join_list": "انضم إلى القائمة المتميزة الآن!",
+                              "achievement_10_courses": "أكمل 10 دورات",
+                              "achievement_5_certificates": "حصل على 5 شهادات",
+                              "achievement_best_performance": "أفضل أداء في المشاريع",
+                              "testimonial_1": "الدورات هنا رائعة وتعلمت الكثير!",
+                              "testimonial_2": "الدعم الأكاديمي كان مذهلاً وساعدني كثيرًا.",
+                              "project_1": "المشروع 1",
+                              "project_2": "المشروع 2",
+                              "project_3": "المشروع 3",
+                              "project_4": "المشروع 4"
+                              }
 }

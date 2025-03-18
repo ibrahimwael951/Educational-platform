@@ -192,6 +192,22 @@
                       "training": "Training Courses",
                       "user_id": "User ID",
                       "support_note": "Use this ID when contacting support."
-                    }          
-
+                    },
+                    "studentsSection": {
+                      "hero_title": "Our Best Students",
+                      "hero_description": "Their success is an inspiration to us all!",
+                      "join_now": "Join Us Now",
+                      "students_testimonials": "Students Testimonials",
+                      "highlighted_projects": "Highlighted Projects",
+                      "join_list": "Join the distinguished list now!",
+                      "achievement_10_courses": "Completed 10 courses",
+                      "achievement_5_certificates": "Got 5 certificates",
+                      "achievement_best_performance": "Best performance in projects",
+                      "testimonial_1": "The courses here are great and I learned a lot!",
+                      "testimonial_2": "The academic support was amazing and helped me a lot.",
+                      "project_1": "Project 1",
+                      "project_2": "Project 2",
+                      "project_3": "Project 3",
+                      "project_4": "Project 4"
+                      }
 }
