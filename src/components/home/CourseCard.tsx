@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaFileInvoice, FaClock, FaUser, FaStar } from "react-icons/fa";
+import { Link } from "@/i18n/navigation";
 
 interface CourseCardProps {
   image: string;
@@ -75,9 +76,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
             <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
-          <a href="/courseDetails" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
+          <Link href="/courseDetails" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
             Enroll →
-          </a>
+          </Link>
         </div>
       </div>
     </div>
