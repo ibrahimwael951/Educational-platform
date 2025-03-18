@@ -5,5 +5,176 @@
   "HomePage": {
     "title": "English",
     "description": "This is the home page of the application."
-  }
+  },
+  "HeroSection": {
+      "welcome": "Welcome EduQuest Online Courses",
+      "title": "Achieving Your Dreams Through Education",
+      "description": "We are experienced in educational platform and skilled strategies for the success of our online learning.",
+      "button": "Find Courses →",
+      "instructor": "Instructor",
+      "instructorCount": "200+"
+    },
+      "CategoriesSection": {
+        "title": "Browse By Categories",
+        "categories": {
+          "business": "Business Management",
+          "arts": "Arts & Design",
+          "personalDevelopment": "Personal Development",
+          "uiux": "UI/UX Design",
+          "graphic": "Graphic Design",
+          "marketing": "Digital Marketing",
+          "exclusive": "Exclusive Man",
+          "productDesign": "Product Design",
+          "video": "Video & Photography"
+        }
+      },
+      "CoursesSection": {
+        "sectionTitle": "Top Popular Courses",
+        "headline": "EduQuest Courses",
+        "highlight": "Students",
+        "subheadline": "can join with us.",
+        "button": "Load More Courses",
+        "course": {
+          "title": "IT Statistics, Data Science and Business Analysis",
+          "category": "Digital Marketing",
+          "price": "$50.00",
+          "rating": "4.5K",
+          "lessons": "10 Lessons",
+          "duration": "19h 30m",
+          "students": "20+ Students",
+          "instructor": "Samantha"
+        }
+      },
+        "AboutUsSection": {
+          "sectionTitle": "Our About Us",
+          "headline": "Learn & Grow Your",
+          "highlight": "Skills",
+          "subheadline": "From Anywhere",
+          "description": "We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies.",
+          "features": {
+            "feature1Title": "Flexible Classes",
+            "feature1Description": "Learn flexibly according to your own schedule..",
+            "feature2Title": "Expert Instructors",
+            "feature2Description": "Learn from industry leaders and gain real-world experience through interactive courses."
+          },
+          "button": "Learn More"
+        },
+          "WhyChooseUs": {
+            "title": "Why Choose Us?",
+            "heading": "Creating A Community Of Life Long Learners.",
+            "description": "We provide a unique learning environment that helps you develop your skills and achieve your academic and professional goals, through high-quality content and professional trainers.",
+            "features": {
+              "worldClassTrainers": {
+                "title": "World Class Trainers",
+                "desc": "Professional guidance and advanced skills in various fields"
+              },
+              "easyLearning": {
+                "title": "Easy Learning",
+                "desc": "A simplified learning system suitable for all levels"
+              },
+              "flexible": {
+                "title": "Flexible",
+                "desc": "Learn anytime, anywhere"
+              },
+              "affordablePrice": {
+                "title": "Affordable Price",
+                "desc": "Courses at affordable prices for everyone"
+              }
+            }
+          },
+            "SkillsSection": {
+              "skills": {
+                "successfullyTrained": { "number": "3K+", "text": "Successfully Trained" },
+                "classesCompleted": { "number": "15K+", "text": "Classes Completed" },
+                "satisfactionRate": { "number": "97K+", "text": "Satisfaction Rate" },
+                "studentsCommunity": { "number": "102K+", "text": "Students Community" }
+              }
+            },
+              "TestimonialSection": {
+              "title": "Testimonials",
+    "headline": "Join a Community of \nPassionate Learners.",
+    "testimonials": {
+      "testimonial1": {
+        "name": "Kathy Sullivan",
+        "position": "CEO at Ordian IT",
+        "text": "“This platform has completely transformed the way I learn. The courses are engaging, and the instructors are truly experts in their fields.”"
+      },
+      "testimonial2": {
+        "name": "Elsie Stroud",
+        "position": "CEO at Edwards",
+        "text": "“I was able to upskill quickly and apply my knowledge directly to my job. The learning experience is smooth, flexible, and highly effective.”"
+      },
+      "testimonial3": {
+        "name": "Mark Johnson",
+        "position": "Software Engineer",
+        "text": "“The interactive lessons and hands-on projects have made learning enjoyable and impactful. I highly recommend this platform to anyone looking to grow their skills.”"
+      }
+    }
+      },
+        "InstructorsSection": {
+          "title": "Our Instructors",
+          "headline": "Meet Our Expert \nInstructors",
+          "description": "Our experienced instructors are dedicated to providing high-quality education and practical insights to help you achieve your learning goals.",
+          "contactUs": "Contact Us →",
+          "findCourses": "Find Courses →"
+        },
+          "CareerSection": {
+            "title": "Choose Your Career",
+            "headline": "Discover Your Potential",
+            "startToday": "Start From Today",
+            "description": "Join Our Training Courses & Build Your Skills.",
+            "joinNow": "Join Now",
+            "altImage1": "Woman ",
+            "altImage2": "Man"
+          },
+            "PopularPosts": {
+              "blogPost": "Blog Post",
+              "title": "Most Popular Posts",
+              "allPosts": "All Blog Posts",
+              "readMore": "Read More",
+              "comments": "Comment ({count})",
+              "post1Text": "Discover the latest trends in online learning and how they shape the future of education.",
+              "post2Text": "Unlock your potential with expert career tips and strategies for professional growth.",
+              "post3Text": "Explore the impact of technology on education and how to stay ahead in the digital era.",
+              "altImage": "Blog post image"
+            },
+              "newsletter": {
+                "title": "Join Our Newsletter",
+                "description": "Subscribe to our newsletter to get our latest updates & news.",
+                "placeholder": "Enter your email",
+                "button": "Subscribe Now"
+              },
+                "courses": {
+                  "title": "EduQuest Courses",
+                  "subtitle": "Students can join with us.",
+                  "category": "Digital Marketing",
+                  "price": "$50.00",
+                  "rating": "4.5K",
+                  "lessons": "10 Lessons",
+                  "duration": "19h 30m",
+                  "students": "20+ Students",
+                  "instructor": "Samantha"
+                },
+                  "faq": {
+                    "title": "Frequently Asked Questions",
+                    "questions": [
+                      {
+                        "question": "Why do students prefer online learning?",
+                        "answer": "Online learning offers flexibility and accessibility, allowing students to learn at their own pace."
+                      },
+                      {
+                        "question": "Where should I study abroad?",
+                        "answer": "The best country for studying abroad depends on your field of study, budget, and language preferences."
+                      },
+                      {
+                        "question": "How can I contact a school directly?",
+                        "answer": "You can contact schools directly through their official websites or admission offices."
+                      },
+                      {
+                        "question": "How do I find a school where I want to study?",
+                        "answer": "Research schools based on rankings, curriculum, tuition fees, and student reviews."
+                      }
+                    ]
+                  }
+
 }

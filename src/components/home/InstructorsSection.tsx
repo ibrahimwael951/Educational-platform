@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaShareNodes } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 const instructors = [
   {
@@ -26,28 +27,27 @@ const instructors = [
 ];
 
 const InstructorsSection = () => {
+  const t = useTranslations("InstructorsSection");
+
   return (
     <section className="container mx-auto text-center relative my-15 px-4 lg:px-0">
       <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-2 gap-8 items-center">
-        <div className=" p-6 text-left">
+        <div className="p-6 text-left">
           <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
-            Our Instructor
+            {t("title")}
           </p>
           <h1 className="text-neutral-800 dark:text-white">
-            Meet Our Expert <br /> Instructor
+            {t("headline")}
           </h1>
           <p className="text-neutral-800 dark:text-slate-300 mt-12 leading-7">
-            Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit, sed
-            do eiusmod tempor incididunt ut labore et <br />
-            dolore magna aliqua. Ut enim ad minim veniam, quis <br />
-            nostrud exercitation ullamco laboris..
+            {t("description")}
           </p>
           <div className="flex gap-[7px] m-[5px]">
-            <a href="#" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 ">
-              Contact us →
+            <a href="#" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
+              {t("contactUs")}
             </a>
             <a href="#" className="p-3 rounded-xl bg-purple-600 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
-              Find Courses →
+              {t("findCourses")}
             </a>
           </div>
         </div>
@@ -62,14 +62,12 @@ const InstructorsSection = () => {
                 height={600}
                 className="relative w-full rounded-lg border-4 border-[#704FE6]"
               />
-              <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105"  />
+              <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105" />
 
-              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer ">
-                <h2 className="text-base md:text-lg ">{instructor.name}</h2>
-                <div className="flex justify-between items-center mt-1 ">
-                  <p className="text-sm text-[#704FE6]">
-                    {instructor.position}
-                  </p>
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer">
+                <h2 className="text-base md:text-lg">{instructor.name}</h2>
+                <div className="flex justify-between items-center mt-1">
+                  <p className="text-sm text-[#704FE6]">{instructor.position}</p>
                   <FaArrowRight className="bg-[#E9E2FF] text-[#704FE6] text-xs md:text-sm rounded-full p-[3px]" />
                 </div>
               </div>
