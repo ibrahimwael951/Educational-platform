@@ -15,7 +15,7 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className="mx-auto my-5 p-5 flex justify-between items-center">
+    <section className="mx-auto my-5 px-5 md:px-10 md:py-20 pt-32 flex justify-between items-center">
       <div className="flex flex-col items-center lg:items-start gap-10">
         <div className="flex w-full justify-between items-center gap-3">
           <p className="bg-[#E9E2FF] text-[#704FE6] text-xs sm:text-sm font-bold uppercase px-4 py-2 rounded-md">

@@ -9,17 +9,16 @@ const AboutUsSection = () => {
   const t = useTranslations("AboutUsSection");
 
   return (
-    <section className="m-auto px-6 mt-3 flex flex-col lg:flex-row justify-center items-center gap-20 min-h-screen ">
+    <section className="m-auto px-5 md:px-10 md:py-20 pt-32 6 mt-3 flex flex-col lg:flex-row justify-center items-center gap-20 min-h-screen ">
       
       <Image
         src="/home/about.png"
-        width={500}
+        width={500} 
         height={500}
         alt="about"
         className="rounded-lg w-full max-w-[300px] md:max-w-[400px] lg:max-w-[600px]"
       />
 
-      {/* النصوص على اليمين */}
       <div className="w-full flex flex-col gap-10 items-center text-center">
         <p className="bg-[#E9E2FF] text-[#704FE6] w-fit px-4 py-2 rounded-md font-medium inline-block">
           {t("sectionTitle")}
@@ -36,7 +35,7 @@ const AboutUsSection = () => {
           {t("description")}
         </p>
 
-        <div className="flex gap-4 mt-6 items-center w-fit">
+        <div className="flex gap-4 mt-6 items-center justify-items-center w-fit">
           <div>
             <h6 className="text-neutral-800 dark:text-white">{t("features.feature1Title")}</h6>
             <p className="text-neutral-800 dark:text-slate-300">

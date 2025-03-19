@@ -13,7 +13,7 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <section className="flex flex-col gap-20 items-center justify-center text-center py-16 bg-cover bg-center">
+    <section className="flex flex-col gap-20 items-center justify-center text-center px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center">
       <div className="w-full max-w-4xl flex flex-col gap-10 items-center justify-center">
         <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
           {t("title")}

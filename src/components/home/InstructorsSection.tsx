@@ -30,7 +30,7 @@ const InstructorsSection = () => {
   const t = useTranslations("InstructorsSection");
 
   return (
-    <section className="container mx-auto text-center relative my-15 px-4 lg:px-0">
+    <section className="container mx-auto text-center relative my-15 px-5 md:px-10 md:py-20 pt-32">
       <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-2 gap-8 items-center">
         <div className="p-6 text-left">
           <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
@@ -64,8 +64,8 @@ const InstructorsSection = () => {
               />
               <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105" />
 
-              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-3 md:p-4 z-10 text-left shadow-lg cursor-pointer">
-                <h2 className="text-base md:text-lg">{instructor.name}</h2>
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
+                <h2 className="text-base md:text-sm">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
                   <p className="text-sm text-[#704FE6]">{instructor.position}</p>
                   <FaArrowRight className="bg-[#E9E2FF] text-[#704FE6] text-xs md:text-sm rounded-full p-[3px]" />
