@@ -1,42 +1,38 @@
 {
   "navbar": [
     {
-      "title": "Home",
+      "title": "home",
       "url": "/"
     },
     {
-      "title": "About",
+      "title": "about",
       "url": "/about"
     },
     {
-      "title": "Courses",
+      "title": "courses",
       "url": "/courses"
     },
     {
-      "title": "Pages",
-      "url": ""
-    },
-    {
-      "title": "Contact",
+      "title": "contact",
       "url": "/contact"
     }
   ],
   "footer": {
     "our_services": [
       {
-        "title": "Web Development",
+        "title": "Web-Development",
         "url": ""
       },
       {
-        "title": "Ui/Ux Design",
+        "title": "Ui/Ux",
         "url": ""
       },
       {
-        "title": " Digital Marketing",
+        "title": "Digital-Marketing",
         "url": ""
       },
       {
-        "title": " Content Writing",
+        "title": "Content-Writing",
         "url": ""
       },
       {
@@ -62,7 +58,7 @@
             "url": "/faq" 
         },
         {
-          "title": "Shop Details",
+          "title": "Shop-Details",
           "url": "/" 
       }
     ]

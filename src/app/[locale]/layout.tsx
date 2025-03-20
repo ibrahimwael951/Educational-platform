@@ -19,8 +19,9 @@ export const metadata: Metadata = {
 //components
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-// testing
-import Testing from "@/components/testing";
+
+//use that while u make testing
+// import Testing from "@/components/testing";
 
 export default async function RootLayout({
   children,
@@ -37,7 +38,7 @@ export default async function RootLayout({
   console.log(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} dir={locale ==="en"? "ltr":"rtl"} suppressHydrationWarning>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
         <NextIntlClientProvider>
@@ -48,7 +49,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
-            <Testing />
+            {/* <Testing /> */}
             {children}
             <Footer />
           </ThemeProvider>

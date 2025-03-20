@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import { Link } from "@/i18n/navigation";
+
+import { useTranslations } from "next-intl";
 
 // Icons
 import { SiDatabricks } from "react-icons/si";
@@ -11,6 +12,9 @@ import { CiMenuFries } from "react-icons/ci";
 import data from "@/Data/Links.json";
 
 const Navbar = () => {
+  const t = useTranslations("navbar");
+  const r = useTranslations("footer");
+
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleSidebar = () => {
@@ -32,72 +36,61 @@ const Navbar = () => {
   return (
     <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none ">
       <div className="flex justify-center gap-2 items-center w-fit ">
-        {/* <Image
-          className="w-15"
-          src="/logo.png"
-          alt="logo"
-          width={100}
-          height={100}
-        /> */}
         <SiDatabricks className="w-15 text-purple-400" size="100%" />
         <Link
           className="text-2xl font-bold text-neutral-800 dark:text-white"
           href="/"
         >
-          EduQuest
+          {t("title")}
         </Link>
       </div>
 
       {/* links */}
       <div className="hidden lg:flex justify-center items-center gap-2">
-        {data.navbar.map((item, index) =>
-          item.title === "Pages" ? (
-            <div
-              key={index}
-              className="relative dropdown-container"
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-            >
-              {/* Pages Link */}
-              <Link
-                href={item.url}
-                className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
-              >
-                {item.title}
-              </Link>
+        {data.navbar.map((item, index) => (
+          <Link
+            key={index}
+            href={item.url}
+            className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+          >
+            {t(item.title)}
+          </Link>
+        ))}
+        <div
+          className="relative dropdown-container"
+          onMouseEnter={() => setIsDropdownOpen(true)}
+          onMouseLeave={() => setIsDropdownOpen(false)}
+        >
+          {/* Pages Link */}
+          <Link
+            href=""
+            className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+          >
+            {t("pages")}
+          </Link>
 
-              {/* Dropdown Menu */}
-              {isDropdownOpen && (
-                <div className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 border border-gray-300 shadow-lg rounded-md">
-                  {data.footer.Quick_Links.map((item, index) => (
-                    <Link
-                      key={index}
-                      className="p-2 w-full hover:text-purple-400 cursor-pointer"
-                      href={item.url}
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
+          {/* Dropdown Menu */}
+          {isDropdownOpen && (
+            <div className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 border border-gray-300 shadow-lg rounded-md">
+              {data.footer.Quick_Links.map((item, index) => (
+                <Link
+                  key={index}
+                  className="p-2 w-full hover:text-purple-400 cursor-pointer"
+                  href={item.url}
+                >
+                  {r(`Quick_Links.${item.title}`)}
+                </Link>
+              ))}
             </div>
-          ) : (
-            <Link
-              key={index}
-              href={item.url}
-              className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
-            >
-              {item.title}
-            </Link>
-          )
-        )}
+          )}
+        </div>
       </div>
 
       <Link
         className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
         href="/sign in"
       >
-        Create Account
+        {t("create-account")}
       </Link>
 
       <button
@@ -127,7 +120,7 @@ const Navbar = () => {
               key={index}
               href={item.url}
             >
-              {item.title}
+              {t(item.title)}
             </Link>
           ))}
         </div>
