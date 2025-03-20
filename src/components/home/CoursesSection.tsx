@@ -9,18 +9,18 @@ const CoursesSection = () => {
   const t = useTranslations("CoursesSection");
 
   return (
-    <section className="container mx-auto px-5 md:px-10 md:py-20 pt-32 ">
+    <section className=" max-w-7xl mx-auto px-5 md:px-10 md:py-20 pt-32 ">
       <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 rounded-md font-medium text-left inline-block">
         {t("sectionTitle")}
       </p>
 
-      <div className="flex justify-between items-center mt-6">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-6">
         <h1 className="capitalize text-neutral-800 dark:text-white">
           {t("headline")} <span className="circle">{t("highlight")}</span> {t("subheadline")}
         </h1>
         <Link
           href="/courses"
-          className="px-6 py-3 md:px-5 md:py-2 text-xs md:text-base lg:text-lg rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 text-center w-full sm:w-auto"
+          className="w-52 md:w-60  px-6 py-3 md:px-5 md:py-2 text-base md:text-lg rounded-xl bg-purple-500   hover:bg-purple-700 text-white duration-150 text-center"
         >
           {t("button")} →
         </Link>

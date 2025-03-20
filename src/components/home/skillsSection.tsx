@@ -15,7 +15,7 @@ const SkillsSection = () => {
 
   return (
     <section
-      className="container flex mx-auto px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center rounded-[200px] md:rounded-[50px] justify-center items-center text-left"
+      className="max-w-7xl   mx-auto px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center rounded-4xl flex justify-center items-center text-left"
       style={{ backgroundImage: "url('/home/skill background.png')" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 items-center text-center justify-center">

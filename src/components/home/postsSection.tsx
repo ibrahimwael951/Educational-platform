@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { FaCalendarAlt, FaComments } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
@@ -30,34 +31,34 @@ const PopularPosts = () => {
   ];
 
   return (
-    <section className="container mx-auto px-5 md:px-10 md:py-20 pt-32">
+    <section className=" max-w-7xl mx-auto px-5 md:px-10 md:py-20 pt-32">
       <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase rounded-lg">
         {t("blogPost")}
       </p>
 
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex flex-col md:flex-row gap-y-5 gap-x-10 justify-between items-center mt-4  m-auto">
         <h1 className="text-neutral-800 dark:text-white">{t("title")}</h1>
-        <a
+        <Link
           href="#"
           className="px-6 py-3 md:px-5 md:py-2 text-xs md:text-base lg:text-lg rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 text-center w-full sm:w-auto"
         >
           {t("allPosts")} →
-        </a>
+        </Link>
       </div>
 
-      <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-1 max-[4000px]:grid-cols-3 gap-6 mt-8 justify-center items-center m-[30px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 justify-items-center items-center my-8 mx-auto w-fit ">
         {posts.map((post) => (
           <div
             key={post.id}
-            className="rounded-xl overflow-hidden shadow-md m-[10px]"
+            className="rounded-xl overflow-hidden shadow-md m-[10px] w-fit max-w-96"
             style={{ backgroundImage: "url('/home/postsBg.png')" }}
           >
             <Image
               src={post.image}
               alt={t("altImage")}
-              width={400}
-              height={200}
-              className="h-60 object-cover"
+              width={1000}
+              height={1000}
+              className="w-full object-cover"
             />
             <div className="p-6">
               <div className="flex items-center gap-4 text-[#4D5756] text-sm mb-4">
@@ -73,12 +74,12 @@ const PopularPosts = () => {
 
               <p className="text-sm font-semibold text-neutral-800 dark:text-white">{post.text}</p>
 
-              <a
+              <Link
                 href="#"
                 className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
               >
                 {t("readMore")} →
-              </a>
+              </Link>
             </div>
           </div>
         ))}

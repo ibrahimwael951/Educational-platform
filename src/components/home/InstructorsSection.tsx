@@ -30,9 +30,9 @@ const InstructorsSection = () => {
   const t = useTranslations("InstructorsSection");
 
   return (
-    <section className="container mx-auto text-center relative my-15 px-5 md:px-10 md:py-20 pt-32">
-      <div className="grid max-[600px]:grid-cols-1 max-[769px]:grid-cols-2 max-[4000px]:grid-cols-2 gap-8 items-center">
-        <div className="p-6 text-left">
+    <section className="max-w-7xl  mx-auto relative my-15 px-5 md:px-10 py-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-center">
+        <div className="p-6 ">
           <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
             {t("title")}
           </p>

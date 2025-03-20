@@ -9,9 +9,9 @@ const HeroSection = () => {
   const t = useTranslations("HeroSection");
 
   return (
-    <section className="w-full min-h-screen bg-cover bg-center flex items-center px-5 md:px-10 pt-32 md:py-20">
+    <section className="max-w-7xl mx-auto w-full min-h-screen bg-cover bg-center flex items-center px-5 md:px-10 pt-32 md:py-20">
       <div className="flex m-auto flex-col md:flex-row items-center justify-between gap-10">
-        <div className="text-left">
+        <div className="flex flex-col gap-2 ">
           <p className="uppercase text-purple-400">{t("welcome")}</p>
           <h1 className="text-4xl font-bold text-neutral-800 dark:text-white">
             {t("title")}
@@ -21,7 +21,7 @@ const HeroSection = () => {
           </p>
           <Link
             href="/courses"
-            className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
+            className=" w-fit p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
           >
             {t("button")}
           </Link>
