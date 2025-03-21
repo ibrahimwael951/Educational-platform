@@ -1,15 +1,14 @@
 "use client";
-
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { FaQuoteRight } from "react-icons/fa";
 
 const TestimonialSection = () => {
   const t = useTranslations("TestimonialSection");
 
   const testimonials = [
-    { key: "testimonial1", image: "/home/qoute icon.png" },
-    { key: "testimonial2", image: "/home/qoute icon.png" },
-    { key: "testimonial3", image: "/home/qoute icon.png" }
+    { key: "testimonial1" },
+    { key: "testimonial2" },
+    { key: "testimonial3" }
   ];
 
   return (
@@ -22,14 +21,14 @@ const TestimonialSection = () => {
           {t("headline")}
         </h1>
 
-        <div className="flex flex-col flex-wrap md:flex-row  justify-center items-center gap-6">
-          {testimonials.map(({ key, image }) => (
+        <div className="flex flex-col justify-center items-center gap-10">
+          {testimonials.map(({ key }) => (
             <div
               key={key}
-              className="bg-slate-100 dark:bg-neutral-800 shadow-lg border border-neutral-700 rounded-xl relative text-left p-5 m-2  flex flex-col gap-3 w-3xl"
+              className="bg-slate-100 dark:bg-neutral-800 shadow-lg border text-start border-neutral-700 rounded-xl relative p-5 flex flex-col gap-3 w-full max-w-4xl"
             >
-              <span className="absolute -top-[20px] -left-[5px] z-10">
-                <Image src={image} alt="quote icon" width={50} height={30} />
+              <span className="absolute -top-[20px] -left-[5px] z-10 text-neutral-800 dark:text-slate-300">
+              <FaQuoteRight size={50}/>
               </span>
               <p className="text-neutral-500 dark:text-slate-300 mt-6 text-lg leading-relaxed">
                 {t(`testimonials.${key}.text`)}
