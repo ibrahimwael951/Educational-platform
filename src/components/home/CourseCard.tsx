@@ -4,6 +4,7 @@ import { FaFileInvoice, FaClock, FaUser, FaStar } from "react-icons/fa";
 import { Link } from "@/i18n/navigation";
 
 interface CourseCardProps {
+  id: number;
   image: string;
   title: string;
   category: string;
@@ -16,10 +17,10 @@ interface CourseCardProps {
     name: string;
     avatar: string;
   };
-  id:number
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
+  id,
   image,
   title,
   category,
@@ -29,7 +30,6 @@ const CourseCard: React.FC<CourseCardProps> = ({
   duration,
   students,
   instructor,
-  id
 }) => {
   return (
     <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-slate-200 dark:bg-neutral-900 shadow-lg rounded-xl p-6 m-5 justify-center items-center">
