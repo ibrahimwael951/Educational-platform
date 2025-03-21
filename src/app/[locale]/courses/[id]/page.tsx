@@ -8,7 +8,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 import { IoPersonOutline } from "react-icons/io5";
 
 //  still want some work on it
-export default function page() {
+export default function Page() {
   const t = useTranslations("courses");
   return (
     <section className="relative min-h-screen max-w-7xl w-full mx-auto flex gap-10  py-32 px-10">
