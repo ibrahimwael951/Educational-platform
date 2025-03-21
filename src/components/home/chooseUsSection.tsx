@@ -21,7 +21,7 @@ const WhyChooseUsSection = () => {
           <p className="bg-[#E9E2FF] text-[#704FE6] text-xs sm:text-sm font-bold uppercase px-4 py-2 rounded-md">
             {t("title")}
           </p>
-          <Image src="/home/design2.png" alt="تصميم" width={50} height={10} />
+          <Image src="/home/design2.png" alt="design" width={50} height={10} />
         </div>
         <h1 className="text-neutral-800 dark:text-white text-3xl sm:text-4xl font-bold leading-tight mt-3">
           {t("heading")}

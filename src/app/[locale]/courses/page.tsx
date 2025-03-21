@@ -19,7 +19,7 @@ const CoursesPage = () => {
           .fill(null)
           .map((_, index) => (
             <CourseCard
-             id={index}
+            id={index}
               key={index}
               image="/home/card1.png"
               title={t("title")}

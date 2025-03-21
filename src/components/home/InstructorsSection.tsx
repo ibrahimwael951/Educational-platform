@@ -2,6 +2,8 @@ import Image from "next/image";
 import { FaShareNodes } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import ShareButton from "@/components/shareButton";
 
 const instructors = [
   {
@@ -46,9 +48,9 @@ const InstructorsSection = () => {
             <a href="#" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
               {t("contactUs")}
             </a>
-            <a href="#" className="p-3 rounded-xl bg-purple-600 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
-              {t("findCourses")}
-            </a>
+            <Link href="/instructors" className="p-3 rounded-xl bg-purple-600 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
+              {t("findInstructor")}
+            </Link>
           </div>
         </div>
 
@@ -62,7 +64,9 @@ const InstructorsSection = () => {
                 height={600}
                 className="relative w-full rounded-lg border-4 border-[#704FE6]"
               />
-              <FaShareNodes className="absolute top-[2rem] right-[2rem] bg-[#704FE6] text-[#fff] rounded-full p-[10px] text-[2rem] cursor-pointer hover:scale-105" />
+              <div className="absolute top-5 right-5">
+              <ShareButton />
+              </div>
 
               <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
                 <h2 className="text-base md:text-sm">{instructor.name}</h2>
