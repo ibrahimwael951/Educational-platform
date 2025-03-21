@@ -16,6 +16,7 @@ interface CourseCardProps {
     name: string;
     avatar: string;
   };
+  id:number
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
@@ -28,6 +29,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   duration,
   students,
   instructor,
+  id
 }) => {
   return (
     <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-slate-200 dark:bg-neutral-900 shadow-lg rounded-xl p-6 m-5 justify-center items-center">
@@ -76,7 +78,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
             <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
-          <Link href="/courseDetails" className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
+          <Link href={`/courses/${id}`} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
             Enroll →
           </Link>
         </div>

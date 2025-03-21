@@ -32,6 +32,7 @@ const CoursesPage = () => {
                 name: t("instructor"),
                 avatar: "/home/person1.png",
               }}
+              id={1}
             />
           ))}
       </div>

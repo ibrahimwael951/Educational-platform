@@ -16,7 +16,7 @@
     "create-account": "انشاء حساب"
   },
   "footer": {
-    "description":"أحيانًا يكون هناك تنسيق من خلال استخدام التمرير المتقاطع. ثم، يبدأ التنسيق مع التنسيق الفوري ويصبح أكثر مرونة مع مرور الوقت.",
+    "description": "أحيانًا يكون هناك تنسيق من خلال استخدام التمرير المتقاطع. ثم، يبدأ التنسيق مع التنسيق الفوري ويصبح أكثر مرونة مع مرور الوقت.",
     "Quick_Links": {
       "title": "الروابط السريعة",
       "Events": "الفعاليات",
@@ -189,11 +189,18 @@
     "subtitle": "يمكن للطلاب الانضمام إلينا.",
     "category": "التسويق الرقمي",
     "price": "٥٠ دولارًا",
+    "enrolled": "مسجل",
+    "lectures": "محاضرات",
+    "skill level": "مستوى المهارة",
+    "language": "اللغة",
     "rating": "٤.٥ ألف",
     "lessons": "١٠ دروس",
     "duration": "١٩ ساعة و٣٠ دقيقة",
     "students": "٢٠+ طالب",
-    "instructor": "سامانثا"
+    "instructor": "سامانثا",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et minus reiciendis similique quam animi, veniam quibusdam eos molestiae assumenda dolore amet aliquid asperiores totam doloremque necessitatibus cumque debitis? Pariatur, cupiditate.",
+    "wulftc":"ماذا ستتعلم من هذه الدورة",
+    "Course-Description":"وصف الدورة"
   },
   "faq": {
     "title": "الأسئلة الشائعة",
