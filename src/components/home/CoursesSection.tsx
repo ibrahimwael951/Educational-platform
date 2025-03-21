@@ -31,6 +31,7 @@ const CoursesSection = () => {
           .fill(null)
           .map((_, index) => (
             <CourseCard
+              id={index}
               key={index}
               image="/home/card1.png"
               title={t("course.title")}
