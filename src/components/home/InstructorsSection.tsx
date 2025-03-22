@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { FaShareNodes } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
