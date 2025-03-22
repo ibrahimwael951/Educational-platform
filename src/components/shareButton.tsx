@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const ShareButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState<string | null>(null); 
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -17,11 +17,11 @@ const ShareButton = () => {
   const toggleShareMenu = () => setIsOpen((prev) => !prev);
 
   const socialLinks = [
-    { icon: <FaWhatsapp />, color: "bg-green-600", link: `https://wa.me/?text=${currentUrl}` },
-    { icon: <FaTelegramPlane />, color: "bg-blue-400", link: `https://t.me/share/url?url=${currentUrl}` },
-    { icon: <FaFacebookMessenger />, color: "bg-blue-600", link: `fb-messenger://share/?link=${currentUrl}` },
-    { icon: <FaEnvelope />, color: "bg-red-500", link: `mailto:?subject=Check this&body=${currentUrl}` },
-    { icon: <FaSms />, color: "bg-indigo-500", link: `sms:?body=${currentUrl}` },
+    { icon: <FaWhatsapp />, color: "bg-green-600", link: `https://wa.me/?text=${currentUrl || ""}` },
+    { icon: <FaTelegramPlane />, color: "bg-blue-400", link: `https://t.me/share/url?url=${currentUrl || ""}` },
+    { icon: <FaFacebookMessenger />, color: "bg-blue-600", link: `fb-messenger://share/?link=${currentUrl || ""}` },
+    { icon: <FaEnvelope />, color: "bg-red-500", link: `mailto:?subject=Check this&body=${currentUrl || ""}` },
+    { icon: <FaSms />, color: "bg-indigo-500", link: `sms:?body=${currentUrl || ""}` },
   ];
 
   return (
@@ -37,7 +37,7 @@ const ShareButton = () => {
 
       {/* Share Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && currentUrl && ( 
           <motion.div
             className="absolute w-30 h-30 flex -left-15 -top-15 items-center"
             initial={{ opacity: 0, scale: 0 }}
