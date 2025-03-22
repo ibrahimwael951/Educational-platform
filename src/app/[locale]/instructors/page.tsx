@@ -12,21 +12,25 @@ import ShareButton from "@/components/shareButton";
 
 const instructors = [
   {
+    id: 1,
     name: "John Doe",
     position: "Senior Instructor",
     image: "/home/instructor1.png",
   },
   {
+    id: 2,
     name: "Jane Smith",
     position: "Lead Trainer",
     image: "/home/instructor2.png",
   },
   {
+    id: 3,
     name: "Michael Johnson",
     position: "Expert Coach",
     image: "/home/instructor3.png",
   },
   {
+    id: 4,
     name: "Emily Davis",
     position: "Head of Training",
     image: "/home/instructor4.png",
@@ -63,8 +67,8 @@ const InstructorsSlider = () => {
 
 //   Instructor Details Router Func
   const handleNavigate = (name: string) => {
-    const slug = name.toLowerCase().replace(/\s+/g, "-"); 
-    router.push(`/instructors/${slug}`);
+    const id = name.toLowerCase().replace(/\s+/g, "-"); 
+    router.push(`/instructors/${id}`);
   };
 
   return (

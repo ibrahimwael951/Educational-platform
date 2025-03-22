@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { FaShareAlt, FaWhatsapp, FaTelegramPlane, FaFacebookMessenger, FaEnvelope, FaSms } from "react-icons/fa";
+import { FaShareAlt, FaTelegramPlane, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 const ShareButton = () => {
@@ -19,9 +19,9 @@ const ShareButton = () => {
   const socialLinks = [
     { icon: <FaWhatsapp />, color: "bg-green-600", link: `https://wa.me/?text=${currentUrl || ""}` },
     { icon: <FaTelegramPlane />, color: "bg-blue-400", link: `https://t.me/share/url?url=${currentUrl || ""}` },
-    { icon: <FaFacebookMessenger />, color: "bg-blue-600", link: `fb-messenger://share/?link=${currentUrl || ""}` },
-    { icon: <FaEnvelope />, color: "bg-red-500", link: `mailto:?subject=Check this&body=${currentUrl || ""}` },
-    { icon: <FaSms />, color: "bg-indigo-500", link: `sms:?body=${currentUrl || ""}` },
+    { icon: <FaFacebook />, color: "bg-blue-600", link: `fb-messenger://share/?link=${currentUrl || ""}` },
+    { icon: <FaTwitter />, color: "bg-blue-500", link: `tweet:?subject=Check this&body=${currentUrl || ""}` },
+    { icon: <FaLinkedin />, color: "bg-indigo-500", link: `message:?body=${currentUrl || ""}` },
   ];
 
   return (
