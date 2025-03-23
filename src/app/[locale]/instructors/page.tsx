@@ -97,12 +97,12 @@ const InstructorsSlider = () => {
 
             
               <div
-                className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-white rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer"
+                className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-white  dark:bg-neutral-700 rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer"
                 onClick={() => handleNavigate(instructor.name)}
               >
-                <h2 className="text-base md:text-sm">{instructor.name}</h2>
+                <h2 className="text-base md:text-sm  dark:text-white">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
-                  <p className="text-sm text-[#704FE6]">{instructor.position}</p>
+                  <p className="text-sm text-[#704FE6] dark:text-purple-500">{instructor.position}</p>
                   <FaArrowRight className="bg-[#E9E2FF] text-[#704FE6] text-xs md:text-sm rounded-full p-[3px]" />
                 </div>
               </div>

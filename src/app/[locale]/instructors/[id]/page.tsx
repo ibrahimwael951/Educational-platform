@@ -63,10 +63,10 @@ if (!instructor) {
 }
 
   return (
-    <div className="max-w-5xl mx-auto my-10 p-6 mt-30 bg-white shadow-lg rounded-lg">
+    <div className="max-w-5xl mx-auto my-10 p-6 mt-30 bg-white  dark:bg-neutral-700 shadow-lg rounded-lg">
       <div className="flex flex-col md:flex-row">
         {/*Contact Data*/}
-        <div className="md:w-1/3 text-center p-5 bg-gray-100 rounded-lg">
+        <div className="md:w-1/3 text-center p-5 bg-gray-100 dark:bg-neutral-600 rounded-lg dark:text-white">
           <Image
             src={instructor.image}
             alt={instructor.name}
@@ -74,8 +74,8 @@ if (!instructor) {
             height={200}
             className="rounded-full mx-auto"
           />
-          <h2 className="text-lg font-bold mt-4">{instructor.name}</h2>
-          <p className="text-sm text-purple-600">{instructor.position}</p>
+          <h2 className="text-lg font-bold mt-4 dark:text-white">{instructor.name}</h2>
+          <p className="text-sm text-purple-600 dark:text-purple-400">{instructor.position}</p>
 
           <div className="flex justify-center space-x-4 my-3">
             <FaFacebook className="text-blue-600 cursor-pointer" />
@@ -84,34 +84,34 @@ if (!instructor) {
             <FaWhatsapp className="text-blue-700 cursor-pointer"/>
           </div>
 
-         <div className="flex text-center gap-4"> <FaPhoneAlt className="text-purple-600"/> 
-         <p className="text-sm text-gray-600">{instructor.phone}</p>
+         <div className="flex text-center gap-4"> <FaPhoneAlt className="text-purple-600 dark:text-purple-400"/> 
+         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.phone}</p>
          </div>
           
-         <div className="flex text-center gap-4"> <FaLocationDot  className="text-purple-600"/> 
-         <p className="text-sm text-gray-600">{instructor.location}</p>
+         <div className="flex text-center gap-4"> <FaLocationDot  className="text-purple-600 dark:text-purple-400"/> 
+         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.location}</p>
          </div>
 
-         <div className="flex text-center gap-4"> <FaEnvelope   className="text-purple-600"/> 
-         <p className="text-sm text-gray-600">{instructor.email}</p>
+         <div className="flex text-center gap-4"> <FaEnvelope   className="text-purple-600 dark:text-purple-400"/> 
+         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.email}</p>
          </div>
         </div>
 
         <div className="md:w-2/3 p-5">
-          <h1 className="text-2xl font-bold">{instructor.name}</h1>
-          <p className="text-sm text-purple-600">TEACHER</p>
-          <p className="mt-4 text-gray-700">
+          <h1 className="text-2xl font-bold dark:text-white">{instructor.name}</h1>
+          <p className="text-sm text-purple-600 dark:text-purple-400">TEACHER</p>
+          <p className="mt-4 text-gray-700 dark:text-gray-400">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere erat eget massa pharetra, eget fermentum ligula gravida.
           </p>
 
-          <h3 className="mt-6 text-lg font-bold">Education:</h3>
-          <p className="text-gray-700">
+          <h3 className="mt-6 text-lg font-bold dark:text-gray-400">Education:</h3>
+          <p className="text-gray-700 dark:text-gray-400">
             I have spent years mastering my teaching techniques and I am thrilled to share my expertise with you.
           </p>
 
-          <h3 className="mt-6 text-lg font-bold">EXPERTISE & SKILLS:</h3>
+          <h3 className="mt-6 text-lg font-bold dark:text-gray-400">EXPERTISE & SKILLS:</h3>
           {instructor.expertise.map((skill, index) => (
-            <p key={index} className="border-b py-2 text-gray-800">{skill}</p>
+            <p key={index} className="border-b py-2 text-gray-800 dark:text-gray-400">{skill}</p>
           ))}
         </div>
       </div>

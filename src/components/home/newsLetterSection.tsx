@@ -18,7 +18,7 @@ const NewsletterSection = () => {
           placeholder={t("placeholder")}
           className="flex-1 px-4 py-3 text-lg text-black border-none outline-none rounded-l-lg"
         />
-        <button className="p-4 -ml-5 bg-purple-500 text-white rounded-r-lg hover:bg-purple-700 transition cursor-pointer">
+        <button className="p-3 -ml-15 bg-purple-500 text-white rounded-r-lg hover:bg-purple-700 transition cursor-pointer">
           {t("button")}
         </button>
       </div>
