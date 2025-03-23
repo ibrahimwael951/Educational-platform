@@ -18,31 +18,31 @@ const Profile = () => {
               <h2 className="font-bold text-neutral-800 dark:text-white text-lg mt-2">Rawan Ayman</h2>
             </div>
             <ul className="space-y-1">
-              <li className="flex items-center p-2 hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2 hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaHome className="mr-2" /> {t("account")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaGraduationCap className="mr-2" /> {t("courses")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaCertificate className="mr-2" /> {t("certificates")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaPlay className="mr-2" /> {t("featured")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaHeart className="mr-2" /> {t("favorites")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaList className="mr-2" /> {t("list")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaBriefcase className="mr-2" /> {t("resume")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100">
                 <FaCog className="mr-2" /> {t("settings")}
               </li>
-              <li className="flex items-center p-2   hover:bg-gray-400  dark:hover:bg-neutral-800 cursor-pointer duration-100 text-red-500">
+              <li className="flex items-center p-2   hover:bg-neutral-400  dark:hover:bg-neutral-800 cursor-pointer duration-100 text-red-500">
                 <FaSignOutAlt className="mr-2" /> {t("logout")}
               </li>
             </ul>
