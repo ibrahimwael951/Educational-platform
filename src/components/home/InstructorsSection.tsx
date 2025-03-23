@@ -34,7 +34,7 @@ const InstructorsSection = () => {
     <section className="max-w-7xl  mx-auto relative my-15 px-5 md:px-10 py-32">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-center">
         <div className="p-6 ">
-          <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase">
+          <p className="bg-[#E9E2FF] text-[#704FE6] dark:bg-neutral-900 px-4 py-2 font-medium inline-block uppercase">
             {t("title")}
           </p>
           <h1 className="text-neutral-800 dark:text-white">
@@ -67,7 +67,7 @@ const InstructorsSection = () => {
               <ShareButton />
               </div>
 
-              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff]  dark:bg-neutral-700 rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
                 <h2 className="text-base md:text-sm">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
                   <p className="text-sm text-[#704FE6]">{instructor.position}</p>
