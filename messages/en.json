@@ -1,16 +1,9 @@
 {
-  "LocaleSwitcher": {
-    "switchLocale": "Arabic"
-  },
-  "HomePage": {
-    "title": "English",
-    "description": "This is the home page of the application."
-  },
   "navbar": {
     "title": "EduQuest",
     "home": "Home",
-    "contact": "Contact",
-    "about": "About",
+    "contact": "Contact Us",
+    "about": "About Us",
     "courses": "Courses",
     "pages": "Pages",
     "create-account": "create Account"
