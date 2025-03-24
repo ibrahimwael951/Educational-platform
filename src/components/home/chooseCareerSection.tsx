@@ -1,73 +1,93 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const CareerSection = () => {
   const t = useTranslations("CareerSection");
 
   return (
-    <section className=" max-w-7xl mx-auto text-center px-5 md:px-10 md:py-20 pt-32">
-    <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase rounded-lg">
-      {t("title")}
-    </p>
-    <h1 className="text-neutral-800 dark:text-white">{t("headline")}</h1>
-  
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8 items-center justify-center">
-      
-      {/* Card 1 */}
-  
-        <div className="relative flex flex-row-reverse items-center justify-between bg-purple-400 rounded-xl p-5 overflow-hidden max-w-xl m-auto">
+    <section className="max-w-7xl mx-auto text-center px-5 md:px-10 py-24">
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+        className="bg-gray-50 text-purple-500 px-4 py-2 font-medium inline-block uppercase rounded-lg"
+      >
+        {t("title")}
+      </motion.p>
 
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+        className="text-neutral-800 dark:text-white text-3xl font-bold mt-3"
+      >
+        {t("headline")}
+      </motion.h1>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+        {/* Card 1 */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2, delay: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          className="relative flex flex-col md:flex-row-reverse items-center bg-purple-400 rounded-xl p-6 shadow-lg hover:shadow-2xl transition duration-300"
+        >
           <Image
             src="/home/person2.png"
             alt={t("altImage1")}
-            className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] object-contain rounded-xl"
-            layout="intrinsic"
             width={400}
             height={400}
+            className="w-40 md:w-48 lg:w-56 object-contain rounded-xl"
           />
 
-          <div className="flex flex-col justify-start items-start max-w-[90%] md:max-w-[80%] lg:max-w-[60%]">
+          <div className="flex flex-col items-start max-w-lg text-left mt-6 md:mt-0 md:mr-6">
             <p className="text-lg text-white">{t("startToday")}</p>
-            <p className="text-start text-xl text-white">{t("description")}</p>
+            <p className="text-xl text-white mt-2">{t("description")}</p>
             <Link
               href="#"
-              className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
+              className="px-5 py-3 rounded-lg bg-purple-500 mt-4 inline-block hover:bg-purple-700 text-white transition duration-150"
             >
               {t("joinNow")} →
             </Link>
           </div>
-        </div>
- 
-  
-      {/* Card 2 */}
-  
-        <div className="relative flex flex-row-reverse items-center justify-between bg-yellow-500 rounded-xl p-5 overflow-hidden max-w-xl m-auto">
+        </motion.div>
+
+        {/* Card 2 */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+          className="relative flex flex-col md:flex-row-reverse items-center bg-yellow-500 rounded-xl p-6 shadow-lg hover:shadow-2xl transition duration-300"
+        >
           <Image
             src="/home/person.png"
             alt={t("altImage2")}
-            className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] object-contain rounded-xl"
-            layout="intrinsic"
             width={400}
             height={400}
+            className="w-40 md:w-48 lg:w-56 object-contain rounded-xl"
           />
 
-          <div className="flex flex-col justify-start items-start max-w-[90%] md:max-w-[80%] lg:max-w-[60%]">
+          <div className="flex flex-col items-start max-w-lg text-left mt-6 md:mt-0 md:mr-6">
             <p className="text-lg text-white">{t("startToday")}</p>
-            <p className="text-start text-xl text-white">{t("description")}</p>
+            <p className="text-xl text-white mt-2">{t("description")}</p>
             <Link
               href="#"
-              className="p-3 rounded-xl bg-yellow-700 mt-6 inline-block hover:bg-yellow-900 text-white duration-150"
+              className="px-5 py-3 rounded-lg bg-yellow-700 mt-4 inline-block hover:bg-yellow-900 text-white transition duration-150"
             >
               {t("joinNow")} →
             </Link>
           </div>
-        </div>
-    
-  
-    </div>
-  </section>
-  
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

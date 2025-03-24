@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 const SkillsSection = () => {
   const t = useTranslations("SkillsSection.skills");
@@ -15,29 +16,33 @@ const SkillsSection = () => {
 
   return (
     <section
-      className="max-w-7xl   mx-auto px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center rounded-4xl flex justify-center items-center text-left"
+      className="max-w-7xl mx-auto px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center rounded-4xl flex justify-center items-center"
       style={{ backgroundImage: "url('/home/skill background.png')" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 items-center text-center justify-center">
-        {skills.map(({ key, img }) => (
-          <div
+        {skills.map(({ key, img }, index) => (
+          <motion.div
             key={key}
-            className="flex flex-col md:flex-row items-center text-left w-50 px-5 py-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}
+            className="flex flex-col md:flex-row items-center px-5 py-3"
           >
             <Image
               src={img}
               alt="icon"
               width={50}
               height={50}
-              className="w-12 h-12 bg-white rounded-full shadow-lg"
+              className="w-12 h-12 bg-white rounded-full shadow-lg p-2"
             />
             <div className="md:ml-3 text-center md:text-left mt-2 md:mt-0">
-              <h6 className="text-[#0E2A46] font-bold text-3xl text-left">
+              <h6 className="text-[#0E2A46] font-bold text-3xl">
                 {t(`${key}.number`)}
               </h6>
               <p className="text-[#0E2A46] text-sm">{t(`${key}.text`)}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 
 //components
 import { ThemeProvider } from "@/components/theme-provider";
+import ScrollTopBtn from "@/components/scrollTopBtn";
 
 export const metadata: Metadata = {
   title: "EduQuest",
@@ -54,6 +55,7 @@ export default async function RootLayout({
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
+        <ScrollTopBtn />
       </body>
     </html>
   );

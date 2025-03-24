@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { FaCalendarAlt, FaComments } from "react-icons/fa";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 const PopularPosts = () => {
   const t = useTranslations("PopularPosts");
@@ -31,27 +34,52 @@ const PopularPosts = () => {
   ];
 
   return (
-    <section className=" max-w-7xl mx-auto px-5 md:px-10 md:py-20 pt-32">
-      <p className="bg-[#E9E2FF] text-[#704FE6] px-4 py-2 font-medium inline-block uppercase rounded-lg">
+    <section className="max-w-7xl mx-auto px-5 md:px-10 py-24">
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+        className="bg-gray-50 text-purple-500 px-4 py-2 font-medium inline-block uppercase rounded-lg"
+      >
         {t("blogPost")}
-      </p>
+      </motion.p>
 
-      <div className="flex flex-col md:flex-row gap-y-5 gap-x-10 justify-between items-center mt-4  m-auto">
-        <h1 className="text-neutral-800 dark:text-white">{t("title")}</h1>
-        <Link
-          href="#"
-          className="px-6 py-3 md:px-5 md:py-2 text-xs md:text-base lg:text-lg rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 text-center w-full sm:w-auto"
+      <div className="flex flex-col md:flex-row gap-y-5 gap-x-10 justify-between items-center mt-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+          className="text-neutral-800 dark:text-white text-3xl font-bold"
         >
-          {t("allPosts")} →
-        </Link>
+          {t("title")}
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <Link
+            href="#"
+            className="px-6 py-3 text-lg rounded-xl bg-purple-500 inline-block hover:bg-purple-700 text-white transition duration-150 text-center"
+          >
+            {t("allPosts")} →
+          </Link>
+        </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 justify-items-center items-center my-8 mx-auto w-fit ">
-        {posts.map((post) => (
-          <div
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        {posts.map((post, index) => (
+          <motion.div
             key={post.id}
-            className="rounded-xl overflow-hidden shadow-md m-[10px] w-fit max-w-96"
-            style={{ backgroundImage: "url('/home/postsBg.png')" }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 + index * 0.2, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}
+            className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 transition duration-300"
           >
             <Image
               src={post.image}
@@ -61,7 +89,7 @@ const PopularPosts = () => {
               className="w-full object-cover"
             />
             <div className="p-6">
-              <div className="flex items-center gap-4 text-[#4D5756] text-sm mb-4">
+              <div className="flex items-center gap-4 text-gray-500 text-sm mb-4">
                 <div className="flex items-center gap-2">
                   <FaCalendarAlt className="text-purple-500" />
                   <p className="text-neutral-800 dark:text-slate-400">{post.date}</p>
@@ -72,16 +100,16 @@ const PopularPosts = () => {
                 </div>
               </div>
 
-              <p className="text-sm font-semibold text-neutral-800 dark:text-white">{post.text}</p>
+              <p className="text-lg font-semibold text-neutral-800 dark:text-white">{post.text}</p>
 
               <Link
                 href="#"
-                className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
+                className="px-5 py-3 rounded-lg bg-purple-500 mt-4 inline-block hover:bg-purple-700 text-white transition duration-150"
               >
                 {t("readMore")} →
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
