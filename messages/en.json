@@ -240,5 +240,10 @@
     "project_2": "Project 2",
     "project_3": "Project 3",
     "project_4": "Project 4"
+  },
+  "EventsPage": {
+    "title": "Available Events",
+    "eventText": "Discover the latest trends in online learning and how they shape the future of education.",
+    "altImage": "Event image"
   }
 }

@@ -63,11 +63,11 @@ const PopularPosts = () => {
             <div className="p-6">
               <div className="flex items-center gap-4 text-[#4D5756] text-sm mb-4">
                 <div className="flex items-center gap-2">
-                  <FaCalendarAlt className="text-[#704FE6]" />
+                  <FaCalendarAlt className="text-purple-500" />
                   <p className="text-neutral-800 dark:text-slate-400">{post.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaComments className="text-[#704FE6]" />
+                  <FaComments className="text-purple-500" />
                   <p className="text-neutral-800 dark:text-slate-400">{t("comments", { count: post.comments })}</p>
                 </div>
               </div>
