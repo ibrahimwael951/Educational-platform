@@ -36,10 +36,10 @@ const InstructorsSection = () => {
   return (
     <section className="max-w-7xl mx-auto relative my-15 px-5 md:px-10 py-32">
       <motion.div
-       initial={{ opacity: 0, x: -50 }}
-       whileInView={{ opacity: 1, x: 0 }}
-       transition={{ duration: 0.6, ease: "easeOut" }}
-       viewport={{ once: false, amount: 0.3 }}
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: false, amount: 0.3 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-center"
       >
         <div className="p-6">
@@ -50,7 +50,7 @@ const InstructorsSection = () => {
           <p className="text-neutral-800 dark:text-slate-300 mt-12 leading-7">{t("description")}</p>
           <div className="flex gap-[7px] m-[5px]">
             <a
-              href="#"
+              href="contactUs"
               className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
             >
               {t("contactUs")}
@@ -85,11 +85,11 @@ const InstructorsSection = () => {
                 <ShareButton />
               </div>
 
-              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-[#fff] dark:bg-neutral-700 rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
+              <div className="absolute -bottom-1 left-2/4 transform -translate-x-2/4 bg-white dark:bg-neutral-700 rounded-lg p-2 md:p-1 z-10 text-left shadow-lg cursor-pointer">
                 <h2 className="text-base md:text-sm dark:text-white">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
                   <p className="text-sm text-purple-700 dark:text-purple-500">{instructor.position}</p>
-                  <FaArrowRight className="bg-[#E9E2FF] text-purple-500 text-xs md:text-sm rounded-full p-[3px]" />
+                  <FaArrowRight className="bg-gray-50 text-purple-500 text-xs md:text-sm rounded-full p-[3px]" />
                 </div>
               </div>
             </motion.div>

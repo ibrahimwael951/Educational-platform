@@ -26,7 +26,7 @@ const CategoriesSection: React.FC = () => {
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3 }}
         viewport={{ once: false, amount: 0.3 }}
         className="text-neutral-800 dark:text-white text-3xl font-bold"
       >
@@ -38,7 +38,7 @@ const CategoriesSection: React.FC = () => {
         whileInView="visible"
         variants={{
           hidden: { opacity: 0, y: 30 },
-          visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.15 } },
+          visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.10 } },
         }}
         viewport={{ once: false, amount: 0.3 }}
         className="w-full sm:w-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-7 mt-5 justify-items-center"

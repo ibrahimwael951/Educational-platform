@@ -14,6 +14,7 @@ const CoursesPage = () => {
         </h1>
       </div>
 
+
       <div className="flex flex-wrap mt-6 items-center justify-center select-none">
         {Array(8)
           .fill(null)

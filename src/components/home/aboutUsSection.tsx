@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 const AboutUsSection = () => {
   const t = useTranslations("AboutUsSection");
@@ -76,20 +75,6 @@ const AboutUsSection = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.5 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <Link
-            href="/about-us"
-            className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150 w-fit"
-          >
-            {t("button")} →
-          </Link>
-        </motion.div>
       </motion.div>
     </section>
   );
