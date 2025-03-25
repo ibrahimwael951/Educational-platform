@@ -15,7 +15,6 @@ quantity: number;
 
 const CartPage: React.FC = () => {
 const [cartItems, setCartItems] = useState<CartItem[]>([]);
-const [coupon, setCoupon] = useState("");
 
 useEffect(() => {
     setCartItems([
@@ -92,27 +91,27 @@ return (
             ))}
         </tbody>
         </table>
-     </motion.div>
+    </motion.div>
 
       {/* Coupon and Cart Total */}
-      <div className="flex items-center justify-center mt-6">
+    <div className="flex items-center justify-center mt-6">
         <div className="w-full md:w-1/2 p-4">
-          <h2 className="text-lg font-bold">Cart Totals</h2>
-          <div className="border p-4 mt-2">
+        <h2 className="text-lg font-bold">Cart Totals</h2>
+        <div className="border p-4 mt-2">
             <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+            <span>Subtotal</span>
+            <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between mt-2 border-t pt-2">
-              <span>Total</span>
-              <span>${subtotal.toFixed(2)}</span>
+            <span>Total</span>
+            <span>${subtotal.toFixed(2)}</span>
             </div>
-          </div>
-          <button className="bg-purple-600 text-white px-4 py-2 mt-4 w-full hover:bg-purple-900 cursor-pointer">Proceed To Checkout</button>
         </div>
-      </div>
+        <button className="bg-purple-600 text-white px-4 py-2 mt-4 w-full hover:bg-purple-900 cursor-pointer">Proceed To Checkout</button>
+        </div>
     </div>
-  );
+    </div>
+);
 };
 
 export default CartPage;
