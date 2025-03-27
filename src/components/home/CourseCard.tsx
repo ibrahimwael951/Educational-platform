@@ -79,7 +79,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
           <Link href={`/courses/${id}`} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
-            Enroll →
+            Details →
           </Link>
         </div>
       </div>

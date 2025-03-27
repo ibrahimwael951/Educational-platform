@@ -1,6 +1,10 @@
 "use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+
+
 
 //icons
 import { MdOutlinePlayLesson } from "react-icons/md";
@@ -10,6 +14,8 @@ import { IoPersonOutline } from "react-icons/io5";
 //  still want some work on it
 export default function Page() {
   const t = useTranslations("courses");
+
+
   return (
     <section className="relative min-h-screen max-w-7xl w-full mx-auto flex gap-10  py-32 px-10">
       <div className="flex flex-col gap-5 w-full md:w-2/3 ">
@@ -73,7 +79,7 @@ export default function Page() {
         />
         <div className="flex justify-between w-full">
           <p>{t("category")}</p>
-          <p>{t("price")}</p>
+          {/* <p>{t("price")}</p> */}
         </div>
         <div className="flex justify-between w-full">
           <p>{t("enrolled")}</p>
@@ -91,6 +97,9 @@ export default function Page() {
           <p>{t("skill-level")}</p>
           <p>basic</p>
         </div>
+<Link href={'/courses/player'} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center duration-150">
+            Play Course 
+          </Link>
       </div>
     </section>
   );

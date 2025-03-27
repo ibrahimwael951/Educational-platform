@@ -26,9 +26,9 @@ const Footer = () => {
           <h1 className="text-white">EduQuest</h1>
         </div>
         <p className="text-neutral-300 w-60 pl-5">
-       {t("description")}
+      {t("description")}
         </p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <FaFacebook className={socialStyle} size="100%" />
           <IoLogoWhatsapp className={socialStyle} size="100%" />
           <IoLogoInstagram className={socialStyle} size="100%" />
