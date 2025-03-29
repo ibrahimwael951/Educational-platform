@@ -4,8 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { FaBookmark } from "react-icons/fa";
-
-
+import { Course } from "@/types";
 
 
 //icons

@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaBookmark } from "react-icons/fa";
 import Link from "next/link";
-
-type Course = {
-  id: number;
-  title: string;
-  instructor: string;
-  image: string;
-  rating: number;
-  reviews: number;
-};
-
-
+import { Course } from "@/types";
 
 
 const WishlistPage = () => {
