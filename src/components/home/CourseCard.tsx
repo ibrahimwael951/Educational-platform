@@ -88,3 +88,89 @@ const CourseCard: React.FC<CourseCardProps> = ({
 };
 
 export default CourseCard;
+
+// import React from "react";
+// import Image from "next/image";
+// import { FaFileInvoice, FaClock, FaStar } from "react-icons/fa";
+// import { Link } from "@/i18n/navigation";
+
+// interface CourseCardProps {
+//   id: string;
+//   title: string;
+//   description: string;
+//   instructor: {
+//     firstName: string;
+//     lastName: string;
+//   };
+//   reviews: string[];
+//   price: number;
+//   category: string;
+//   duration: number;
+//   thumbnail: string;
+// }
+
+// const CourseCard: React.FC<CourseCardProps> = ({
+//   id,
+//   title,
+//   description,
+//   instructor,
+//   reviews,
+//   price,
+//   category,
+//   duration,
+//   thumbnail,
+// }) => {
+//   return (
+//     <div className="w-[300px] overflow-hidden border-dashed border-[#704FE6] border-2 bg-slate-200 dark:bg-neutral-900 shadow-lg rounded-xl p-6 m-5 justify-center items-center">
+//       {/* Image doesn't work*/}
+//       <div className="relative w-full h-48">
+//         <Image src={thumbnail} alt={title} layout="fill" objectFit="cover" className="rounded-lg" />
+//       </div>
+
+//       {/* Course Category */}
+//       <p className="mt-3 text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 inline-block rounded-lg">
+//         {category}
+//       </p>
+
+//       <div className="mt-4">
+//         {/*  Price and Reviews */}
+//         <div className="flex justify-between items-center text-sm">
+//           <p className="flex">
+//             <FaStar />
+//             <span className="ml-2">{reviews.length} Reviews</span>
+//           </p>
+//           <p className="font-semibold text-lg text-purple-700">${price}</p>
+//         </div>
+
+//         {/*  Course Title */}
+//         <h5 className="text-lg font-bold mt-2">{title}</h5>
+
+//         {/* Course Details  */}
+//         <div className="flex flex-wrap gap-4 mt-3 text-sm">
+//           <div className="flex items-center gap-1">
+//             <FaFileInvoice className="text-purple-600" />
+//             <p>{description.substring(0, 30)}...</p>
+//           </div>
+//           <div className="flex items-center gap-1">
+//             <FaClock className="text-purple-600" />
+//             <p>{duration} Hours</p>
+//           </div>
+//         </div>
+
+//         {/* Instructor Data  */}
+//         <div className="flex justify-between items-center mt-6">
+//           <div className="flex items-center gap-3">
+//             <p className="font-medium text-neutral-800 dark:text-white">
+//               {instructor.firstName} {instructor.lastName}
+//             </p>
+//           </div>
+//           <Link href={`/courses/${id}`} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150">
+//             Details →
+//           </Link>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CourseCard;

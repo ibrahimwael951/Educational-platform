@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { FaBookmark } from "react-icons/fa";
+
 
 
 
@@ -14,6 +16,32 @@ import { IoPersonOutline } from "react-icons/io5";
 //  still want some work on it
 export default function Page() {
   const t = useTranslations("courses");
+
+// Save To Wishlist
+const saveToWishlist = () => {
+  const course = {
+    id: 1,
+    title: t("title"),
+    instructor: "John Doe",
+    image: "/home/card1.png",
+    price: "$49.99",
+    rating: 4.8,
+    reviews: 1200,
+  };
+
+  const storedWishlist = localStorage.getItem("wishlist");
+  const wishlist: Course[] = storedWishlist ? JSON.parse(storedWishlist) : [];
+
+
+  if (!wishlist.some((item) => item.id === course.id)) {
+    wishlist.push(course);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }
+
+  window.location.href = "/wishlist"; 
+};
+
+
 
 
   return (
@@ -97,9 +125,14 @@ export default function Page() {
           <p>{t("skill-level")}</p>
           <p>basic</p>
         </div>
-<Link href={'/courses/player'} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center duration-150">
+<Link href={'/courses/player'} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
             Play Course 
           </Link>
+          <button onClick={saveToWishlist} className="flex p-3 rounded-xl bg-purple-500 gap-4 items-center justify-center hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
+          <FaBookmark />
+          Save For later
+        </button>
+          
       </div>
     </section>
   );
