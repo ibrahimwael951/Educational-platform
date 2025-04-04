@@ -49,9 +49,9 @@ const TestimonialSection = () => {
               <h2 className="text-neutral-800 dark:text-white">
                 {t(`testimonials.${key}.name`)}
               </h2>
-              <a href="#" className="text-purple-500 text-sm font-medium">
+              <p  className="text-purple-500 text-sm font-medium">
                 {t(`testimonials.${key}.position`)}
-              </a>
+              </p>
             </motion.div>
           ))}
         </div>

@@ -56,19 +56,6 @@ const PopularPosts = () => {
           {t("title")}
         </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <Link
-            href="#"
-            className="px-6 py-3 text-lg rounded-xl bg-purple-500 inline-block hover:bg-purple-700 text-white transition duration-150 text-center"
-          >
-            {t("allPosts")} →
-          </Link>
-        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
