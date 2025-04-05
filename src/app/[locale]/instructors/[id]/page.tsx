@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaPhoneAlt, FaEnvelope  } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-
+import { useState } from "react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaArrowUp, FaArrowDown  } from "react-icons/fa";
+import { useTranslations } from "next-intl";
+import CourseCard from "@/components/home/CourseCard";
 
 const instructors = [
-{
+  {
     id: 1,
     name: "John Doe",
     position: "Senior Instructor",
@@ -16,8 +17,8 @@ const instructors = [
     location: "Hudson, Wisconsin(WI), 54016",
     email: "johndoe@gmail.com",
     expertise: ["Lectures", "My Skill", "Consulting"],
-},
-{
+  },
+  {
     id: 2,
     name: "Jane Smith",
     position: "Lead Trainer",
@@ -50,73 +51,124 @@ const instructors = [
 ];
 
 const InstructorDetails = () => {
+  const t = useTranslations("CoursesSection");
   const params = useParams();
   const { id } = params;
-
 
   const instructor = instructors.find((inst) =>
     inst.name.toLowerCase().replace(/\s+/g, "-") === id
   );
 
-if (!instructor) {
+  const [showMore, setShowMore] = useState(false);
+
+  if (!instructor) {
     return <div className="text-center text-red-500">Instructor not found!</div>;
-}
+  }
+
+  const shortText = `I love writing code and I love teaching others
+I always loved coding, I love diving into complex problems and solving and I still
+think that it's really an amazing feeling to see an app or program you built from
+scratch`;
+
+  const fullText = `${shortText}
+You might think that I studied programming and that I got a CS degree - but I didn't!
+I always liked coding and it was a great hobby but I actually went for "Biomedical
+Engineering" when it was time to go to university.
+And I don't regret it! It was a fun time and I enjoyed all the things taught there. But
+soon after taking my first steps in typical Biomedical Engineering jobs, it was very 
+clear to me that I had to go back to coding. And that's what I did.`;
 
   return (
-    <div className="max-w-5xl mx-auto my-10 p-6 mt-30 bg-white  dark:bg-neutral-700 shadow-lg rounded-lg">
-      <div className="flex flex-col md:flex-row">
-        {/*Contact Data*/}
-        <div className="md:w-1/3 text-center p-5 bg-gray-100 dark:bg-neutral-600 rounded-lg dark:text-white">
-          <Image
-            src={instructor.image}
-            alt={instructor.name}
-            width={200}
-            height={200}
-            className="rounded-full mx-auto"
-          />
-          <h2 className="text-lg font-bold mt-4 dark:text-white">{instructor.name}</h2>
-          <p className="text-sm text-purple-600 dark:text-purple-400">{instructor.position}</p>
-
-          <div className="flex justify-center space-x-4 my-3">
-            <FaFacebook className="text-blue-600 cursor-pointer" />
-            <FaTwitter className="text-blue-400 cursor-pointer" />
-            <FaLinkedin className="text-blue-700 cursor-pointer" />
-            <FaWhatsapp className="text-blue-700 cursor-pointer"/>
-          </div>
-
-         <div className="flex text-center gap-4"> <FaPhoneAlt className="text-purple-600 dark:text-purple-400"/> 
-         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.phone}</p>
-         </div>
+      <div className="w-full mx-auto mt-30 bg-white dark:bg-neutral-700">
+        <div className="flex flex-col w-full justify-between p-5 md:flex-row">
           
-         <div className="flex text-center gap-4"> <FaLocationDot  className="text-purple-600 dark:text-purple-400"/> 
-         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.location}</p>
-         </div>
-
-         <div className="flex text-center gap-4"> <FaEnvelope   className="text-purple-600 dark:text-purple-400"/> 
-         <p className="text-sm text-gray-600 dark:text-gray-400">{instructor.email}</p>
-         </div>
-        </div>
-
-        <div className="md:w-2/3 p-5">
-          <h1 className="text-2xl font-bold dark:text-white">{instructor.name}</h1>
-          <p className="text-sm text-purple-600 dark:text-purple-400">TEACHER</p>
-          <p className="mt-4 text-gray-700 dark:text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere erat eget massa pharetra, eget fermentum ligula gravida.
-          </p>
-
-          <h3 className="mt-6 text-lg font-bold dark:text-gray-400">Education:</h3>
-          <p className="text-gray-700 dark:text-gray-400">
-            I have spent years mastering my teaching techniques and I am thrilled to share my expertise with you.
-          </p>
-
-          <h3 className="mt-6 text-lg font-bold dark:text-gray-400">EXPERTISE & SKILLS:</h3>
-          {instructor.expertise.map((skill, index) => (
-            <p key={index} className="border-b py-2 text-gray-800 dark:text-gray-400">{skill}</p>
-          ))}
+          {/* Left Column */}
+          <div className="text-left p-5 dark:bg-neutral-600 dark:text-white md:w-2/3">
+            <h1 className="text-lg font-bold dark:text-white">INSTRUCTOR</h1>
+            <h1 className="text-3xl mt-3 font-bold dark:text-white">{instructor.name}</h1>
+            <p className="text-sm mt-3 text-purple-600 dark:text-purple-400">TEACHER</p>
+    
+            <div className="flex gap-40">
+              <p className="mt-4 text-gray-700 font-bold dark:text-gray-400">
+                372,913 <br /> Total learners
+              </p>
+              <p className="mt-4 text-gray-700 font-bold dark:text-gray-400">
+                23,707 <br /> Reviews
+              </p>
+            </div>
+    
+            <h1 className="mt-6 text-xl font-bold dark:text-gray-400">About Me:</h1>
+    
+            <div className="relative">
+              <p className={`text-gray-700 mt-5 dark:text-gray-400 whitespace-pre-line transition-all duration-300 ease-in-out ${showMore ? "max-h-full" : "max-h-40 overflow-hidden"}`}>
+                {fullText}
+              </p>
+              {!showMore && (
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-neutral-600 to-transparent pointer-events-none" />
+              )}
+            </div>
+    
+            <button
+              onClick={() => setShowMore(!showMore)}
+              className="mt-4 text-sm text-purple-700 font-semibold bg-purple-100 px-4 py-2 rounded hover:bg-purple-200 cursor-pointer"
+            >
+              {showMore ? "Show less" : "Show more"}{" "}
+              <span className="inline-block transform transition-transform duration-200">
+                {showMore ? <FaArrowUp /> : <FaArrowDown />}
+              </span>
+            </button>
+    
+            <h1 className="mt-6 text-xl font-bold dark:text-gray-400 ">My courses</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-5 mt-4">
+  {Array(3).fill(null).map((_, index) => (
+    <CourseCard
+      key={index}
+      id={index}
+      image="/home/card1.png"
+      title={t("course.title")}
+      category={t("course.category")}
+      price={t("course.price")}
+      rating={t("course.rating")}
+      lessons={t("course.lessons")}
+      duration={t("course.duration")}
+      students={t("course.students")}
+      instructor={{
+        name: t("course.instructor"),
+        avatar: "/home/person1.png",
+      }}
+    />
+  ))}
+</div>
+            
+          </div>
+    
+          {/* Right Column */}
+          <div className="p-5 md:w-1/3">
+            <Image
+              src={instructor.image}
+              alt={instructor.name}
+              width={300}
+              height={300}
+              className="rounded-full mx-auto"
+            />
+            <div className="flex gap-10 items-center justify-center mt-5">
+              <div className="text-purple-700 border border-purple-700 p-2 hover:bg-purple-300 cursor-pointer">
+                <FaFacebook />
+              </div>
+              <div className="text-purple-700 border border-purple-700 p-2 hover:bg-purple-300 cursor-pointer">
+                <FaTwitter />
+              </div>
+              <div className="text-purple-700 border border-purple-700 p-2 hover:bg-purple-300 cursor-pointer">
+                <FaLinkedin />
+              </div>
+              <div className="text-purple-700 border border-purple-700 p-2 hover:bg-purple-300 cursor-pointer">
+                <FaWhatsapp />
+              </div>
+            </div>
+          </div>
+    
         </div>
       </div>
-    </div>
-  );
-};
-
+    );
+  };
 export default InstructorDetails;
