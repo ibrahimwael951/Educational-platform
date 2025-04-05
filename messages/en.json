@@ -12,11 +12,9 @@
     "description": "Sometimes, there is formatting through the use of cross-scrolling. Then, the formatting begins with immediate coordination and becomes more flexible over time",
     "Quick_Links": {
       "title": "Quick Links",
-      "Events": "Events",
       "Instructors": "Instructors",
       "Services": "Services",
-      "FAQ": "FAQ",
-      "Shop-Details": "Shop Details"
+      "FAQ": "FAQ"
     },
     "our_services": {
       "title": "Our Services",

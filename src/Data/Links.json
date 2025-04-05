@@ -42,10 +42,6 @@
     ],
     "Quick_Links":[
         {
-            "title": "Events",
-            "url": "/events"
-        },
-        {
             "title": "Instructors",
             "url": "/instructors" 
         },
@@ -56,11 +52,7 @@
         {
             "title": "FAQ",
             "url": "/faq" 
-        },
-        {
-          "title": "Shop-Details",
-          "url": "/" 
-      }
+        }
     ]
   }
 }
