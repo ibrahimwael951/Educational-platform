@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { FaBookmark } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { CiShoppingCart } from "react-icons/ci";
 import { Course } from "@/types";
 
 
@@ -106,7 +107,7 @@ const saveToWishlist = () => {
         />
         <div className="flex justify-between w-full">
           <p>{t("category")}</p>
-          {/* <p>{t("price")}</p> */}
+          <p>{t("price")}</p>
         </div>
         <div className="flex justify-between w-full">
           <p>{t("enrolled")}</p>
@@ -124,13 +125,20 @@ const saveToWishlist = () => {
           <p>{t("skill-level")}</p>
           <p>basic</p>
         </div>
-<Link href={'/courses/player'} className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
-            Play Course 
+
+        <div className="flex justify-between items-center">
+        <Link href={'/cart'} className="flex gap-3 p-3 rounded-xl bg-purple-500 mt-6 hover:bg-purple-700 items-center text-white font-bold text-center cursor-pointer">
+        <CiShoppingCart /> Add To Cart
           </Link>
-          <button onClick={saveToWishlist} className="flex p-3 rounded-xl bg-purple-500 gap-4 items-center justify-center hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
-          <FaBookmark />
-          Save For later
+          <button onClick={saveToWishlist} className="flex -mb-5 p-3 rounded-xl bg-purple-500 gap-4 items-center hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
+          <FaHeart />
         </button>
+        </div>
+
+        <Link href={'/checkout'} className="flex gap-3 p-3 rounded-xl justify-center items-center bg-purple-500 mt-2 hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
+        Buy Now
+          </Link>
+
           
       </div>
     </section>

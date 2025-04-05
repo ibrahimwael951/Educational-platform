@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaFileInvoice, FaClock, FaUser, FaStar } from "react-icons/fa";
+import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "@/i18n/navigation";
 
 interface CourseCardProps {
@@ -31,6 +32,8 @@ const CourseCard: React.FC<CourseCardProps> = ({
   students,
   instructor,
 }) => {
+
+  
   return (
     <div className="w-[300px] overflow-hidden border-solid border-purple-500 border-2 bg-slate-200 dark:bg-neutral-900 shadow-lg rounded-xl p-6 m-5 justify-center items-center">
       {/* Course Cover*/}
@@ -71,6 +74,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <p>{students} Students</p>
           </div>
         </div>
+        
+        <Link href={'/cart'} className="flex gap-3 p-3 rounded-xl bg-purple-500 mt-6 hover:bg-purple-700 justify-center items-center text-white font-bold text-center cursor-pointer">
+        <CiShoppingCart /> Add To Cart
+          </Link>
+  
+
 
         {/*Instructor Data*/}
         <div className="flex justify-between items-center mt-7">
@@ -78,6 +87,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
             <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
+          
           <Link href={`/courses/${id}`} className="p-3 items-center rounded-xl bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150">
             Details →
           </Link>
