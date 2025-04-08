@@ -8,10 +8,10 @@ const [showInput, setShowInput] = useState(false);
 
 return (
     <div
-    className={`bg-transparent border border-gray-900 rounded-full py-3 px-7 items-center gap-3 flex hover:bg-gray-100 focus-within:border-purple-500`}
+    className={`bg-transparent border border-gray-900 dark:border-white rounded-full py-3 px-7 items-center gap-3 flex hover:bg-gray-100 dark:hover:bg-gray-400 focus-within:border-purple-500`}
     >
     <IoIosSearch
-        className="text-gray-900 cursor-pointer"
+        className="text-gray-900 dark:text-white cursor-pointer"
         onClick={() => setShowInput(!showInput)}
     />
 

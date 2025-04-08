@@ -19,16 +19,16 @@ const CheckoutPage = () => {
 
   return (
     <div className="w-full mt-30 dark:bg-neutral-800 p-6">
-      <div className="w-full mx-auto dark:bg-neutral-700 rounded-xl  grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      <div className="w-full mx-auto  rounded-xl  grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
         {/* Checkout Form */}
         <div className="md:col-span-2 space-y-6">
-          <h2 className="text-2xl font-bold">Checkout</h2>
+          <h2 className="text-2xl font-bold dark:text-white">Checkout</h2>
 
           {/* Billing Address */}
           <div>
-            <label className="block font-semibold mb-2">Country</label>
+            <label className="block font-semibold mb-2 dark:text-white">Country</label>
             <select
-              className="border border-gray-300 rounded p-2 w-full cursor-pointer"
+              className="border border-gray-300 rounded p-2 w-full cursor-pointer dark:text-neutral-400"
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
             >
@@ -44,7 +44,7 @@ const CheckoutPage = () => {
 
           {/* Payment Method */}
           <div>
-            <h3 className="font-semibold mb-3 text-gray-900">Payment method</h3>
+            <h3 className="font-semibold mb-3 text-gray-900 dark:text-white">Payment method</h3>
             <div className="border p-4 rounded">
                 <div className="flex justify-between">
                     <div className="flex gap-3 items-center"><FaCreditCard />
@@ -58,8 +58,7 @@ const CheckoutPage = () => {
                 <FaCcJcb className="text-2xl" />
               </div>
                 </div>
-               
-
+              
               {/* Card Inputs */}
               <input
                 type="text"
@@ -97,13 +96,13 @@ const CheckoutPage = () => {
                 Securely save this card for my later purchase
               </label>
             </div>
-            <h3 className="text-gray-900">Order Details</h3>
+            <h3 className="text-gray-900 dark:text-white">Order Details</h3>
           </div>
         </div>
 
         {/* Order Summary */}
-        <div className="bg-gray-50 dark:bg-neutral-600 p-6 rounded-xl shadow-sm space-y-4">
-          <h3 className="text-lg font-bold text-gray-900">Order summary</h3>
+        <div className="bg-gray-50 dark:bg-neutral-700 p-6 rounded-xl shadow-sm space-y-4">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">Order summary</h3>
           <div className="flex justify-between">
             <span>Original Price:</span>
             <span className="font-medium">£1,799.99</span>
