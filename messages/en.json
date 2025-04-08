@@ -181,7 +181,9 @@
     "instructor": "Samantha",
     "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et minus reiciendis similique quam animi, veniam quibusdam eos molestiae assumenda dolore amet aliquid asperiores totam doloremque necessitatibus cumque debitis? Pariatur, cupiditate.",
     "wulftc":"What Will You Learn From This Course",
-    "Course-Description":"Course Description"
+    "Course-Description":"Course Description",
+    "instructor-name": "Instructor",
+    "related": "related courses"
   },
   "faq": {
     "title": "Frequently Asked Questions",

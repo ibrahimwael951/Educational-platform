@@ -197,7 +197,9 @@
     "instructor": "سامانثا",
     "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et minus reiciendis similique quam animi, veniam quibusdam eos molestiae assumenda dolore amet aliquid asperiores totam doloremque necessitatibus cumque debitis? Pariatur, cupiditate.",
     "wulftc":"ماذا ستتعلم من هذه الدورة",
-    "Course-Description":"وصف الدورة"
+    "Course-Description":"وصف الدورة",
+    "instructor-name": "المعلم",
+    "related": "كورسات مشابهة"
   },
   "faq": {
     "title": "الأسئلة الشائعة",

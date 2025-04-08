@@ -51,8 +51,8 @@ return (
                 <span className="text-gray-500">({course.reviews} reviews)</span>
                 </div>
                 <div className="inline-block items-center mt-3">
-                <Link href={'/courses/player'} className="p-2 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
-            Play Course 
+                <Link href={'/checkout'} className="p-2 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center cursor-pointer">
+        Enroll
     </Link>
                 <div className="flex gap-3 p-2 mt-2 rounded-xl bg-red-500 hover:bg-red-700 text-white font-bold text-center cursor-pointer">
                     <button onClick={() => removeFromWishlist(course.id)} >

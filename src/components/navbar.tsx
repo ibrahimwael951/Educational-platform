@@ -1,12 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
+import SearchButton from "./searchbar";
 
 import { useTranslations } from "next-intl";
 
 // Icons
 import { SiDatabricks } from "react-icons/si";
-import { CiMenuFries } from "react-icons/ci";
+import { CiMenuFries  } from "react-icons/ci";
+
 
 //data
 import data from "@/Data/Links.json";
@@ -44,6 +46,9 @@ const Navbar = () => {
           {t("title")}
         </Link>
       </div>
+
+      {/* Search Bar */}
+      <SearchButton />
 
       {/* links */}
       <div className="hidden lg:flex justify-center items-center gap-2">
@@ -85,6 +90,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
 
       <Link
         className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"

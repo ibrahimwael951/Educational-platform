@@ -1,12 +1,15 @@
 import React from "react";
 import CourseCard from "@/components/home/CourseCard";
 import { useTranslations } from "next-intl";
+import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 
 const CoursesPage = () => {
   const t = useTranslations("courses");
 
   return (
     <section className="container mx-auto px-6 py-10 mt-10">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
       <div className="flex justify-between items-center mt-10">
         <h1 className="capitalize text-neutral-800 dark:text-white">
           {t("title")}

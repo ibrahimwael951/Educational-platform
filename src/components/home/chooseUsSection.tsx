@@ -22,7 +22,7 @@ const WhyChooseUsSection = () => {
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: false, amount: 0.3 }}
         className="flex flex-col items-center lg:items-start gap-10"
       >
@@ -42,12 +42,12 @@ const WhyChooseUsSection = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-8">
-          {features.map(({ key }, index) => (
+          {features.map(({ key }) => (
             <motion.div
               key={key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.5}}
               viewport={{ once: false, amount: 0.3 }}
               className="bg-[#E9E2FF] p-5 rounded-lg w-72"
             >
@@ -67,7 +67,7 @@ const WhyChooseUsSection = () => {
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: false, amount: 0.3 }}
         className="max-w-md sm:max-w-lg w-2/6 hidden lg:inline"
       >

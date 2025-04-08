@@ -3,6 +3,8 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 import CourseCard from "./CourseCard";
 import Link from "next/link";
 
@@ -13,11 +15,12 @@ const CoursesSection = () => {
 
   return (
     <section ref={sectionRef} className="max-w-7xl mx-auto px-5 md:px-10 md:py-20 pt-32">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
     
       <motion.p
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5}}
         viewport={{ once: false, amount: 0.3 }}
         className="bg-gray-50 text-purple-500 px-4 py-2 rounded-md font-medium text-left inline-block"
       >
@@ -28,7 +31,7 @@ const CoursesSection = () => {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.3 }}
           className="capitalize text-neutral-800 dark:text-white text-3xl font-bold"
         >
@@ -38,7 +41,7 @@ const CoursesSection = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.3 }}
         >
           <Link
@@ -67,7 +70,7 @@ const CoursesSection = () => {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: false, amount: 0.3 }}
             >
               <CourseCard

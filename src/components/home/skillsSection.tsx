@@ -20,12 +20,12 @@ const SkillsSection = () => {
       style={{ backgroundImage: "url('/home/skill background.png')" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 items-center text-center justify-center">
-        {skills.map(({ key, img }, index) => (
+        {skills.map(({ key, img }) => (
           <motion.div
             key={key}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.1}}
             viewport={{ once: false, amount: 0.3 }}
             className="flex flex-col md:flex-row items-center px-5 py-3"
           >
@@ -37,10 +37,10 @@ const SkillsSection = () => {
               className="w-12 h-12 bg-white rounded-full shadow-lg p-2"
             />
             <div className="md:ml-3 text-center md:text-left mt-2 md:mt-0">
-              <h6 className="text-[#0E2A46] font-bold text-3xl">
+              <h6 className="text-gray-900 font-bold text-3xl">
                 {t(`${key}.number`)}
               </h6>
-              <p className="text-[#0E2A46] text-sm">{t(`${key}.text`)}</p>
+              <p className="text-gray-900 text-sm">{t(`${key}.text`)}</p>
             </div>
           </motion.div>
         ))}

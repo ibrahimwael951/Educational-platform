@@ -86,7 +86,7 @@ const InstructorsSlider = () => {
                 alt={instructor.name}
                 width={600}
                 height={600}
-                className="relative w-full rounded-lg border-4 border-[#704FE6] cursor-pointer"
+                className="relative w-full rounded-lg border-4 border-purple-500 cursor-pointer"
                 onClick={() => handleNavigate(instructor.name)}
               />
 
@@ -102,8 +102,8 @@ const InstructorsSlider = () => {
               >
                 <h2 className="text-base md:text-sm  dark:text-white">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
-                  <p className="text-sm text-[#704FE6] dark:text-purple-500">{instructor.position}</p>
-                  <FaArrowRight className="bg-[#E9E2FF] text-[#704FE6] text-xs md:text-sm rounded-full p-[3px]" />
+                  <p className="text-sm text-purple-500 dark:text-purple-500">{instructor.position}</p>
+                  <FaArrowRight className="bg-gray-100 text-purple-500 text-xs md:text-sm rounded-full p-[3px]" />
                 </div>
               </div>
             </div>

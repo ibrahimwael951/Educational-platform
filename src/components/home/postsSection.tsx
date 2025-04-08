@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 import { FaCalendarAlt, FaComments } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -38,8 +37,8 @@ const PopularPosts = () => {
       <motion.p
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.2 }}
         className="bg-gray-50 text-purple-500 px-4 py-2 font-medium inline-block uppercase rounded-lg"
       >
         {t("blogPost")}
@@ -49,7 +48,7 @@ const PopularPosts = () => {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.5, delay: 0.1}}
           viewport={{ once: false, amount: 0.3 }}
           className="text-neutral-800 dark:text-white text-3xl font-bold"
         >
@@ -59,12 +58,12 @@ const PopularPosts = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <motion.div
             key={post.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 + index * 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeIn"}}
             viewport={{ once: false, amount: 0.3 }}
             className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700 transition duration-300"
           >
@@ -88,13 +87,6 @@ const PopularPosts = () => {
               </div>
 
               <p className="text-lg font-semibold text-neutral-800 dark:text-white">{post.text}</p>
-
-              <Link
-                href="#"
-                className="px-5 py-3 rounded-lg bg-purple-500 mt-4 inline-block hover:bg-purple-700 text-white transition duration-150"
-              >
-                {t("readMore")} →
-              </Link>
             </div>
           </motion.div>
         ))}

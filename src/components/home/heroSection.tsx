@@ -17,14 +17,14 @@ const HeroSection = () => {
         <motion.div 
           initial={{ opacity: 0, y: 50 }} 
           whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8 }}
+          transition={{duration: 0.5, delay: 0.1 }}
           viewport={{ once: false, amount: 0.3 }}
           className="flex flex-col gap-2"
         >
           <motion.p 
             initial={{ opacity: 0, x: -50 }} 
             whileInView={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: false, amount: 0.3 }}
             className="uppercase text-purple-400"
           >
@@ -34,8 +34,8 @@ const HeroSection = () => {
           <motion.h1 
             initial={{ opacity: 0, y: -30 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1}}
+            viewport={{ once: false, amount: 0.2 }}
             className="text-4xl font-bold text-neutral-800 dark:text-white"
           >
             {t("title")}
@@ -44,8 +44,8 @@ const HeroSection = () => {
           <motion.p 
             initial={{ opacity: 0 }} 
             whileInView={{ opacity: 1 }} 
-            transition={{ duration: 1.2 }}
-            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1}}
+            viewport={{ once: false, amount: 0.2 }}
             className="capitalize text-neutral-800 dark:text-slate-400 mt-4"
           >
             {t("description")}
@@ -54,8 +54,8 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: false, amount: 0.2 }}
           >
             <Link
               href="/courses"
@@ -70,8 +70,8 @@ const HeroSection = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
           whileInView={{ opacity: 1, scale: 1 }} 
-          transition={{ duration: 1.2, delay: 0.3 }}
-          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.1}}
+          viewport={{ once: false, amount: 0.2 }}
           className="relative flex justify-end"
         >
           <Image
@@ -84,12 +84,12 @@ const HeroSection = () => {
           <motion.div 
             initial={{ opacity: 0, y: 50 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1.2, delay: 0.6 }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="instructor-card sticky"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="instructor-card sticky -ml-20 "
           >
-            <p className="text-lg font-medium text-black mb-2">
-              <span className="text-xl font-bold text-[#704FE6]">
+            <p className="text-lg font-medium text-black mb-2 ">
+              <span className="text-xl font-bold text-purple-500">
                 {t("instructorCount")}
               </span>
               {t("instructor")}
