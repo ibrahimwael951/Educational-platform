@@ -9,7 +9,7 @@
   "navbar": {
     "title": "EduQuest",
     "home": "الصفحة الرئيسية",
-    "contact": "تواصل معنا ",
+    "support": "الدعم ",
     "about": "حول",
     "courses": "دورات",
     "pages": "صفحات",
@@ -255,5 +255,18 @@
     "project_2": "المشروع 2",
     "project_3": "المشروع 3",
     "project_4": "المشروع 4"
+  },
+  "supportPage": {
+    "title": "صفحة الدعم",
+    "description": "يرجى ملء النموذج أدناه لإرسال مشكلتك مع الموقع.",
+    "inpName": "الاسم الكامل",
+    "inpEmail": "البريد الإلكتروني",
+    "inpMessage": "الرسالة",
+    "inpSubmit": "إرسال الرسالة",
+    "inpNameError": "الاسم الكامل مطلوب",
+    "inpEmailError": "البريد الإلكتروني مطلوب",
+    "inpMessageError": "الرسالة مطلوبة",
+    "successSend": "تم بنجاح. تم إرسال الرسالة بنجاح",
+    "FeildSend": "حدث خطأ ما. يرجى المحاولة لاحقاً"
   }
 }

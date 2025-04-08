@@ -2,7 +2,7 @@
   "navbar": {
     "title": "EduQuest",
     "home": "Home",
-    "contact": "Contact Us",
+    "support": "Support",
     "about": "About Us",
     "courses": "Courses",
     "pages": "Pages",
@@ -244,5 +244,18 @@
     "title": "Available Events",
     "eventText": "Discover the latest trends in online learning and how they shape the future of education.",
     "altImage": "Event image"
+  },
+  "supportPage": {
+    "title": "Support Page",
+    "description": "Please fill out the form below to send ur problem with Website.",
+    "inpName": "Full Name",
+    "inpEmail": "Email",
+    "inpMessage": "Your Message",
+    "inpSubmit": "Send Message",
+    "inpNameError": "Full name is required",
+    "inpEmailError": "Email is required",
+    "inpMessageError": "Message is required",
+    "successSend": "Success. Message sent successfully",
+    "FeildSend": "Something went wrong. Please try later"
   }
 }
