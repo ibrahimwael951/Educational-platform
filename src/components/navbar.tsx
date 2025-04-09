@@ -94,7 +94,7 @@ const Navbar = () => {
 
       <Link
         className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
-        href="/sign in"
+        href="/auth/login"
       >
         {t("create-account")}
       </Link>
