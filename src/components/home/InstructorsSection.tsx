@@ -50,7 +50,7 @@ const InstructorsSection = () => {
           <p className="text-neutral-800 dark:text-slate-300 mt-12 leading-7">{t("description")}</p>
           <div className="flex gap-[7px] m-[5px]">
             <a
-              href="contactUs"
+              href="support"
               className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
             >
               {t("contactUs")}
