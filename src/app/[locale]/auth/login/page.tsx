@@ -5,7 +5,8 @@ import { useAuth } from "@/context/authProvider";
 import { useRouter } from "next/navigation"; // import router
 import { Link } from "@/i18n/navigation";
 
-
+const isValidEmail = (email: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default function LoginPage() {
   const router = useRouter();  
@@ -32,7 +33,7 @@ export default function LoginPage() {
       return;
     }
 
-    if (!(email)) {
+    if (!isValidEmail(email)) {
       setErrorMessage("Please enter a valid email address.");
       clearMessages();
       return;
@@ -103,7 +104,7 @@ export default function LoginPage() {
       )}
 
       <div className="text-neutral-900 dark:text-white mt-4">
-        Don't have an account?{" "}
+        Dont have an account?
         <Link href="/auth/register" className="text-purple-500">
           Register
         </Link>
