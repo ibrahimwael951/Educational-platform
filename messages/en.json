@@ -1,4 +1,7 @@
 {
+  "LocaleSwitcher": {
+    "switchLocale": "Arabic"
+  },
   "navbar": {
     "title": "EduQuest",
     "home": "Home",
@@ -6,7 +9,8 @@
     "about": "About Us",
     "courses": "Courses",
     "pages": "Pages",
-    "create-account": "create Account"
+    "Log-in": "Login",
+    "account":"Account"
   },
   "footer": {
     "description": "Sometimes, there is formatting through the use of cross-scrolling. Then, the formatting begins with immediate coordination and becomes more flexible over time",
@@ -221,7 +225,9 @@
     "certified": "Certified Certificates",
     "training": "Training Courses",
     "user_id": "User ID",
-    "support_note": "Use this ID when contacting support."
+    "support_note": "Use this ID when contacting support.",
+    "change-Theme":"Change Theme",
+    "change-language":"Change Language"
   },
   "studentsSection": {
     "hero_title": "Our Best Students",

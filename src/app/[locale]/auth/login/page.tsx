@@ -1,52 +1,58 @@
 "use client";
 
 import React, { useState } from "react";
+import { useAuth } from "@/context/authProvider";
+import { useRouter } from "next/navigation"; // import router
+import { Link } from "@/i18n/navigation";
 
 export default function LoginPage() {
+  const router = useRouter(); // initialize router
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const api = process.env.NEXT_PUBLIC_API_BASE_URL;
+  // Clear messages after 3 seconds
+  const clearMessages = () => {
+    setTimeout(() => {
+      setSuccessMessage("");
+      setErrorMessage("");
+    }, 3000);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setErrorMessage("Please fill in both fields.");
+      clearMessages();
+      return;
+    }
+
     try {
-      const res = await fetch(`${api}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Login failed");
-      }
-
-      const data = await res.json();
-      console.log("Login successful:", data);
-
+      await login(email, password);
       setSuccessMessage("Login successful! 🎉");
-      setErrorMessage(""); // clear error if any
-
-      // Optional: clear the form
+      setErrorMessage("");
+      clearMessages();
       setEmail("");
       setPassword("");
+      router.push("/dashboard");
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error during login:", error);
       setErrorMessage("Login failed. Please check your credentials.");
-      setSuccessMessage(""); // clear success if any
+      setSuccessMessage("");
+      clearMessages();
     }
   };
 
   return (
     <section className="min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
-        <h1 className="text-neutral-950 dark:text-white">Login Form</h1>
-        <p>Enter your email and password to login</p>
+        <h1 className="text-neutral-950 dark:text-white mb-2">Login Form</h1>
+        <p className="text-neutral-950 dark:text-white opacity-75">
+          Enter your email and password to login
+        </p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
         <input
@@ -82,6 +88,13 @@ export default function LoginPage() {
       {errorMessage && (
         <p className="text-red-600 dark:text-red-400">{errorMessage}</p>
       )}
+
+      <div className="text-neutral-900 dark:text-white mt-4">
+        Don't have an account?{" "}
+        <Link href="/auth/register" className="text-purple-500">
+          Register
+        </Link>
+      </div>
     </section>
   );
 }

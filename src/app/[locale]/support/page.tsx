@@ -131,7 +131,7 @@ export default function Contact() {
 
         <button
           type="submit"
-          className="w-full py-4 font-semibold text-white transition-colors bg-neutral-900 rounded-md hover:bg-neutral-950 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-neutral-900 dark:focus:ring-gray-200 px-7 dark:bg-white dark:text-black"
+          className="w-full py-4 font-semibold text-white bg-purple-600 rounded-md  outline-none focus:ring-offset-2 focus:ring ring-purple-600 px-7"
         >
           {isSubmitting ? (
             <svg
