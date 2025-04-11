@@ -257,5 +257,30 @@
     "inpMessageError": "Message is required",
     "successSend": "Success. Message sent successfully",
     "FeildSend": "Something went wrong. Please try later"
+  },
+  "addCoursePage": {
+    "title": "Add New Course",
+    "courseTitle": "Course Title",
+    "courseDescription": "Course Description",
+    "courseCategory": "Course Category",
+    "catOptions": "Choose Category",
+    "webOption": "Web Development",
+    "mobOption": "Mobile Development",
+    "uiOption": "UI/UX Design",
+    "aiOption": "AI & Data Science",
+    "marktOption": "Marketing",
+    "bussinessOption": "Business",
+    "coursePrice": "Course Price",
+    "courseTime": "Course Time",
+    "coursePhoto": "Course Photo",
+    "courseLanguage": "Course Language",
+    "chooseLanguage": "Choose Language",
+    "araicLanguage": "Arabic",
+    "englishLanguage": "English",
+    "frenchLanguage": "French",
+    "courseRequirements": "Course Requirements",
+    "addBtn": "Add Course",
+    "successMessage": "Course Added successfully!",
+    "errorMessage": "Add Course failed. Please try again."
   }
 }

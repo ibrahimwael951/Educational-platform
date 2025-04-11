@@ -268,5 +268,30 @@
     "inpMessageError": "الرسالة مطلوبة",
     "successSend": "تم بنجاح. تم إرسال الرسالة بنجاح",
     "FeildSend": "حدث خطأ ما. يرجى المحاولة لاحقاً"
+  },
+  "addCoursePage": {
+    "title": "اضافة كورس جديد",
+    "courseTitle": "عنوان الكورس",
+    "courseDescription": "تفاصيل الكورس",
+    "courseCategory": "فئة الكورس",
+    "catOptions": "اختر الفئة",
+    "webOption": "تطوير مواقع الويب",
+    "mobOption": "تطوير تطبيقات الهاتف",
+    "uiOption": "تصميم تجربة المستخدم",
+    "aiOption": "ذكاء اصطناعى و علم البيانات",
+    "marktOption": "تسويق",
+    "bussinessOption": "ادارة اعمال",
+    "coursePrice": "سعر الكورس",
+    "courseTime": "مدة الكورس",
+    "coursePhoto": "صورة الكورس",
+    "courseLanguage": "لغة الكورس",
+    "chooseLanguage": "اختر اللغة",
+    "araicLanguage": "العربية",
+    "englishLanguage": "الانجليزية",
+    "frenchLanguage": "الفرنسية",
+    "courseRequirements": "متطلبات الكورس",
+    "addBtn": "اضف الكورس",
+    "successMessage": "تم اضافة الكورس بنجاح!",
+    "errorMessage": "تعذر اضافة الكورس , قم بالتجربة مرة اخرى !"
   }
 }
