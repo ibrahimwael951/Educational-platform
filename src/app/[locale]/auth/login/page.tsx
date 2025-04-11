@@ -5,8 +5,7 @@ import { useAuth } from "@/context/authProvider";
 import { useRouter } from "next/navigation"; // import router
 import { Link } from "@/i18n/navigation";
 
-const isValidEmail = (email: string) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 
 export default function LoginPage() {
   const router = useRouter();  
@@ -33,7 +32,7 @@ export default function LoginPage() {
       return;
     }
 
-    if (!isValidEmail(email)) {
+    if (!(email)) {
       setErrorMessage("Please enter a valid email address.");
       clearMessages();
       return;
