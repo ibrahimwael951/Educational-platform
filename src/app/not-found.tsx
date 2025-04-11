@@ -30,7 +30,7 @@ const Error = () => {
                 >
                   Go back home
                 </Link>
-                <a href="#" className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg  border-indigo-600 hover:bg-indigo-600 duration-150">
+                <a href="support" className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg  border-indigo-600 hover:bg-indigo-600 duration-150">
                   Contact support
                 </a>
               </div>
