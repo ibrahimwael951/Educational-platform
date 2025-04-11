@@ -5,6 +5,9 @@ import { useAuth } from "@/context/authProvider";
 import { useRouter } from "next/navigation"; // import router
 import { Link } from "@/i18n/navigation";
 
+const isValidEmail = (email: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function LoginPage() {
   const router = useRouter(); // initialize router
   const { login } = useAuth();
@@ -30,6 +33,12 @@ export default function LoginPage() {
       return;
     }
 
+    if (!isValidEmail(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      clearMessages();
+      return;
+    }
+
     try {
       await login(email, password);
       setSuccessMessage("Login successful! 🎉");
@@ -38,9 +47,13 @@ export default function LoginPage() {
       setEmail("");
       setPassword("");
       router.push("/dashboard");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error during login:", error);
-      setErrorMessage("Login failed. Please check your credentials.");
+      if (error.message.includes("Network Error")) {
+        setErrorMessage("Network error, please try again later.");
+      } else {
+        setErrorMessage("Login failed. Please check your credentials.");
+      }
       setSuccessMessage("");
       clearMessages();
     }

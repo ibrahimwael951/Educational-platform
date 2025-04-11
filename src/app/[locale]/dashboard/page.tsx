@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
-import { ModeToggle } from "@/components/themeToggole";
+import { ModeToggle } from "@/components/themeToggole"; 
 import LocaleSwitcher from "@/components/langToggle";
 import {
   FaHome,
@@ -17,6 +17,18 @@ import {
 } from "react-icons/fa";
 
 const api = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+type ProfileType = {
+  user: {
+    profile: string;
+    firstName: string;
+    lastName: string;
+    _id: string;
+    email: string;
+  };
+  certificates: number;
+  training: number;
+};
 
 const fetchUserProfile = async () => {
   try {
@@ -41,7 +53,7 @@ const Profile = () => {
   const t = useTranslations("profileSection");
 
   // State to store profile data
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,10 +87,10 @@ const Profile = () => {
     );
   }
 
-  // User data
-  const fullName = `${profile.user.firstName} ${profile.user.lastName}`;
-  const userId = profile.user._id || "N/A";
-  const email = profile.user.email || "N/A";
+   
+  const fullName = `${profile?.user.firstName} ${profile?.user.lastName}`;
+  const userId = profile?.user._id;
+  const email = profile?.user.email;
 
   const liStyle =
     "flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-900 rounded-2xl cursor-pointer duration-150";
@@ -89,7 +101,7 @@ const Profile = () => {
       <aside className="bg-slate-100 dark:bg-neutral-800 w-full md:w-1/4 p-4 rounded-lg shadow-lg">
         <div className="flex flex-col justify-center items-center mb-4">
           <div className="w-24 h-24 mx-auto bg-red-500 text-white text-4xl flex items-center justify-center rounded-full">
-            {fullName.charAt(0)}
+            {fullName?.charAt(0)}  
           </div>
           <h2 className="font-bold text-neutral-800 dark:text-white text-lg mt-2">
             {fullName}
