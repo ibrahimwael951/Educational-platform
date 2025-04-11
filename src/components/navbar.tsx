@@ -10,6 +10,8 @@ import { SiDatabricks } from "react-icons/si";
 import { CiMenuFries  } from "react-icons/ci";
 
 
+import { useAuth } from "@/context/authProvider";
+
 //data
 import data from "@/Data/Links.json";
 
@@ -34,6 +36,8 @@ const Navbar = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  const { user } = useAuth(); 
 
   return (
     <section className="fixed top-0 left-0 w-full px-5 lg:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none ">
@@ -91,13 +95,18 @@ const Navbar = () => {
         </div>
       </div>
 
+      {user ? (
+        <Link href="/dashboard"   className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150">
+             
+          {t("account")}
 
-      <Link
-        className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
-        href="/auth/login"
-      >
-        {t("create-account")}
-      </Link>
+        </Link>
+      ) : (
+        <Link href="/auth/login" className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150">
+            
+          {t("Log-in")}
+        </Link>
+      )}
 
       <button
         onClick={toggleSidebar}

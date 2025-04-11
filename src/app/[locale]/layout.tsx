@@ -7,6 +7,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
+import { AuthProvider } from '@/context/authProvider';
+
 //components
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollTopBtn from "@/components/scrollTopBtn";
@@ -38,11 +40,13 @@ export default async function RootLayout({
   }
   console.log(locale);
 
+ 
   return (
     <html lang={locale} dir={locale ==="en"? "ltr":"rtl"} suppressHydrationWarning>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
-        <NextIntlClientProvider>
+        <AuthProvider>        
+          <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -56,6 +60,8 @@ export default async function RootLayout({
           </ThemeProvider>
         </NextIntlClientProvider>
         <ScrollTopBtn />
+      </AuthProvider>
+
       </body>
     </html>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +13,7 @@ export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,14 +33,13 @@ export default function RegisterPage() {
 
       const data = await res.json();
       console.log("Registration successful:", data);
-
       setSuccessMessage("Registration successful! 🎉");
       setErrorMessage("");
-
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
+      router.push("/auth/login");
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("Registration failed. Please try again.");
@@ -48,8 +50,10 @@ export default function RegisterPage() {
   return (
     <section className="min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
-        <h1 className="text-neutral-950 dark:text-white">Register</h1>
-        <p>Create an account by filling the form below</p>
+        <h1 className="text-neutral-950 dark:text-white mb-2">Register</h1>
+        <p className=" text-neutral-950 dark:text-white opacity-75">
+          Create an account by filling the form below
+        </p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
         <input
@@ -101,6 +105,12 @@ export default function RegisterPage() {
       {errorMessage && (
         <p className="text-red-600 dark:text-red-400">{errorMessage}</p>
       )}
+      <div className="text-neutral-900 dark:text-white">
+        Already have an account? 
+        <Link href="/auth/login" className="text-purple-500 mx-1">
+           Login
+        </Link>
+      </div>
     </section>
   );
 }
