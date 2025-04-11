@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const res = await fetch(`${api}/auth/me`, {
+        const res = await fetch(`${api}/user/profile`, {
           credentials: "include",
         });
         if (res.ok) {

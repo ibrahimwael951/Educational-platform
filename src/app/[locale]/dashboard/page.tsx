@@ -96,7 +96,7 @@ const Profile = () => {
     "flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-900 rounded-2xl cursor-pointer duration-150";
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen p-4">
+    <div className="flex flex-col md:flex-row min-h-screen pt-30 p-4">
       {/* Sidebar */}
       <aside className="bg-slate-100 dark:bg-neutral-800 w-full md:w-1/4 p-4 rounded-lg shadow-lg">
         <div className="flex flex-col justify-center items-center mb-4">
