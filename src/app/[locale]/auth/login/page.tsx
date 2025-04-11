@@ -9,7 +9,7 @@ const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default function LoginPage() {
-  const router = useRouter(); // initialize router
+  const router = useRouter();  
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,12 +47,13 @@ export default function LoginPage() {
       setEmail("");
       setPassword("");
       router.push("/dashboard");
-    } catch (error: any) {
-      console.error("Error during login:", error);
-      if (error.message.includes("Network Error")) {
-        setErrorMessage("Network error, please try again later.");
-      } else {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error during login:", error.message);
         setErrorMessage("Login failed. Please check your credentials.");
+      } else {
+        console.error("An unknown error occurred", error);
+        setErrorMessage("An unknown error occurred.");
       }
       setSuccessMessage("");
       clearMessages();
