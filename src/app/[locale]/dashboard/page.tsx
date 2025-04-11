@@ -1,4 +1,5 @@
 "use client";
+
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { ModeToggle } from "@/components/themeToggole";
@@ -29,11 +30,9 @@ const fetchUserProfile = async () => {
     }
 
     const data = await res.json();
-    console.log("User profile:", data);
     return data;
   } catch (error) {
     console.error("Error fetching profile:", error);
-
     return null;
   }
 };
@@ -44,12 +43,15 @@ const Profile = () => {
   // State to store profile data
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadProfile = async () => {
       const data = await fetchUserProfile();
       if (data) {
         setProfile(data);
+      } else {
+        setError("Unable to load profile. Please try again later.");
       }
       setLoading(false);
     };
@@ -60,22 +62,29 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-4xl text-neutral-800 dark:text-white">
-          Loading profile...
-        </p>
+        <p className="text-4xl text-neutral-800 dark:text-white">Loading...</p>
       </div>
     );
   }
 
-  //user data
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-4xl text-red-600">{error}</p>
+      </div>
+    );
+  }
+
+  // User data
   const fullName = `${profile.user.firstName} ${profile.user.lastName}`;
   const userId = profile.user._id || "N/A";
   const email = profile.user.email || "N/A";
 
   const liStyle =
-    "flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-900  rounded-2xl cursor-pointer duration-150";
+    "flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-900 rounded-2xl cursor-pointer duration-150";
+
   return (
-    <div className="flex flex-col pt-30 md:flex-row min-h-screen p-4">
+    <div className="flex flex-col md:flex-row min-h-screen p-4">
       {/* Sidebar */}
       <aside className="bg-slate-100 dark:bg-neutral-800 w-full md:w-1/4 p-4 rounded-lg shadow-lg">
         <div className="flex flex-col justify-center items-center mb-4">
@@ -128,18 +137,14 @@ const Profile = () => {
             <p className="text-neutral-800 dark:text-white text-3xl font-bold">
               {profile?.certificates || 0}
             </p>
-            <p className="text-neutral-800 dark:text-slate-300">
-              {t("certified")}
-            </p>
+            <p className="text-neutral-800 dark:text-slate-300">{t("certified")}</p>
           </div>
           <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center">
             <FaPlay className="text-4xl text-purple-500" />
             <p className="text-neutral-800 dark:text-white text-3xl font-bold">
               {profile?.training || 0}
             </p>
-            <p className="text-neutral-800 dark:text-slate-300">
-              {t("training")}
-            </p>
+            <p className="text-neutral-800 dark:text-slate-300">{t("training")}</p>
           </div>
         </div>
 
@@ -150,12 +155,11 @@ const Profile = () => {
           <p className="text-sm text-gray-500">{t("support_note")}</p>
         </div>
         <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
-        <p className="text-neutral-800 dark:text-white">{t("change-language")} </p>
-          
+          <p className="text-neutral-800 dark:text-white">{t("change-language")}</p>
           <LocaleSwitcher />
         </div>
         <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
-          <p className="text-neutral-800 dark:text-white">{t("change-Theme")} </p>
+          <p className="text-neutral-800 dark:text-white">{t("change-Theme")}</p>
           <ModeToggle />
         </div>
       </main>

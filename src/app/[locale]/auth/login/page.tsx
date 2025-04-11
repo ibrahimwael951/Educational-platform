@@ -13,13 +13,28 @@ export default function LoginPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Clear messages after 3 seconds
+  const clearMessages = () => {
+    setTimeout(() => {
+      setSuccessMessage("");
+      setErrorMessage("");
+    }, 3000);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setErrorMessage("Please fill in both fields.");
+      clearMessages();
+      return;
+    }
 
     try {
       await login(email, password);
       setSuccessMessage("Login successful! 🎉");
       setErrorMessage("");
+      clearMessages();
       setEmail("");
       setPassword("");
       router.push("/dashboard");
@@ -27,6 +42,7 @@ export default function LoginPage() {
       console.error("Error during login:", error);
       setErrorMessage("Login failed. Please check your credentials.");
       setSuccessMessage("");
+      clearMessages();
     }
   };
 
@@ -73,10 +89,9 @@ export default function LoginPage() {
         <p className="text-red-600 dark:text-red-400">{errorMessage}</p>
       )}
 
-      <div className="text-neutral-900 dark:text-white">
-        Don't have an account?
+      <div className="text-neutral-900 dark:text-white mt-4">
+        Don't have an account?{" "}
         <Link href="/auth/register" className="text-purple-500">
-          {" "}
           Register
         </Link>
       </div>
