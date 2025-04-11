@@ -51,7 +51,7 @@ export default function Contact() {
           {t("title")}
         </h1>
         <p className="text-neutral-800 dark:text-slate-300">
-           {t("description")}
+          {t("description")}
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit as SubmitHandler<FormValues>)}>
