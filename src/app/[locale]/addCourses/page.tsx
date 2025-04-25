@@ -184,7 +184,7 @@ export default function AddCourseForm() {
     {/* Submit Button */}
     <button 
         type="submit" 
-        className="bg-purple-500 hover:bg-purple-600 text-white py-2 px-5 justify-center items-center mt-10  rounded cursor-pointer">
+        className="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 px-5 justify-center items-center mt-10  rounded cursor-pointer">
         {t("addBtn")}
     </button>
 
