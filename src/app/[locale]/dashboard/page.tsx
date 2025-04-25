@@ -15,6 +15,7 @@ import {
   FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
+import { useRouter } from "@/i18n/navigation";
 
 const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -53,9 +54,10 @@ const Profile = () => {
   const t = useTranslations("profileSection");
 
   // State to store profile data
+  const router = useRouter()
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+ 
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -63,7 +65,7 @@ const Profile = () => {
       if (data) {
         setProfile(data);
       } else {
-        setError("Unable to load profile. Please try again later.");
+        router.push('/auth/login')
       }
       setLoading(false);
     };
@@ -79,13 +81,7 @@ const Profile = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-4xl text-red-600">{error}</p>
-      </div>
-    );
-  }
+  
 
    
   const fullName = `${profile?.user.firstName} ${profile?.user.lastName}`;
