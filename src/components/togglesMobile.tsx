@@ -1,6 +1,6 @@
 "use client";
+import React from "react";
 import { useTheme } from "next-themes";
-import React, { useState } from "react";
 import {useLocale, useTranslations} from 'next-intl';
 import {Link, usePathname} from '@/i18n/navigation';
 
