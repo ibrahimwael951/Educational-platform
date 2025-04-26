@@ -49,9 +49,9 @@ const fetchUserProfile = async () => {
 
 const Profile = () => {
   const t = useTranslations("profileSection");
-
-  // State to store profile data
   const router = useRouter();
+  const { logout } = useAuth();  
+
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -67,7 +67,7 @@ const Profile = () => {
     };
 
     loadProfile();
-  }, []);
+  }, [router]); 
 
   if (loading) {
     return (
@@ -84,8 +84,6 @@ const Profile = () => {
   const liStyle =
     "flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-900 rounded-2xl cursor-pointer duration-150";
 
-  const { logout } = useAuth();
-
   const handleLogout = async () => {
     try {
       await logout();
@@ -94,6 +92,7 @@ const Profile = () => {
       console.error("Logout failed:", error);
     }
   };
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen pt-30 p-4">
       {/* Sidebar */}
@@ -116,11 +115,9 @@ const Profile = () => {
           <li className={liStyle}>
             <FaCertificate className="mr-2" /> {t("certificates")}
           </li>
-
           <li className={liStyle}>
             <FaHeart className="mr-2" /> {t("favorites")}
           </li>
-
           <li
             onClick={handleLogout}
             className="flex items-center p-2 hover:bg-neutral-400 dark:hover:bg-neutral-800 cursor-pointer duration-100 text-red-500"
@@ -159,16 +156,16 @@ const Profile = () => {
           </p>
           <p className="text-sm text-gray-500">{t("support_note")}</p>
         </div>
+
         <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
           <p className="text-neutral-800 dark:text-white">
             {t("change-language")}
           </p>
           <LocaleSwitcher />
         </div>
+
         <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
-          <p className="text-neutral-800 dark:text-white">
-            {t("change-Theme")}
-          </p>
+          <p className="text-neutral-800 dark:text-white">{t("change-Theme")}</p>
           <ModeToggle />
         </div>
       </main>
