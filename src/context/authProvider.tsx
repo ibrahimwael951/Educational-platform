@@ -54,7 +54,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await fetch(`${api}/auth/logout`, {
         method: "POST",
-        credentials: "include",
       });
       setUser(null);
     } catch (error) {

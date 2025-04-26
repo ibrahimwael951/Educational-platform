@@ -5,16 +5,50 @@
       "url": "/"
     },
     {
-      "title": "about",
-      "url": "/about"
-    },
-    {
       "title": "courses",
       "url": "/courses"
     },
     {
       "title": "support",
       "url": "/support"
+    }
+  ],
+  "explore": [
+    {
+      "title": "business",
+      "url": "/business"
+    },
+    {
+      "title": "arts",
+      "url": "/arts"
+    },
+    {
+      "title": "personalDevelopment",
+      "url": "/personalDevelopment"
+    },
+    {
+      "title": "uiux",
+      "url": "/uiux"
+    },
+    {
+      "title": "graphic",
+      "url": "/graphic"
+    },
+    {
+      "title": "marketing",
+      "url": "/marketing"
+    },
+    {
+      "title": "exclusive",
+      "url": "/exclusive"
+    },
+    {
+      "title": "productDesign",
+      "url": "/productDesign"
+    },
+    {
+      "title": "video",
+      "url": "/video"
     }
   ],
   "footer": {
@@ -40,19 +74,19 @@
         "url": ""
       }
     ],
-    "Quick_Links":[
-        {
-            "title": "Instructors",
-            "url": "/instructors" 
-        },
-        {
-            "title": "Services",
-            "url": "/service" 
-        },
-        {
-            "title": "FAQ",
-            "url": "/faq" 
-        }
+    "Quick_Links": [
+      {
+        "title": "Instructors",
+        "url": "/instructors"
+      },
+      {
+        "title": "Services",
+        "url": "/service"
+      },
+      {
+        "title": "FAQ",
+        "url": "/faq"
+      }
     ]
   }
 }

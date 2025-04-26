@@ -10,7 +10,8 @@
     "courses": "Courses",
     "pages": "Pages",
     "Log-in": "Login",
-    "account":"Account"
+    "account":"Account",
+    "register":"Register"
   },
   "footer": {
     "description": "Sometimes, there is formatting through the use of cross-scrolling. Then, the formatting begins with immediate coordination and becomes more flexible over time",
