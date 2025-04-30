@@ -64,9 +64,9 @@ const Navbar = () => {
         ))}
         <div
           className="relative Menu-container"
-          onMouseEnter={() => {
-            setIsMenuOpen(true), setIsProfileOpen(false);
-          }}
+          onMouseEnter={() => 
+            setIsMenuOpen(true)
+          }
         >
           {/* Pages Link */}
           <Link
@@ -101,9 +101,7 @@ const Navbar = () => {
 
       {user ? (
         <Link
-          onMouseEnter={() => {
-            setIsMenuOpen(false), setIsProfileOpen(true);
-          }}
+          onMouseEnter={() => setIsProfileOpen(true)}
           href="/dashboard"
           className="hidden  relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  lg:flex items-center justify-center rounded-full"
         >
@@ -154,7 +152,7 @@ const Navbar = () => {
                 {
                   title: "support",
                   url: "/support",
-                },
+                }
               ].map((item, index) => (
                 <Link key={index} href={item.url} className="">
                   {item.title}
