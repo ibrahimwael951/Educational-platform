@@ -225,7 +225,8 @@
     "contact": "If you face any issue, feel free to contact us.",
     "certified": "Certified Certificates",
     "training": "Training Courses",
-    "user_id": "User ID",
+    "user_id": "Your ID",
+    "join-date":"you joined us since ",
     "support_note": "Use this ID when contacting support.",
     "change-Theme":"Change Theme",
     "change-language":"Change Language"

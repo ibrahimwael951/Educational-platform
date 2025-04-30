@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import SearchButton from "./searchbar";
+import { motion } from "framer-motion";
 
 import { useTranslations } from "next-intl";
 
@@ -15,8 +16,8 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 //components
 import TogglesMobile from "@/components/togglesMobile";
 
-//data
-import data from "@/Data/Links.json";
+//LinksData
+import LinksData from "@/Data/Links.json";
 
 const Navbar = () => {
   const t = useTranslations("navbar");
@@ -24,31 +25,21 @@ const Navbar = () => {
   const r = useTranslations("footer");
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!(event.target as Element).closest(".dropdown-container")) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
 
   const { user } = useAuth();
 
   return (
     <section className="fixed top-0 left-0 w-full px-5   2xl:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none ">
       <div className="flex justify-center gap-2 items-center w-fit ">
-        <SiDatabricks className="w-9 lg:w-15 text-purple-400" size="100%" />
+        <SiDatabricks className="w-9   text-purple-400" size="100%" />
         <Link
-          className=" md:text-xl lg:text-2xl font-bold text-neutral-800 dark:text-white"
+          className=" md:text-xl font-bold text-neutral-800 dark:text-white"
           href="/"
         >
           {t("title")}
@@ -62,19 +53,20 @@ const Navbar = () => {
 
       {/* links */}
       <div className="hidden lg:flex justify-center items-center gap-2">
-        {data.navbar.map((item, index) => (
+        {LinksData.navbar.map((item, index) => (
           <Link
             key={index}
             href={item.url}
-            className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+            className="md:text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
           >
             {t(item.title)}
           </Link>
         ))}
         <div
-          className="relative dropdown-container"
-          onMouseEnter={() => setIsDropdownOpen(true)}
-          onMouseLeave={() => setIsDropdownOpen(false)}
+          className="relative Menu-container"
+          onMouseEnter={() => {
+            setIsMenuOpen(true), setIsProfileOpen(false);
+          }}
         >
           {/* Pages Link */}
           <Link
@@ -84,10 +76,16 @@ const Navbar = () => {
             {t("pages")}
           </Link>
 
-          {/* Dropdown Menu */}
-          {isDropdownOpen && (
-            <div className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 border border-gray-300 shadow-lg rounded-md">
-              {data.footer.Quick_Links.map((item, index) => (
+          {/* Menu Menu */}
+          {isMenuOpen && (
+            <motion.div
+              onMouseLeave={() => setIsMenuOpen(false)}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 shadow-lg rounded-md"
+            >
+              {LinksData.footer.Quick_Links.map((item, index) => (
                 <Link
                   key={index}
                   className="p-2 w-full hover:text-purple-400 cursor-pointer"
@@ -96,22 +94,79 @@ const Navbar = () => {
                   {r(`Quick_Links.${item.title}`)}
                 </Link>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
 
       {user ? (
         <Link
+          onMouseEnter={() => {
+            setIsMenuOpen(false), setIsProfileOpen(true);
+          }}
           href="/dashboard"
-          className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
+          className="hidden  relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  lg:flex items-center justify-center rounded-full"
         >
-          {t("account")}
+          {user?.isActive && (
+            <div className=" absolute bottom-0 -right-0 bg-green-500 rounded-full p-[5px]"></div>
+          )}
+          {user?.fullName?.charAt(0)}
+
+          {/* sidebar for profile */}
+          {isProfileOpen && (
+            <motion.div
+              onMouseLeave={() => setIsProfileOpen(false)}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-9 right-0 flex flex-col justify-center gap-2 items-center p-2  mt-2 w-56   bg-slate-100 dark:bg-neutral-900 shadow-lg rounded-md"
+            >
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <div className=" relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  flex items-center justify-center rounded-full">
+                  {user?.isActive && (
+                    <div className=" absolute bottom-0 -right-0 bg-green-500 rounded-full p-[5px]"></div>
+                  )}
+                  {user?.fullName?.charAt(0)}
+                </div>
+                {user.fullName}
+              </Link>
+              {[
+                {
+                  title: "my-cart",
+                  url: "/cart",
+                },
+                {
+                  title: "wishlist",
+                  url: "/wishlist",
+                },
+                {
+                  title: "become-instructor",
+                  url: "/becomeInstructor",
+                },
+                {
+                  title: "account-setting",
+                  url: "/dashboard#setting",
+                },
+                {
+                  title: "publicProfile",
+                  url: "/dashboard",
+                },
+                {
+                  title: "support",
+                  url: "/support",
+                },
+              ].map((item, index) => (
+                <Link key={index} href={item.url} className="">
+                  {item.title}
+                </Link>
+              ))}
+            </motion.div>
+          )}
         </Link>
       ) : (
         <Link
           href="/auth/login"
-          className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-white hover:text-purple-400  duration-150"
+          className="hidden lg:inline bg-purple-400 text-white rounded-xl p-3 border border-purple-400 hover:bg-transparent hover:text-purple-400  duration-150"
         >
           {t("Log-in")}
         </Link>
@@ -146,10 +201,14 @@ const Navbar = () => {
           ${isSidebarVisible ? "translate-x-0" : " translate-x-full"}
         `}
       >
-       <SearchButton/>
+        <SearchButton />
 
         {user ? (
-          <Link onClick={toggleSidebar} href="/dashboard" className="my-6 bg-purple-500  text-white rounded-2xl p-3 px-5 ">
+          <Link
+            onClick={toggleSidebar}
+            href="/dashboard"
+            className="my-6 bg-purple-500  text-white rounded-2xl p-3 px-5 "
+          >
             {t("account")}
           </Link>
         ) : (
@@ -172,7 +231,7 @@ const Navbar = () => {
         )}
 
         <div className="flex flex-col gap-5 my-4 w-full border-t-2 border-neutral-500 pt-3">
-          {data.explore.map((item, index) => (
+          {LinksData.explore.map((item, index) => (
             <Link
               className="text-neutral-700 dark:text-white text-xl w-full flex  justify-between items-center"
               key={index}
@@ -186,7 +245,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex flex-col gap-5 my-4 w-full border-t-2 border-neutral-500 pt-3">
-          {data.navbar.map((item, index) => (
+          {LinksData.navbar.map((item, index) => (
             <Link
               className="text-neutral-700 dark:text-white text-xl w-full flex  justify-between items-center"
               key={index}

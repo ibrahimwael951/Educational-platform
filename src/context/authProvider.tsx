@@ -1,11 +1,24 @@
 "use client";
-import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 
 // Define a type for your user (adjust as needed)
 interface User {
-  id: string;
+  profile: string;
+  firstName: string;
+  lastName: string;
+  _id: string;
   email: string;
-  name?: string;
+  createdAt: string;
+  isActive: boolean;
+  fullName: string;
+  myCourses: Array<1>;
+  enrolledCourses: Array<0>;
 }
 
 // Define the shape of the context
@@ -42,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const data = await res.json();
-   
+
       setUser(data.user);
     } catch (error) {
       throw error;

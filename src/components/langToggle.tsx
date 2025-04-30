@@ -10,7 +10,7 @@ export default function LocaleSwitcher() {
   const pathname = usePathname();
 
   return (
-    <Link href={pathname} locale={otherLocale} className='  p-2 bg-purple-600 rounded-xl hover:bg-purple-700 duration-150 w-fit text-white '>
+    <Link href={pathname} locale={otherLocale} className='  p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl  duration-150 w-fit text-white '>
      {t('switchLocale')}
     </Link>
   );
