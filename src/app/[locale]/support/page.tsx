@@ -45,7 +45,7 @@ export default function Contact() {
   });
 
   return (
-    <section className=" h-fit py-32 max-w-2xl m-auto flex flex-col gap-10">
+    <section className="px-5 h-fit py-32 max-w-2xl m-auto flex flex-col gap-10">
       <div className="text-center">
         <h1 className="text-4xl text-neutral-900 dark:text-white mb-2">
           {t("title")}

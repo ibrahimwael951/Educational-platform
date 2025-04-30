@@ -61,7 +61,7 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
+    <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
         <h1 className="text-neutral-950 dark:text-white mb-2">Login Form</h1>
         <p className="text-neutral-950 dark:text-white opacity-75">

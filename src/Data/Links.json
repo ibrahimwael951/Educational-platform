@@ -1,17 +1,48 @@
 {
   "navbar": [
-    {
-      "title": "home",
-      "url": "/"
-    },
-    {
-      "title": "courses",
-      "url": "/courses"
-    },
-    {
-      "title": "support",
-      "url": "/support"
-    }
+    
+      {
+        "title": "home",
+        "url": "/",
+        "description": "Return to Home page and site overview"
+      },
+      {
+        "title": "courses",
+        "url": "/courses",
+        "description": "Browse all available courses by category and popularity"
+      },
+      {
+        "title": "support",
+        "url": "/support",
+        "description": "Get help, FAQs, and contact customer service"
+      },
+      {
+        "title": "my-cart",
+        "url": "/cart",
+        "description": "View and manage courses added to your cart"
+      },
+      {
+        "title": "wishlist",
+        "url": "/wishlist",
+        "description": "Your saved courses for future purchase or enrollment"
+      },
+      {
+        "title": "become-instructor",
+        "url": "/auth/becomeInstructor",
+        "description": "Apply to become an instructor and share your knowledge"
+      },
+      {
+        "title": "account-setting",
+        "url": "/dashboard#setting",
+        "description": "Manage your profile settings, password, and preferences"
+      },
+      {
+        "title": "publicProfile",
+        "url": "/dashboard",
+        "description": "View and edit your public instructor or student profile"
+      }
+    
+    
   ],
   "explore": [
     {
@@ -77,15 +108,18 @@
     "Quick_Links": [
       {
         "title": "Instructors",
-        "url": "/instructors"
+        "url": "/instructors",
+        "description": "Explore our team of expert instructors and their profiles"
       },
       {
         "title": "Services",
-        "url": "/service"
+        "url": "/service",
+        "description": "Learn about the services and benefits we offer to learners and instructors"
       },
       {
         "title": "FAQ",
-        "url": "/faq"
+        "url": "/faq",
+        "description": "Find answers to frequently asked questions about our platform"
       }
     ]
   }

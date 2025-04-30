@@ -11,7 +11,12 @@
     "pages": "Pages",
     "Log-in": "Login",
     "account":"Account",
-    "register":"Register"
+    "register":"Register",
+    "my-cart":"My Cart",
+    "wishlist":"Wish List",
+    "become-instructor":"Become Instructor",
+    "account-setting":"Account Settings",
+    "publicProfile":"Public Profile"
   },
   "footer": {
     "description": "Sometimes, there is formatting through the use of cross-scrolling. Then, the formatting begins with immediate coordination and becomes more flexible over time",
