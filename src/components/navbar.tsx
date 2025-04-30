@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import SearchButton from "./searchbar";
-import { motion } from "framer-motion";
 
 import { useTranslations } from "next-intl";
 
@@ -15,6 +14,15 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 //components
 import TogglesMobile from "@/components/togglesMobile";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 //LinksData
 import LinksData from "@/Data/Links.json";
@@ -25,8 +33,6 @@ const Navbar = () => {
   const r = useTranslations("footer");
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -53,6 +59,7 @@ const Navbar = () => {
 
       {/* links */}
       <div className="hidden lg:flex justify-center items-center gap-2">
+      
         {LinksData.navbar.map((item, index) => (
           <Link
             key={index}
@@ -62,105 +69,83 @@ const Navbar = () => {
             {t(item.title)}
           </Link>
         ))}
-        <div
-          className="relative Menu-container"
-          onMouseEnter={() => 
-            setIsMenuOpen(true)
-          }
-        >
-          {/* Pages Link */}
-          <Link
-            href=""
-            className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
-          >
-            {t("pages")}
-          </Link>
-
-          {/* Menu Menu */}
-          {isMenuOpen && (
-            <motion.div
-              onMouseLeave={() => setIsMenuOpen(false)}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute flex flex-col justify-center gap-2 items-center p-2 left-0 mt-2 w-48 bg-slate-100 dark:bg-neutral-900 shadow-lg rounded-md"
-            >
-              {LinksData.footer.Quick_Links.map((item, index) => (
+         
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150">
+                {t("pages")}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  {LinksData.footer.Quick_Links.map((item, index) => (
+                    <NavigationMenuLink key={index}>
+                      <Link
+                        className="p-2 w-full hover:text-purple-400 cursor-pointer"
+                        href={item.url}
+                      >
+                        {r(`Quick_Links.${item.title}`)}
+                      </Link>
+                    </NavigationMenuLink>
+                  ))}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+ 
+        {user ? (
+        <NavigationMenu className="hidden  lg:inline">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent">
                 <Link
-                  key={index}
-                  className="p-2 w-full hover:text-purple-400 cursor-pointer"
-                  href={item.url}
+                  href="/dashboard"
+                  className="relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  lg:flex items-center justify-center rounded-full"
                 >
-                  {r(`Quick_Links.${item.title}`)}
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </div>
-      </div>
-
-      {user ? (
-        <Link
-          onMouseEnter={() => setIsProfileOpen(true)}
-          href="/dashboard"
-          className="hidden  relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  lg:flex items-center justify-center rounded-full"
-        >
-          {user?.isActive && (
-            <div className=" absolute bottom-0 -right-0 bg-green-500 rounded-full p-[5px]"></div>
-          )}
-          {user?.fullName?.charAt(0)}
-
-          {/* sidebar for profile */}
-          {isProfileOpen && (
-            <motion.div
-              onMouseLeave={() => setIsProfileOpen(false)}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-9 right-0 flex flex-col justify-center gap-2 items-center p-2  mt-2 w-56   bg-slate-100 dark:bg-neutral-900 shadow-lg rounded-md"
-            >
-              <Link href="/dashboard" className="flex items-center gap-2">
-                <div className=" relative w-9 h-9  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white  flex items-center justify-center rounded-full">
                   {user?.isActive && (
                     <div className=" absolute bottom-0 -right-0 bg-green-500 rounded-full p-[5px]"></div>
                   )}
                   {user?.fullName?.charAt(0)}
-                </div>
-                {user.fullName}
-              </Link>
-              {[
-                {
-                  title: "my-cart",
-                  url: "/cart",
-                },
-                {
-                  title: "wishlist",
-                  url: "/wishlist",
-                },
-                {
-                  title: "become-instructor",
-                  url: "/becomeInstructor",
-                },
-                {
-                  title: "account-setting",
-                  url: "/dashboard#setting",
-                },
-                {
-                  title: "publicProfile",
-                  url: "/dashboard",
-                },
-                {
-                  title: "support",
-                  url: "/support",
-                }
-              ].map((item, index) => (
-                <Link key={index} href={item.url} className="">
-                  {item.title}
                 </Link>
-              ))}
-            </motion.div>
-          )}
-        </Link>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                {[
+                  {
+                    title: "my-cart",
+                    url: "/cart",
+                  },
+                  {
+                    title: "wishlist",
+                    url: "/wishlist",
+                  },
+                  {
+                    title: "become-instructor",
+                    url: "/becomeInstructor",
+                  },
+                  {
+                    title: "account-setting",
+                    url: "/dashboard#setting",
+                  },
+                  {
+                    title: "publicProfile",
+                    url: "/dashboard",
+                  },
+                  {
+                    title: "support",
+                    url: "/support",
+                  },
+                ].map((item, index) => (
+                  <NavigationMenuLink key={index}>
+                    <Link className="p-2 w-full hover:text-purple-400 cursor-pointer" href={item.url}>{item.title}</Link>
+                  </NavigationMenuLink>
+                ))}
+                <NavigationMenuLink>
+                 
+                </NavigationMenuLink>
+
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
       ) : (
         <Link
           href="/auth/login"
@@ -169,7 +154,7 @@ const Navbar = () => {
           {t("Log-in")}
         </Link>
       )}
-
+      </div>
       <button
         onClick={toggleSidebar}
         className={`lg:hidden text-purple-400 w-10 duration-150
