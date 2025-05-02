@@ -23,7 +23,7 @@ const WhyChooseUsSection = () => {
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="flex flex-col items-center lg:items-start gap-10"
       >
         <div className="flex w-full justify-between items-center gap-3">
@@ -48,7 +48,7 @@ const WhyChooseUsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5}}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               className="bg-[#E9E2FF] p-5 rounded-lg w-72"
             >
               <div className="flex items-center gap-4">
@@ -68,7 +68,7 @@ const WhyChooseUsSection = () => {
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="max-w-md sm:max-w-lg w-2/6 hidden lg:inline"
       >
         <Image

@@ -27,7 +27,7 @@ const CategoriesSection: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="text-neutral-800 dark:text-white text-3xl font-bold"
       >
         {t("title")}
@@ -40,7 +40,7 @@ const CategoriesSection: React.FC = () => {
           hidden: { opacity: 0, y: 30 },
           visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.10 } },
         }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="w-full sm:w-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-7 mt-5 justify-items-center"
       >
         {categories.map((category, index) => (
@@ -50,7 +50,7 @@ const CategoriesSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5}}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="w-full sm:w-60 p-5 flex items-center gap-1 rounded-xl cursor-pointer"
             style={{ backgroundColor: category.bgColor }}
           >

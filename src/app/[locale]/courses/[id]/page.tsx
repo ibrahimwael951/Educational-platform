@@ -159,9 +159,6 @@ export default function Page() {
                 category={courseData.category}
                 price={courseData.price}
                 rating={courseData.rating}
-                lessons={courseData.lessons}
-                duration={courseData.duration}
-                students={courseData.students}
                 instructor={{
                   name: courseData.instructor,
                   avatar: "/home/person1.png",

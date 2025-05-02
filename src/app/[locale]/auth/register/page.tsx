@@ -108,7 +108,7 @@ export default function RegisterPage() {
       <div className="text-neutral-900 dark:text-white">
         Already have an account? 
         <Link href="/auth/login" className="text-purple-500 mx-1">
-           Login
+          Login
         </Link>
       </div>
     </section>

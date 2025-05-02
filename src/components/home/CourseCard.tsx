@@ -2,22 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaFileInvoice, FaClock, FaUser, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "@/i18n/navigation";
 import { toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
 
 interface CourseCardProps {
-  id: number;
+  id: string;
   image: string;
   title: string;
   category: string;
-  price: string;
+  price: number;
   rating: string;
-  lessons: string;
-  duration: string;
-  students: string;
   instructor: {
     name: string;
     avatar: string;
@@ -31,9 +28,6 @@ const CourseCard: React.FC<CourseCardProps> = ({
   category,
   price,
   rating,
-  lessons,
-  duration,
-  students,
   instructor,
 }) => {
   // Check user signed in
@@ -98,22 +92,6 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Course Title*/}
         <h5 className="text-lg font-bold mt-2 ">{title}</h5>
 
-        {/* Course Data*/}
-        <div className="flex flex-wrap gap-4 mt-3 text-sm">
-          <div className="flex items-center gap-1">
-            <FaFileInvoice className="text-purple-600"/>
-            <p>{lessons} Lessons</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <FaClock className="text-purple-600" />
-            <p>{duration}</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <FaUser className="text-purple-600" />
-            <p>{students} Students</p>
-          </div>
-        </div>
-
         <div className="flex justify-between items-center">
         <button
           onClick={handleAddToCart}
@@ -131,11 +109,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Instructor Data*/}
         <div className="flex justify-between items-center mt-7">
           <div className="flex items-center gap-3">
-            <Image src={instructor.avatar} alt={instructor.name} width={45} height={45} className="rounded-full" />
-            <p className="font-medium text-neutral-800 dark:text-white">{instructor.name}</p>
+            <Image src={instructor.avatar} alt={instructor.name} width={40} height={40} className="rounded-full" />
+            <p className="font-sm text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
           
-          <Link href={`/courses/${id}`} className="p-3 items-center rounded-xl bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150">
+          <Link href={`/courses/${id}`} className="p-1 items-center rounded-xl bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150">
             Details →
           </Link>
         </div>
@@ -145,4 +123,6 @@ const CourseCard: React.FC<CourseCardProps> = ({
 };
 
 export default CourseCard;
+
+
 

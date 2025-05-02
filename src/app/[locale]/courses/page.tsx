@@ -1,14 +1,272 @@
-import React from "react";
+// "use client";
+
+// import React, { useState, useEffect } from "react";
+// import CourseCard from "@/components/home/CourseCard";
+// import FilterCourses from "./FilterCourses";
+// import { useTranslations } from "next-intl";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationItem,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "@/components/ui/pagination";
+
+// interface Course {
+//   id: number;
+//   image: string;
+//   title: string;
+//   category: string;
+//   price: string;
+//   rating: number;
+//   lessons: string;
+//   duration: string;
+//   students: string;
+//   instructor: {
+//     name: string;
+//     avatar: string;
+//   };
+// }
+
+// const CoursesPage = () => {
+//   const t = useTranslations("courses");
+
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [filters, setFilters] = useState<{ rating?: number; price?: string; duration?: string }>({});
+//   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+//   const coursesPerPage = 3;
+
+//   // Courses Data
+//   const allCourses: Course[] = Array(8)
+//     .fill(null)
+//     .map((_, index) => ({
+//       id: index,
+//       image: "/home/card1.png",
+//       title: t("title"),
+//       category: t("category"),
+//       price: index % 2 === 0 ? "Free" : "$99", 
+//       rating: 4.2 + (index % 2), 
+//       lessons: `${10 + index} Lessons`,
+//       duration: index % 3 === 0 ? "< 1 hour" : index % 3 === 1 ? "1-5 hours" : "> 5 hours", 
+//       students: `${100 + index} Students`,
+//       instructor: {
+//         name: t("instructor"),
+//         avatar: "/home/person1.png",
+//       },
+//     }));
+
+//   useEffect(() => {
+//     applyFilters();
+//   }, [filters]);
+
+//   const applyFilters = () => {
+//     let updatedCourses = [...allCourses];
+
+//     if (filters.rating) {
+//       updatedCourses = updatedCourses.filter(course => course.rating >= (filters.rating ?? 0));
+//     }
+
+//     if (filters.price) {
+//       updatedCourses = updatedCourses.filter(course => {
+//         if (filters.price === "Free") return course.price === "Free";
+//         if (filters.price === "Paid") return course.price !== "Free";
+//         return true;
+//       });
+//     }
+
+//     if (filters.duration) {
+//       updatedCourses = updatedCourses.filter(course => course.duration === filters.duration);
+//     }
+
+//     setFilteredCourses(updatedCourses);
+//     setCurrentPage(1); // Reset page on filter change
+//   };
+
+//   const handleFilterChange = (newFilters: { rating?: number; price?: string; duration?: string }) => {
+//     setFilters(newFilters);
+//   };
+
+
+//   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+//   const indexOfLastCourse = currentPage * coursesPerPage;
+//   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+//   const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
+
+//   const handlePageChange = (pageNumber: number) => {
+//     setCurrentPage(pageNumber);
+//   };
+
+//   return (
+//     <section className="container px-5 py-10 mt-10">
+//       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
+//       <div className="flex justify-between items-center mt-10">
+//         <h1 className="capitalize text-neutral-800 dark:text-white">
+//           {t("title")}
+//           <span className="circle"> {t("subtitle")}</span>
+//         </h1>
+//       </div>
+
+//   <div className="flex flex-wrap sm:inline-block md:inline-block lg:flex gap-10 mt-10">
+//   {/* Filters*/}
+//   <div className="w-50 flex fle-col">
+//     <FilterCourses onFilter={handleFilterChange} />
+//     <p className="mt-6 text-center text-neutral-600 dark:text-neutral-300">
+//       {filteredCourses.length} {t("results")}
+//     </p>
+//   </div>
+
+//   {/* Courses Cards*/}
+//   <div className="flex-1">
+//     <div className="flex flex-wrap gap-6 items-start justify-start select-none">
+//       {currentCourses.map((course) => (
+//         <CourseCard
+//           key={course.id}
+//           id={course.id}
+//           image={course.image}
+//           title={course.title}
+//           category={course.category}
+//           price={course.price}
+//           rating={course.rating.toString()}
+//           instructor={course.instructor}
+//         />
+//       ))}
+//     </div>
+//   </div>
+// </div>
+
+//       {/* Pagination */}
+//       <Pagination>
+//         <PaginationContent className="justify-center">
+//           <PaginationItem>
+//             <PaginationPrevious
+//               onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+//               className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+//             />
+//           </PaginationItem>
+//           <PaginationItem>
+//             <span className="px-2 text-sm">
+//               Page {currentPage} of {totalPages}
+//             </span>
+//           </PaginationItem>
+//           <PaginationItem>
+//             <PaginationNext
+//               onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+//               className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+//             />
+//           </PaginationItem>
+//         </PaginationContent>
+//       </Pagination>
+//     </section>
+//   );
+// };
+
+// export default CoursesPage;
+
+
+"use client";
+
+import React, { useState, useEffect } from "react";
 import CourseCard from "@/components/home/CourseCard";
+import FilterCourses from "./FilterCourses";
 import { useTranslations } from "next-intl";
-import { ToastContainer } from "react-toastify"; 
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+interface Course {
+  id: number;
+  image: string;
+  title: string;
+  category: string;
+  price: string;
+  rating: number;
+  lessons: string;
+  duration: string;
+  students: string;
+  instructor: {
+    name: string;
+    avatar: string;
+  };
+}
 
 const CoursesPage = () => {
   const t = useTranslations("courses");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState<{ rating?: number; price?: string; duration?: string }>({});
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+  const coursesPerPage = 3;
+
+  // Courses Data
+  const allCourses: Course[] = Array(8)
+    .fill(null)
+    .map((_, index) => ({
+      id: index,
+      image: "/home/card1.png",
+      title: t("title"),
+      category: t("category"),
+      price: index % 2 === 0 ? "Free" : "$99", 
+      rating: 4.2 + (index % 2), 
+      lessons: `${10 + index} Lessons`,
+      duration: index % 3 === 0 ? "< 1 hour" : index % 3 === 1 ? "1-5 hours" : "> 5 hours", 
+      students: `${100 + index} Students`,
+      instructor: {
+        name: t("instructor"),
+        avatar: "/home/person1.png",
+      },
+    }));
+
+  useEffect(() => {
+    applyFilters();
+  }, [filters]);
+
+  const applyFilters = () => {
+    let updatedCourses = [...allCourses];
+
+    if (filters.rating) {
+      updatedCourses = updatedCourses.filter(course => course.rating >= (filters.rating ?? 0));
+    }
+
+    if (filters.price) {
+      updatedCourses = updatedCourses.filter(course => {
+        if (filters.price === "Free") return course.price === "Free";
+        if (filters.price === "Paid") return course.price !== "Free";
+        return true;
+      });
+    }
+
+    if (filters.duration) {
+      updatedCourses = updatedCourses.filter(course => course.duration === filters.duration);
+    }
+
+    setFilteredCourses(updatedCourses);
+    setCurrentPage(1); // Reset page on filter change
+  };
+
+  const handleFilterChange = (newFilters: { rating?: number; price?: string; duration?: string }) => {
+    setFilters(newFilters);
+  };
+
+
+  const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <section className="container mx-auto px-6 py-10 mt-10">
+    <section className="container px-5 py-10 mt-10">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
       <div className="flex justify-between items-center mt-10">
         <h1 className="capitalize text-neutral-800 dark:text-white">
@@ -17,127 +275,61 @@ const CoursesPage = () => {
         </h1>
       </div>
 
+      <div className="flex flex-col lg:flex-row gap-10 mt-10">
+  {/* Filters*/} 
+  <div className="min-w-[260px]">
+    <FilterCourses onFilter={handleFilterChange} />
+    <p className="mt-6 text-center text-neutral-600 dark:text-neutral-300">
+      {filteredCourses.length} {t("results")}
+    </p>
+  </div>
 
-      <div className="flex flex-wrap mt-6 items-center justify-center select-none">
-        {Array(8)
-          .fill(null)
-          .map((_, index) => (
-            <CourseCard
-            id={index}
-              key={index}
-              image="/home/card1.png"
-              title={t("title")}
-              category={t("category")}
-              price={t("price")}
-              rating={t("rating")}
-              lessons={t("lessons")}
-              duration={t("duration")}
-              students={t("students")}
-              instructor={{
-                name: t("instructor"),
-                avatar: "/home/person1.png",
-              }}
+  {/* Courses Cards*/} 
+  <div className="flex-1">
+    <div className="flex flex-wrap gap-6 items-start justify-start select-none">
+      {currentCourses.map((course) => (
+        <CourseCard
+          key={course.id}
+          id={course.id}
+          image={course.image}
+          title={course.title}
+          category={course.category}
+          price={course.price}
+          rating={course.rating.toString()}
+          instructor={course.instructor}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+
+      {/* Pagination */}
+      <Pagination>
+        <PaginationContent className="justify-center">
+          <PaginationItem>
+            <PaginationPrevious
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+              className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
             />
-          ))}
-      </div>
+          </PaginationItem>
+          <PaginationItem>
+            <span className="px-2 text-sm">
+              Page {currentPage} of {totalPages}
+            </span>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext
+              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+              className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </section>
   );
 };
 
 export default CoursesPage;
 
-// "use client";
 
-// import React, { useState, useEffect } from "react";
-// import CourseCard from "@/components/home/CourseCard";
-// import { useTranslations } from "next-intl";
-// import { motion } from "framer-motion";
-
-// interface Course {
-//   _id: string;
-//   title: string;
-//   description: string;
-//   instructor: {
-//     firstName: string;
-//     lastName: string;
-//   };
-//   reviews: string[];
-//   price: number;
-//   category: string;
-//   duration: number;
-//   thumbnail: string;
-// }
-
-// const CoursesPage = () => {
-//   const [courses, setCourses] = useState<Course[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const t = useTranslations("courses");
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       try {
-//         const res = await fetch(
-//           "https://educational-platform-backend-production.up.railway.app/api/courses"
-//         );
-//         if (!res.ok) throw new Error("Failed to fetch data");
-//         const data = await res.json();
-
-//         if (Array.isArray(data.courses)) {
-//           setCourses(data.courses);
-//         } else {
-//           console.error("Invalid data format:", data);
-//           setCourses([]);
-//         }
-//       } catch (error) {
-//         console.error("Error fetching courses:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     }
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <section className="container mx-auto px-6 py-10 mt-10">
-  
-//       <div className="flex flex-col justify-center items-center mt-10 text-center">
-//         <h1 className="capitalize text-neutral-800 dark:text-white text-2xl font-bold">
-//           {t("title")} <span className="text-purple-600"> {t("subtitle")}</span>
-//         </h1>
-//       </div>
-
-
-//       {loading ? (
-//         <p className="text-gray-500 text-center mt-6">Loading courses...</p>
-//       ) : courses.length > 0 ? (
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-//           {courses.map((course, index) => (
-//             <motion.div
-//               key={course._id}
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.5, delay: index * 0.1 }}
-//               viewport={{ once: false, amount: 0.3 }}
-//             >
-//               <CourseCard
-//                 id={course._id}
-//                 title={course.title}
-//                 description={course.description}
-//                 instructor={course.instructor}
-//                 reviews={course.reviews}
-//                 price={course.price}
-//                 category={course.category}
-//                 duration={course.duration}
-//                 thumbnail={course.thumbnail}
-//               />
-//             </motion.div>
-//           ))}
-//         </div>
-//       ) : (
-//         <p className="text-gray-500 text-center mt-6">No Available Courses.</p>
-//       )}
-//     </section>
-//   );
-// };
-
-// export default CoursesPage;

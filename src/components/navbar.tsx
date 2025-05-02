@@ -76,7 +76,7 @@ const Navbar = () => {
               </NavigationMenuTrigger>
               <NavigationMenuContent className="grid gap-3 p-4 lg:w-[500px] 2xl:w-[600px] lg:grid-cols-[1fr_1fr]">
                 {LinksData.footer.Quick_Links.map((item, index) => (
-                  <NavigationMenuLink key={index}>
+                  <NavigationMenuLink key={index} asChild>
                     <Link
                       className="p-2 w-full hover:text-purple-400 cursor-pointer"
                       href={item.url}
@@ -106,7 +106,7 @@ const Navbar = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="grid gap-3 p-4 lg:w-[600px] 2xl:w-[700px] lg:grid-cols-[1fr_1fr]">
                   {LinksData.navbar.slice(3, 10).map((item, index) => (
-                    <NavigationMenuLink key={index}>
+                    <NavigationMenuLink key={index} asChild>
                       <Link
                         className="p-2 w-full hover:text-purple-400 cursor-pointer"
                         href={item.url}
@@ -132,22 +132,22 @@ const Navbar = () => {
       <button
         onClick={toggleSidebar}
         className={`lg:hidden text-purple-400 w-10 duration-150
-           ${isSidebarVisible ? "scale-0" : " scale-100"}
-           `}
+          ${isSidebarVisible ? "scale-0" : " scale-100"}
+          `}
       >
         <CiMenuFries size="100%" />
       </button>
       <div
         className={`h-screen w-full absolute top-0 right-0 bg-black opacity-75 lg:scale-0 
-         ${isSidebarVisible ? "scale-100" : " scale-0"}
-         `}
+        ${isSidebarVisible ? "scale-100" : " scale-0"}
+        `}
         onClick={toggleSidebar}
       />
 
       <button
         onClick={toggleSidebar}
         className={`absolute text-white  p-2 mx-2 mt-4 text-2xl bg-purple-500 rounded-2xl duration-150 lg:-right-80
-             ${isSidebarVisible ? "right-80" : " -right-80"}
+            ${isSidebarVisible ? "right-80" : " -right-80"}
             `}
       >
         <IoIosExit size={50} />
@@ -221,3 +221,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

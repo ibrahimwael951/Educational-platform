@@ -17,7 +17,7 @@ export default function Home() {
       <WhyChooseUsSection />
       <SkillsSection />
       <TestimonialSection />
-      <InstructorsSection />  
+      <InstructorsSection />
     </main>
   );
 }

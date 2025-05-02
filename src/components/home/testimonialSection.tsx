@@ -36,7 +36,7 @@ const TestimonialSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1}}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{once: true, amount: 0.2 }}
             className="bg-slate-100 dark:bg-neutral-800 shadow-lg border text-start border-neutral-700 rounded-xl relative p-5 flex flex-col gap-3 w-full max-w-4xl"
           >
           

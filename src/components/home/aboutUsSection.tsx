@@ -20,7 +20,7 @@ const AboutUsSection = () => {
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="hidden lg:inline w-2/6 max-w-[300px] md:max-w-[400px] lg:max-w-[600px]"
       >
         <Image
@@ -37,7 +37,7 @@ const AboutUsSection = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         className="w-full flex flex-col gap-10 items-center text-center"
       >
         <p className="bg-gray-50 text-purple-500 w-fit px-4 py-2 rounded-md font-medium inline-block">
@@ -63,7 +63,7 @@ const AboutUsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               className="w-96"
             >
               <h6 className="text-neutral-800 dark:text-white">

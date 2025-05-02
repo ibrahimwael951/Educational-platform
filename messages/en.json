@@ -150,31 +150,6 @@
     "contactUs": "Contact Us →",
     "findInstructor": "Find Instructor →"
   },
-  "CareerSection": {
-    "title": "Choose Your Career",
-    "headline": "Discover Your Potential",
-    "startToday": "Start From Today",
-    "description": "Join Our Training Courses & Build Your Skills.",
-    "joinNow": "Join Now",
-    "altImage1": "Woman ",
-    "altImage2": "Man"
-  },
-  "PopularPosts": {
-    "blogPost": "Blog Posts",
-    "title": "Most Popular Posts",
-    "readMore": "Read More",
-    "comments": "Comment ({count})",
-    "post1Text": "Discover the latest trends in online learning and how they shape the future of education.",
-    "post2Text": "Unlock your potential with expert career tips and strategies for professional growth.",
-    "post3Text": "Explore the impact of technology on education and how to stay ahead in the digital era.",
-    "altImage": "Blog post image"
-  },
-  "newsletter": {
-    "title": "Join Our Newsletter",
-    "description": "Subscribe to our newsletter to get our latest updates & news.",
-    "placeholder": "Enter your email",
-    "button": "Subscribe Now"
-  },
   "courses": {
     "title": "EduQuest Courses",
     "subtitle": "Students can join with us.",
@@ -193,7 +168,8 @@
     "wulftc":"What Will You Learn From This Course",
     "Course-Description":"Course Description",
     "instructor-name": "Instructor",
-    "related": "related courses"
+    "related": "related courses",
+    "results": "Results"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -235,23 +211,6 @@
     "support_note": "Use this ID when contacting support.",
     "change-Theme":"Change Theme",
     "change-language":"Change Language"
-  },
-  "studentsSection": {
-    "hero_title": "Our Best Students",
-    "hero_description": "Their success is an inspiration to us all!",
-    "join_now": "Join Us Now",
-    "students_testimonials": "Students Testimonials",
-    "highlighted_projects": "Highlighted Projects",
-    "join_list": "Join the distinguished list now!",
-    "achievement_10_courses": "Completed 10 courses",
-    "achievement_5_certificates": "Got 5 certificates",
-    "achievement_best_performance": "Best performance in projects",
-    "testimonial_1": "The courses here are great and I learned a lot!",
-    "testimonial_2": "The academic support was amazing and helped me a lot.",
-    "project_1": "Project 1",
-    "project_2": "Project 2",
-    "project_3": "Project 3",
-    "project_4": "Project 4"
   },
   "EventsPage": {
     "title": "Available Events",
