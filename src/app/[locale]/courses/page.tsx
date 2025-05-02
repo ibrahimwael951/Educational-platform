@@ -164,10 +164,9 @@
 
 // export default CoursesPage;
 
-
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import CourseCard from "@/components/home/CourseCard";
 import FilterCourses from "./FilterCourses";
 import { useTranslations } from "next-intl";
@@ -180,6 +179,27 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+
+
+const generateCourses = (t: ReturnType<typeof useTranslations>): Course[] => {
+  return Array(8)
+    .fill(null)
+    .map((_, index) => ({
+      id: index,
+      image: "/home/card1.png",
+      title: t("title"),
+      category: t("category"),
+      price: index % 2 === 0 ? "Free" : "$99",
+      rating: 4.2 + (index % 2),
+      lessons: `${10 + index} Lessons`,
+      duration: index % 3 === 0 ? "< 1 hour" : index % 3 === 1 ? "1-5 hours" : "> 5 hours",
+      students: `${100 + index} Students`,
+      instructor: {
+        name: t("instructor"),
+        avatar: "/home/person1.png",
+      },
+    }));
+};
 
 interface Course {
   id: number;
@@ -203,32 +223,12 @@ const CoursesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<{ rating?: number; price?: string; duration?: string }>({});
   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+  const allCourses = useMemo(() => generateCourses(t), [t]);
+
+
   const coursesPerPage = 3;
 
-  // Courses Data
-  const allCourses: Course[] = Array(8)
-    .fill(null)
-    .map((_, index) => ({
-      id: index,
-      image: "/home/card1.png",
-      title: t("title"),
-      category: t("category"),
-      price: index % 2 === 0 ? "Free" : "$99", 
-      rating: 4.2 + (index % 2), 
-      lessons: `${10 + index} Lessons`,
-      duration: index % 3 === 0 ? "< 1 hour" : index % 3 === 1 ? "1-5 hours" : "> 5 hours", 
-      students: `${100 + index} Students`,
-      instructor: {
-        name: t("instructor"),
-        avatar: "/home/person1.png",
-      },
-    }));
-
-  useEffect(() => {
-    applyFilters();
-  }, [filters]);
-
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let updatedCourses = [...allCourses];
 
     if (filters.rating) {
@@ -249,12 +249,15 @@ const CoursesPage = () => {
 
     setFilteredCourses(updatedCourses);
     setCurrentPage(1); // Reset page on filter change
-  };
+  }, [filters, allCourses]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
 
   const handleFilterChange = (newFilters: { rating?: number; price?: string; duration?: string }) => {
     setFilters(newFilters);
   };
-
 
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
   const indexOfLastCourse = currentPage * coursesPerPage;
@@ -276,33 +279,32 @@ const CoursesPage = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-10 mt-10">
-  {/* Filters*/} 
-  <div className="min-w-[260px]">
-    <FilterCourses onFilter={handleFilterChange} />
-    <p className="mt-6 text-center text-neutral-600 dark:text-neutral-300">
-      {filteredCourses.length} {t("results")}
-    </p>
-  </div>
+        {/* Filters */}
+        <div className="min-w-[260px]">
+          <FilterCourses onFilter={handleFilterChange} />
+          <p className="mt-6 text-center text-neutral-600 dark:text-neutral-300">
+            {filteredCourses.length} {t("results")}
+          </p>
+        </div>
 
-  {/* Courses Cards*/} 
-  <div className="flex-1">
-    <div className="flex flex-wrap gap-6 items-start justify-start select-none">
-      {currentCourses.map((course) => (
-        <CourseCard
-          key={course.id}
-          id={course.id}
-          image={course.image}
-          title={course.title}
-          category={course.category}
-          price={course.price}
-          rating={course.rating.toString()}
-          instructor={course.instructor}
-        />
-      ))}
-    </div>
-  </div>
-</div>
-
+        {/* Courses Cards */}
+        <div className="flex-1">
+          <div className="flex flex-wrap gap-6 items-start justify-start select-none">
+            {currentCourses.map((course) => (
+              <CourseCard
+                key={course.id}
+                id={course.id.toString()}
+                image={course.image}
+                title={course.title}
+                category={course.category}
+                price={course.price === "Free" ? 0 : 99}
+                rating={course.rating.toString()}
+                instructor={course.instructor}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Pagination */}
       <Pagination>
@@ -331,5 +333,3 @@ const CoursesPage = () => {
 };
 
 export default CoursesPage;
-
-

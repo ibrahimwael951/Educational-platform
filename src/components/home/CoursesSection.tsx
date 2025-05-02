@@ -20,7 +20,7 @@ type Course = {
     fullName: string;
     id: string;
   };
-  sections: any[]; 
+  sections: Record<string, unknown>[];
   price: number;
   category: string;
   level: string;
