@@ -129,9 +129,6 @@ clear to me that I had to go back to coding. And that's what I did.`;
       category={t("course.category")}
       price={22}
       rating={t("course.rating")}
-      lessons={t("course.lessons")}
-      duration={t("course.duration")}
-      students={t("course.students")}
       instructor={{
         name: t("course.instructor"),
         avatar: "/home/person1.png",
