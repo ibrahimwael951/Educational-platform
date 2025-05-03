@@ -19,12 +19,14 @@ export default function Page() {
   const courseData = {
     title: tSection("course.title"),
     category: tSection("course.category"),
-    price: tSection("course.price"),
+    //make price number for now until we connect the page with api
+    price: 22,
     rating: tSection("course.rating"),
     lessons: tSection("course.lessons"),
     duration: tSection("course.duration"),
     students: tSection("course.students"),
     instructor: tSection("course.instructor"),
+    _id: tSection("course._id"),
   };
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
@@ -153,7 +155,7 @@ export default function Page() {
             {Array(3).fill(null).map((_, index) => (
               <CourseCard
                 key={index}
-                id={index}
+                id={courseData._id}
                 image="/home/card1.png"
                 title={courseData.title}
                 category={courseData.category}
