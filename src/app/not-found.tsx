@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import "./[locale]/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -22,17 +22,19 @@ const Error = () => {
               <p className="mt-6 text-base leading-7 text-gray-600">
                 There was an error processing your request.
               </p>
-
               <div className="mt-10 flex flex-wrap gap-7 items-center gap-x-6">
                 <Link
                   href="/"
-                  className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition"
+                  className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition"
                 >
                   Go back home
                 </Link>
-                <a href="support" className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg  border-indigo-600 hover:text-white hover:bg-indigo-600 duration-150">
+                <Link
+                  href="/support"
+                  className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg  border-purple-600 hover:text-white hover:bg-purple-600 duration-150"
+                >
                   Contact support
-                </a>
+                </Link>
               </div>
             </div>
 

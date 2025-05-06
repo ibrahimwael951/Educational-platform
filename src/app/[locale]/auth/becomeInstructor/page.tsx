@@ -1,24 +1,226 @@
-import { IoSchoolOutline } from "react-icons/io5";
+"use client";
 
-export default function Page() {
-  return (
-    //ur job title
-    //bio
-    //social Links
-    <section className="min-h-screen pt-24 px-5">
-      <div className="w-fit mx-auto text-center">
-        <h1 className="m-auto w-fit text-neutral-800 dark:text-white flex items-center gap-2">
-          <IoSchoolOutline className="text-purple-600" size={60} />
-          Become Instructor
-        </h1>
-        <p className="text-neutral-800  dark:text-white opacity-55">
-          Start Teaching. Start Making a Difference.
+import { useState } from "react";
+import { useAuth } from "@/context/authProvider";
+import { Link } from "@/i18n/navigation";
+
+export default function BecomeInstructorForm() {
+  const User = useAuth();
+  const [formData, setFormData] = useState({
+    title: "",
+    bio: "",
+    linkedin: "",
+    twitter: "",
+    github: "",
+    facebook: "",
+  });
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const hasAtLeastOneSocialLink = () => {
+    return (
+      formData.linkedin.trim() ||
+      formData.twitter.trim() ||
+      formData.github.trim() ||
+      formData.facebook.trim()
+    );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!hasAtLeastOneSocialLink()) {
+      setError("Please provide at least one social media link.");
+      return;
+    }
+
+    const socialLinks: Record<string, string> = {};
+    ["linkedin", "twitter", "github", "facebook"].forEach((platform) => {
+      const value = formData[platform as keyof typeof formData];
+      if (value.trim()) {
+        socialLinks[platform] = value.trim();
+      }
+    });
+
+    const payload = {
+      title: formData.title,
+      bio: formData.bio,
+      socialLinks,
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/instructors/become-instructor`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!res.ok) throw new Error("Submission failed.");
+      console.log(JSON.stringify(payload));
+      setSuccess(true);
+      setError("");
+    } catch (err) {
+      setError("Failed to submit the form. Please try again.");
+      setSuccess(false);
+    }
+  };
+  if (!User)
+    return (
+      <section className="relative w-full h-screen flex flex-col justify-center items-center text-3xl ">
+        <h1 className="text-3xl text-neutral-800 dark:text-white">Error 404</h1>
+        <p className="text-2xl text-neutral-800 dark:text-white opacity-55">
+          u need to log in first
         </p>
-      </div>
-      
-      {/* form */}
-      <form action="">
-        <label >What are u gonna teaching</label>
+        <Link href="/auth/login">Login In</Link>
+      </section>
+    );
+  else if (success === true)
+    return (
+      <section className="min-h-screen w-full p-6 flex flex-col justify-center items-center text-center  rounded-2xl ">
+        <h1 className=" text-neutral-900 dark:text-white">
+          Your instructor profile has been Send to Admin for Approval
+        </h1>
+        <p className="text-neutral-900 dark:text-white opacity-50">
+          You will receive an email once your profile has been approved
+        </p>
+        <div className="mt-10 flex flex-wrap gap-7 items-center gap-x-6">
+          <Link
+            href="/"
+            className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition"
+          >
+            Go back home
+          </Link>
+          <Link
+            href="/support"
+            className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg  border-purple-600 hover:text-white hover:bg-purple-600 duration-150"
+          >
+            Contact support
+          </Link>
+        </div>
+      </section>
+    );
+  return (
+    <section className="mt-20 max-w-2xl mx-auto p-6  rounded-2xl ">
+      <h1 className="text-3xl text-neutral-900 dark:text-white font-bold mb-6 text-center">
+        Become an Instructor
+      </h1>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label className="block mb-1 font-semibold">Job Title</label>
+          <select
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border bg-white dark:bg-neutral-900 border-gray-300 rounded-xl"
+          >
+            <option value="">Select your role</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Data Scientist">Data Scientist</option>
+            <option value="UX Designer">UX Designer</option>
+            <option value="Mobile Developer">Mobile Developer</option>
+            <option value="DevOps Engineer">DevOps Engineer</option>
+            <option value="AI/ML Engineer">AI/ML Engineer</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        {formData.title === "Other" && (
+          <input
+            type="text"
+            name="customTitle"
+            value={formData.title}
+            onChange={handleChange}
+            required
+            className="w-full mt-3 p-3 border border-gray-300 rounded-xl"
+            placeholder="Enter your job title"
+          />
+        )}
+
+        <div>
+          <label className="block mb-1 font-semibold">Bio</label>
+          <textarea
+            name="bio"
+            value={formData.bio}
+            onChange={handleChange}
+            rows={4}
+            required
+            className="w-full p-3 border border-gray-300 rounded-xl"
+            placeholder="Tell us about yourself..."
+          />
+        </div>
+
+        <div className="border-t pt-4">
+          <p className="font-semibold mb-2">
+            Social Media Links (at least one required)
+          </p>
+
+          <input
+            type="url"
+            name="linkedin"
+            value={formData.linkedin}
+            onChange={handleChange}
+            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            placeholder="LinkedIn"
+          />
+
+          <input
+            type="url"
+            name="twitter"
+            value={formData.twitter}
+            onChange={handleChange}
+            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            placeholder="Twitter"
+          />
+
+          <input
+            type="url"
+            name="github"
+            value={formData.github}
+            onChange={handleChange}
+            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            placeholder="GitHub"
+          />
+
+          <input
+            type="url"
+            name="facebook"
+            value={formData.facebook}
+            onChange={handleChange}
+            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            placeholder="Facebook"
+          />
+        </div>
+
+        {error && <p className="text-red-600 font-semibold">{error}</p>}
+        {success && (
+          <p className="text-green-600 font-semibold">
+            Submitted successfully!
+          </p>
+        )}
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
+        >
+          Submit Application
+        </button>
       </form>
     </section>
   );
