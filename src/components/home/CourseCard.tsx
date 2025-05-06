@@ -7,6 +7,8 @@ import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "@/i18n/navigation";
 import { toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 
 interface CourseCardProps {
   id: string;
@@ -44,7 +46,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
       toast.error(
         <div>
           You must sign in! 
-          <Link href="/sign-in" className="text-blue-500 ml-2">Sign In</Link>
+          <Link href="/auth/login" className="text-blue-500 ml-2">Sign In</Link>
         </div>, 
         { autoClose: false }
       );
@@ -58,7 +60,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
       toast.error(
         <div>
           You must sign in! 
-          <Link href="/sign-in" className="text-blue-500 ml-2">Sign In</Link>
+          <Link href="/auth/login" className="text-blue-500 ml-2">Sign In</Link>
         </div>, 
         { autoClose: false }
       );
@@ -109,7 +111,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
         {/* Instructor Data*/}
         <div className="flex justify-between items-center mt-7">
           <div className="flex items-center gap-3">
-            <Image src={instructor.avatar} alt={instructor.name} width={40} height={40} className="rounded-full" />
+          <Avatar className="w-10 h-10">
+      <AvatarImage src={instructor.avatar} alt={instructor.name} />
+      <AvatarFallback>
+        {instructor.name
+          ?.split(" ")
+          .map((part) => part[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase()}
+      </AvatarFallback>
+    </Avatar>
             <p className="font-sm text-neutral-800 dark:text-white">{instructor.name}</p>
           </div>
           

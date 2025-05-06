@@ -64,6 +64,7 @@
     "subheadline": "can join with us.",
     "button": "Load More Courses",
     "course": {
+      "_id": "Course ID",
       "title": "IT Statistics, Data Science and Business Analysis",
       "category": "Digital Marketing",
       "price": "$50.00",

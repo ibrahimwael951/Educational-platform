@@ -133,7 +133,7 @@ const CoursesSection = () => {
           rating={String(course.averageRating)}
           instructor={{
             name: course.instructor.fullName,
-            avatar: "/home/person1.png",
+            avatar: "/",
           }}
         />
       </motion.div>
