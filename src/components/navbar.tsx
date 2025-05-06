@@ -36,11 +36,10 @@ const Navbar = () => {
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
-
-  const { user } = useAuth();
-
+  const { user , loading } = useAuth();
+  if(loading)return null
   return (
-    <section className="fixed top-0 left-0 w-full px-5   2xl:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none ">
+    <section className={`fixed top-0 left-0 w-full px-5   2xl:px-20 p-5 flex justify-between Lg:justify-evenly items-center z-50 bg-slate-100 dark:bg-neutral-900 select-none duration-150`}>
       <div className="flex justify-center gap-2 items-center w-fit ">
         <SiDatabricks className="w-9   text-purple-400" size="100%" />
         <Link
@@ -62,7 +61,7 @@ const Navbar = () => {
           <Link
             key={index}
             href={item.url}
-            className="md:text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
+            className="border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150"
           >
             {t(item.title)}
           </Link>
@@ -71,27 +70,27 @@ const Navbar = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-lg border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150">
+              <NavigationMenuTrigger className=" border border-transparent hover:text-purple-400 hover:border-purple-400 p-2 rounded-xl duration-150">
                 {t("pages")}
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="grid gap-3 p-4 lg:w-[500px] 2xl:w-[600px] lg:grid-cols-[1fr_1fr]">
+              <NavigationMenuContent className="grid gap-3 p-4 lg:w-[600px] 2xl:w-[700px] lg:grid-cols-[1fr_1fr]">
                 {LinksData.footer.Quick_Links.map((item, index) => (
                   <NavigationMenuLink key={index} asChild>
                     <Link
                       className="p-2 w-full hover:text-purple-400 cursor-pointer"
                       href={item.url}
                     >
-                      <p className="text-[18px]">
+                      <p className="text-[15px]">
                         {r(`Quick_Links.${item.title}`)}
                       </p>
-                      <p className="opacity-45">{item.description}</p>
+                      <p className="text-xs opacity-45">{item.description}</p>
                     </Link>
                   </NavigationMenuLink>
                 ))}
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-            {user ? (
+            {user ?  (
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent">
                   <Link
@@ -105,17 +104,28 @@ const Navbar = () => {
                   </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="grid gap-3 p-4 lg:w-[600px] 2xl:w-[700px] lg:grid-cols-[1fr_1fr]">
-                  {LinksData.navbar.slice(3, 10).map((item, index) => (
+                  {LinksData.navbar.slice(3, 7).map((item, index) => (
                     <NavigationMenuLink key={index} asChild>
                       <Link
                         className="p-2 w-full hover:text-purple-400 cursor-pointer"
                         href={item.url}
                       >
-                        <p className="text-[18px]">{t(item.title)}</p>
-                        <p className="opacity-45">{item.description}</p>
+                        <p className="text-[15px]">{t(item.title)}</p>
+                        <p className="text-xs opacity-45">{item.description}</p>
                       </Link>
                     </NavigationMenuLink>
                   ))}
+                  {!user?.bio && (
+                    <NavigationMenuLink>
+                    <Link
+                      className="p-2 w-full hover:text-purple-400 cursor-pointer"
+                      href="/auth/becomeInstructor"
+                    >
+                      <p className="text-[15px]">become-instructor</p>
+                      <p className="text-xs opacity-45">View and edit your public instructor or student profile</p>
+                    </Link>
+                  </NavigationMenuLink>
+                  )}
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ) : (

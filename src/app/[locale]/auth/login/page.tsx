@@ -1,20 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/authProvider";
-import { useRouter } from "next/navigation"; // import router
+import { useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import Loading from "@/components/loading";
 
 const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default function LoginPage() {
-  const router = useRouter();  
-  const { login } = useAuth();
+  const router = useRouter();
+  const { login, user, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.push("/dashboard");
+    }
+  }, [user, loading, router]);
 
   // Clear messages after 3 seconds
   const clearMessages = () => {
@@ -59,7 +66,8 @@ export default function LoginPage() {
       clearMessages();
     }
   };
-
+  if (loading) return <Loading />;
+  else if (user) return null;
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">

@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/components/loading";
 import React, {
   createContext,
   useState,
@@ -19,6 +20,7 @@ interface User {
   fullName: string;
   myCourses: Array<1>;
   enrolledCourses: Array<0>;
+  bio: string;
 }
 
 // Define the shape of the context
@@ -27,6 +29,7 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  register:(firstName:string ,lastName:string ,email:string ,password:string,)=> Promise<void>;
 }
 
 // Create the context with an undefined default value
@@ -37,7 +40,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
-
+  
+ // register function: makes an API call to your register endpoint
+  const register = async (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) => {
+    try {
+      const res = await fetch(`${api}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, email, password }),
+      });
+      if (!res.ok) {
+        throw new Error("Registration failed");
+      }
+      const data = await res.json();
+      setUser(data.user);
+    } catch (error) {
+      throw error;
+    }
+  };
   // Login function: makes an API call to your login endpoint
   const login = async (email: string, password: string) => {
     try {
@@ -94,9 +121,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     checkUser();
   }, [api]);
-
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout , register }}>
       {children}
     </AuthContext.Provider>
   );

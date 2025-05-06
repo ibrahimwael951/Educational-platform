@@ -27,11 +27,6 @@
         "description": "Your saved courses for future purchase or enrollment"
       },
       {
-        "title": "become-instructor",
-        "url": "/auth/becomeInstructor",
-        "description": "Apply to become an instructor and share your knowledge"
-      },
-      {
         "title": "account-setting",
         "url": "/dashboard#setting",
         "description": "Manage your profile settings, password, and preferences"
@@ -40,9 +35,12 @@
         "title": "publicProfile",
         "url": "/dashboard",
         "description": "View and edit your public instructor or student profile"
+      },
+      {
+        "title": "become-instructor",
+        "url": "/auth/becomeInstructor",
+        "description": "Apply to become an instructor and share your knowledge"
       }
-    
-    
   ],
   "explore": [
     {

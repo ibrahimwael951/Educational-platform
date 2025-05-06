@@ -1,8 +1,9 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "@/context/authProvider";
 import { useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import Loading from "@/components/loading";
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -11,42 +12,63 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const api = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const {register, user, loading } = useAuth();
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
-    try {
-      const res = await fetch(`${api}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Registration failed");
-      }
-
-      const data = await res.json();
-      console.log("Registration successful:", data);
-      setSuccessMessage("Registration successful! 🎉");
-      setErrorMessage("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      router.push("/auth/login");
-    } catch (error) {
-      console.error("Error:", error);
-      setErrorMessage("Registration failed. Please try again.");
-      setSuccessMessage("");
+  useEffect(() => {
+    if (!loading && user) {
+      router.push("/dashboard");
     }
+  }, [user, loading, router]);
+
+  const isValidEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const clearMessages = () => {
+    setTimeout(() => {
+      setSuccessMessage("");
+      setErrorMessage("");
+    }, 3000);
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+  
+      if (!email || !password) {
+        setErrorMessage("Please fill in both fields.");
+        clearMessages();
+        return;
+      }
+  
+      if (!isValidEmail(email)) {
+        setErrorMessage("Please enter a valid email address.");
+        clearMessages();
+        return;
+      }
+  
+      try {
+        await register(firstName,lastName,email,password);
+        setSuccessMessage("Login successful! 🎉");
+        setErrorMessage("");
+        clearMessages();
+        setEmail("");
+        setPassword("");
+        router.push("/dashboard");
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("Error during login:", error.message);
+          setErrorMessage("Login failed. Please check your credentials.");
+        } else {
+          console.error("An unknown error occurred", error);
+          setErrorMessage("An unknown error occurred.");
+        }
+        setSuccessMessage("");
+        clearMessages();
+      }
+    };
+  if (loading) return <Loading />;
+  else if (user) return null;
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
@@ -106,7 +128,7 @@ export default function RegisterPage() {
         <p className="text-red-600 dark:text-red-400">{errorMessage}</p>
       )}
       <div className="text-neutral-900 dark:text-white">
-        Already have an account? 
+        Already have an account?
         <Link href="/auth/login" className="text-purple-500 mx-1">
           Login
         </Link>

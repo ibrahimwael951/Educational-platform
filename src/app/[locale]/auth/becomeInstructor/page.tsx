@@ -76,6 +76,7 @@ export default function BecomeInstructorForm() {
       setSuccess(true);
       setError("");
     } catch (err) {
+      console.error("Form submission error:", err);
       setError("Failed to submit the form. Please try again.");
       setSuccess(false);
     }
