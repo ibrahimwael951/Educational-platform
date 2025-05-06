@@ -1,5 +1,4 @@
 "use client";
-import Loading from "@/components/loading";
 import React, {
   createContext,
   useState,
@@ -40,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
-  
+
  // register function: makes an API call to your register endpoint
   const register = async (
     firstName: string,
