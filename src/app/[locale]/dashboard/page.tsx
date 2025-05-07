@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/themeToggole";
 import LocaleSwitcher from "@/components/langToggle";
