@@ -66,8 +66,7 @@ export default function LoginPage() {
       clearMessages();
     }
   };
-  if (loading) return <Loading />;
-  else if (user) return null;
+  if (loading || user) return <Loading />;
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
@@ -95,7 +94,7 @@ export default function LoginPage() {
         />
         <button
           type="submit"
-          className="p-2 outline-none rounded-xl bg-purple-600 hover:bg-purple-700 cursor-pointer"
+          className="p-2 outline-none rounded-xl bg-purple-600 text-white hover:bg-purple-700 cursor-pointer"
         >
           Login
         </button>

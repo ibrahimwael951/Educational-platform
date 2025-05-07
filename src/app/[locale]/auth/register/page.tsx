@@ -67,8 +67,7 @@ export default function RegisterPage() {
         clearMessages();
       }
     };
-  if (loading) return <Loading />;
-  else if (user) return null;
+  if (loading ||user) return <Loading />;
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">

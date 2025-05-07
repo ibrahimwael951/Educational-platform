@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/context/authProvider";
 import { Link } from "@/i18n/navigation";
+import Loading from "@/components/loading";
+import { useRouter } from "next/navigation";
+
 
 export default function BecomeInstructorForm() {
-  const User = useAuth();
+  const router = useRouter();
+  const { user, loading } = useAuth();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     bio: "",
@@ -15,8 +21,12 @@ export default function BecomeInstructorForm() {
     facebook: "",
   });
 
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  useEffect(() => {
+      if (!loading && !user || user?.role == "instructor" ||user?.role == "admin" ) {
+        router.push("/dashboard");
+      }
+    }, [user, loading, router]);
+    
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -81,16 +91,7 @@ export default function BecomeInstructorForm() {
       setSuccess(false);
     }
   };
-  if (!User)
-    return (
-      <section className="relative w-full h-screen flex flex-col justify-center items-center text-3xl ">
-        <h1 className="text-3xl text-neutral-800 dark:text-white">Error 404</h1>
-        <p className="text-2xl text-neutral-800 dark:text-white opacity-55">
-          u need to log in first
-        </p>
-        <Link href="/auth/login">Login In</Link>
-      </section>
-    );
+  if (loading && !user ||!user?.role||user?.role == "instructor" ||user?.role == "admin") return <Loading />;
   else if (success === true)
     return (
       <section className="min-h-screen w-full p-6 flex flex-col justify-center items-center text-center  rounded-2xl ">
@@ -116,113 +117,114 @@ export default function BecomeInstructorForm() {
         </div>
       </section>
     );
-  return (
-    <section className="mt-20 max-w-2xl mx-auto p-6  rounded-2xl ">
-      <h1 className="text-3xl text-neutral-900 dark:text-white font-bold mb-6 text-center">
-        Become an Instructor
-      </h1>
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="block mb-1 font-semibold">Job Title</label>
-          <select
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            className="w-full p-3 border bg-white dark:bg-neutral-900 border-gray-300 rounded-xl"
+  else if (user?.role == "student")
+    return (
+      <section className="mt-20 max-w-2xl mx-auto p-6  rounded-2xl ">
+        <h1 className="text-3xl text-neutral-900 dark:text-white font-bold mb-6 text-center">
+          Become an Instructor
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block mb-1 font-semibold">Job Title</label>
+            <select
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              className="w-full p-3 border bg-white dark:bg-neutral-900 border-gray-300 rounded-xl"
+            >
+              <option value="">Select your role</option>
+              <option value="Web Developer">Web Developer</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="UX Designer">UX Designer</option>
+              <option value="Mobile Developer">Mobile Developer</option>
+              <option value="DevOps Engineer">DevOps Engineer</option>
+              <option value="AI/ML Engineer">AI/ML Engineer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          {formData.title === "Other" && (
+            <input
+              type="text"
+              name="customTitle"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              className="w-full mt-3 p-3 border border-gray-300 rounded-xl"
+              placeholder="Enter your job title"
+            />
+          )}
+
+          <div>
+            <label className="block mb-1 font-semibold">Bio</label>
+            <textarea
+              name="bio"
+              value={formData.bio}
+              onChange={handleChange}
+              rows={4}
+              required
+              className="w-full p-3 border border-gray-300 rounded-xl"
+              placeholder="Tell us about yourself..."
+            />
+          </div>
+
+          <div className="border-t pt-4">
+            <p className="font-semibold mb-2">
+              Social Media Links (at least one required)
+            </p>
+
+            <input
+              type="url"
+              name="linkedin"
+              value={formData.linkedin}
+              onChange={handleChange}
+              className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+              placeholder="LinkedIn"
+            />
+
+            <input
+              type="url"
+              name="twitter"
+              value={formData.twitter}
+              onChange={handleChange}
+              className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+              placeholder="Twitter"
+            />
+
+            <input
+              type="url"
+              name="github"
+              value={formData.github}
+              onChange={handleChange}
+              className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+              placeholder="GitHub"
+            />
+
+            <input
+              type="url"
+              name="facebook"
+              value={formData.facebook}
+              onChange={handleChange}
+              className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+              placeholder="Facebook"
+            />
+          </div>
+
+          {error && <p className="text-red-600 font-semibold">{error}</p>}
+          {success && (
+            <p className="text-green-600 font-semibold">
+              Submitted successfully!
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
           >
-            <option value="">Select your role</option>
-            <option value="Web Developer">Web Developer</option>
-            <option value="Data Scientist">Data Scientist</option>
-            <option value="UX Designer">UX Designer</option>
-            <option value="Mobile Developer">Mobile Developer</option>
-            <option value="DevOps Engineer">DevOps Engineer</option>
-            <option value="AI/ML Engineer">AI/ML Engineer</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        {formData.title === "Other" && (
-          <input
-            type="text"
-            name="customTitle"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            className="w-full mt-3 p-3 border border-gray-300 rounded-xl"
-            placeholder="Enter your job title"
-          />
-        )}
-
-        <div>
-          <label className="block mb-1 font-semibold">Bio</label>
-          <textarea
-            name="bio"
-            value={formData.bio}
-            onChange={handleChange}
-            rows={4}
-            required
-            className="w-full p-3 border border-gray-300 rounded-xl"
-            placeholder="Tell us about yourself..."
-          />
-        </div>
-
-        <div className="border-t pt-4">
-          <p className="font-semibold mb-2">
-            Social Media Links (at least one required)
-          </p>
-
-          <input
-            type="url"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
-            placeholder="LinkedIn"
-          />
-
-          <input
-            type="url"
-            name="twitter"
-            value={formData.twitter}
-            onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
-            placeholder="Twitter"
-          />
-
-          <input
-            type="url"
-            name="github"
-            value={formData.github}
-            onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
-            placeholder="GitHub"
-          />
-
-          <input
-            type="url"
-            name="facebook"
-            value={formData.facebook}
-            onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
-            placeholder="Facebook"
-          />
-        </div>
-
-        {error && <p className="text-red-600 font-semibold">{error}</p>}
-        {success && (
-          <p className="text-green-600 font-semibold">
-            Submitted successfully!
-          </p>
-        )}
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
-        >
-          Submit Application
-        </button>
-      </form>
-    </section>
-  );
+            Submit Application
+          </button>
+        </form>
+      </section>
+    );
 }

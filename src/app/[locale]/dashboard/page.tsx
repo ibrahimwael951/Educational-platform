@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/themeToggole";
 import LocaleSwitcher from "@/components/langToggle";
@@ -33,7 +33,7 @@ const Profile = () => {
     }
   };
   console.log(user);
-  if (loading)
+  if (loading || !user)
     return (
       <section className="flex flex-col md:flex-row min-h-screen p-4">
         <aside className="bg-neutral-100 shadow-2xl dark:bg-neutral-800  w-full md:w-2/6 p-4 rounded-lg   overflow-hidden h-screen  animate-pulse"></aside>
@@ -52,11 +52,14 @@ const Profile = () => {
         </main>
       </section>
     );
-  else if (!user) return null;
   return (
     <section className="flex flex-col md:flex-row min-h-screen pt-30 p-4">
       {/* Sidebar */}
-      <aside className="bg-neutral-100 shadow-2xl dark:bg-neutral-800  w-full  md:w-fit p-4 rounded-lg   overflow-hidden">
+      <aside className={`
+          ${user?.role == "admin" && "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"}
+          ${user?.role =="instructor" && "bg-gradient-to-bl dark:bg-gradient-to-br from-purple-600 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900  "}
+          ${user?.role == "student" && "bg-neutral-100 dark:bg-neutral-800"}
+            shadow-2xl w-full  md:w-fit p-4 rounded-lg overflow-hidden `}>
         <div className="flex  flex-col m-auto md:mx-0 md:flex-row text-center md:text-start justify-center items-center mb-4  w-fit gap-3 cursor-default ">
           <div className="relative w-14 h-14 mx-auto  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white text-4xl flex items-center justify-center rounded-full">
             {user?.isActive && (
@@ -131,60 +134,62 @@ const Profile = () => {
             <p className="text-neutral-800 dark:text-white text-3xl font-bold">
               {0}
             </p>
-            <p className="text-neutral-800 dark:text-slate-300">
+            <p className="text-neutral-800 dark:text-white opacity-50">
               {t("certified")}
             </p>
           </div>
-          
-          {user?.myCourses && (
 
-          <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center">
-            <CiPlay1 className="text-4xl text-purple-500" />
-            <p className="text-neutral-800 dark:text-white text-3xl font-bold">
-              {user?.myCourses.length}
-            </p>
-            <p className="text-neutral-800 dark:text-slate-300">
-              {t("training")}
-            </p>
-          </div>
+          {user?.myCourses && (
+            <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center">
+              <CiPlay1 className="text-4xl text-purple-500" />
+              <p className="text-neutral-800 dark:text-white text-3xl font-bold">
+                {user?.myCourses.length}
+              </p>
+              <p className="text-neutral-800 dark:text-white opacity-50">
+                {t("training")}
+              </p>
+            </div>
           )}
         </div>
-
-        <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
-          <p className="text-neutral-800 dark:text-white">
-            {t("user_id")} : <span className="font-bold">{user?._id}</span>
-          </p>
-          <p className="text-sm text-neutral-800 dark:text-white opacity-50">
-            {t("support_note")}
-          </p>
-          <div className=" flex gap-2 justify-center items-center">
-            <p>{t("join-date")}</p>
-            {user?.createdAt.slice(0, 10)}
+        {user?.role == "instructor" && (
+          <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center">
+            <div className="w-8/12">
+              <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
+                your Title
+              </h1>
+              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">{user?.title}</p>
+            </div>
+            <Link href="/auth/update-instructor" className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150">
+              edit ur title
+            </Link>
           </div>
-        </div>
-
-        {user?.bio ? (
-          <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
-            <h1>your bio</h1>
-            <p className="text-neutral-800 dark:text-white opacity-80">
-              {" "}
-              {user?.bio}
-            </p>
+        )}
+        {user?.role == "instructor" && (
+          <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center">
+            <div className="w-8/12">
+              <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
+                your bio
+              </h1>
+              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">{user?.bio}</p>
+            </div>
+            <Link href="/auth/update-instructor" className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150">
+              edit ur bio
+            </Link>
           </div>
-        ) : (
+        )}
+        {user?.role == "student" && (
           <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg mt-4 shadow-lg flex justify-between items-center">
             <p className="text-neutral-800 dark:text-white opacity-50">
               do u wanna be a part of our community teachers?
             </p>
             <Link
               href="/auth/becomeInstructor"
-              className="p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white"
+              className="p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
             >
               Become Instructor
             </Link>
           </div>
         )}
-
         <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
           <p className="text-neutral-800 dark:text-white">
             {t("change-language")}
@@ -197,6 +202,18 @@ const Profile = () => {
             {t("change-Theme")}
           </p>
           <ModeToggle />
+        </div>
+        <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
+          <p className="text-neutral-800 dark:text-white">
+            {t("user_id")} : <span className="font-bold">{user?._id}</span>
+          </p>
+          <p className="text-sm text-neutral-800 dark:text-white opacity-50">
+            {t("support_note")}
+          </p>
+          <div className=" flex gap-2 justify-center items-center">
+            <p>{t("join-date")}</p>
+            {user?.createdAt.slice(0, 10)}
+          </div>
         </div>
       </main>
     </section>

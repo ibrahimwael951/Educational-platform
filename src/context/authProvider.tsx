@@ -20,6 +20,14 @@ interface User {
   myCourses: Array<1>;
   enrolledCourses: Array<0>;
   bio: string;
+  title: string;
+  role: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+    facebook?: string;
+  };
 }
 
 // Define the shape of the context
@@ -28,7 +36,27 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register:(firstName:string ,lastName:string ,email:string ,password:string,)=> Promise<void>;
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<void>;
+  becomeInstructor: (data: {
+    title: string;
+    bio: string;
+    socialLinks: {
+      linkedin?: string;
+      twitter?: string;
+      github?: string;
+      facebook?: string;
+    };
+  }) => Promise<void>;
+  updateInstructor: (data: {
+    title?: string;
+    bio?: string;
+    socialLinks?: {
+      linkedin?: string;
+      twitter?: string;
+      github?: string;
+      facebook?: string;
+    };
+  }) => Promise<void>;
 }
 
 // Create the context with an undefined default value
@@ -40,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
- // register function: makes an API call to your register endpoint
+  // register function: makes an API call to your register endpoint
   const register = async (
     firstName: string,
     lastName: string,
@@ -64,6 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       throw error;
     }
   };
+
   // Login function: makes an API call to your login endpoint
   const login = async (email: string, password: string) => {
     try {
@@ -81,7 +110,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const data = await res.json();
-
       setUser(data.user);
     } catch (error) {
       throw error;
@@ -97,6 +125,84 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);
+    }
+  };
+
+  // Become instructor function
+  const becomeInstructor = async (data: {
+    title: string;
+    bio: string;
+    socialLinks: {
+      linkedin?: string;
+      twitter?: string;
+      github?: string;
+      facebook?: string;
+    };
+  }) => {
+    try {
+      const res = await fetch(`${api}/instructors/become-instructor`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit instructor application");
+      }
+
+      const responseData = await res.json();
+      setUser(responseData.user);
+      return responseData;
+    } catch (error) {
+      console.error("Become instructor error:", error);
+      throw error;
+    }
+  };
+
+  // Update instructor profile function
+  const updateInstructor = async (data: {
+    title?: string;
+    bio?: string;
+    socialLinks?: {
+      linkedin?: string;
+      twitter?: string;
+      github?: string;
+      facebook?: string;
+    };
+  }) => {
+    try {
+      const res = await fetch(`${api}/instructors/update-profile`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(data),
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to update instructor profile");
+      }
+  
+      const responseData = await res.json();
+      
+      // Update the user state while preserving all existing properties
+      setUser(prev => ({
+        ...prev,
+        ...responseData.user,
+        socialLinks: {
+          ...prev?.socialLinks,
+          ...responseData.user?.socialLinks
+        }
+      }));
+      
+      return responseData;
+    } catch (error) {
+      console.error("Update instructor error:", error);
+      throw error;
     }
   };
 
@@ -120,8 +226,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     checkUser();
   }, [api]);
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout , register }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        logout,
+        register,
+        becomeInstructor,
+        updateInstructor,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

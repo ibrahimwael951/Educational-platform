@@ -50,7 +50,7 @@ export default function Contact() {
         <h1 className="text-4xl text-neutral-900 dark:text-white mb-2">
           {t("title")}
         </h1>
-        <p className="text-neutral-800 dark:text-slate-300">
+        <p className="text-neutral-900 dark:text-white opacity-50">
           {t("description")}
         </p>
       </div>
