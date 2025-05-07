@@ -83,11 +83,15 @@ export default function UpdateInstructorProfile() {
       });
       
       setSuccess(true);
-    } catch (err: any) {
-      console.error("Form submission error:", err);
-      setError(err.message || "Failed to update profile. Please try again.");
-      setSuccess(false);
-    }
+    } catch (err) {
+        console.error("Form submission error:", err);
+        setError(
+          err instanceof Error 
+            ? err.message 
+            : "Failed to update profile. Please try again."
+        );
+        setSuccess(false);
+      }
   };
   
   if (loading && !user||user?.role !== "instructor") return <Loading />;
