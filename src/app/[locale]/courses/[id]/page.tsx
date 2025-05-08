@@ -46,7 +46,7 @@ interface Course {
 export default function Page() {
   const tCourses = useTranslations("courses");
   const params = useParams() as { locale: string; id: string };
-  const id = params.id;
+  const { id } = params;
   const [course, setCourse] = useState<Course | null>(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
 
