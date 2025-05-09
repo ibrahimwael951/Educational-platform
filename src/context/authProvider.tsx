@@ -6,6 +6,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import axios from "axios";
 
 // Define a type for your user (adjust as needed)
 interface User {
@@ -36,7 +37,12 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register: (firstName: string, lastName: string, email: string, password: string) => Promise<void>;
+  register: (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) => Promise<void>;
   becomeInstructor: (data: {
     title: string;
     bio: string;
@@ -68,7 +74,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  // register function: makes an API call to your register endpoint
+  // axios instance with default credentials
+  const apiClient = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // Register function
   const register = async (
     firstName: string,
     lastName: string,
@@ -76,52 +91,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     password: string
   ) => {
     try {
-      const res = await fetch(`${api}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ firstName, lastName, email, password }),
+      const res = await apiClient.post("/auth/register", {
+        firstName,
+        lastName,
+        email,
+        password,
       });
-      if (!res.ok) {
-        throw new Error("Registration failed");
-      }
-      const data = await res.json();
-      setUser(data.user);
+      setUser(res.data.user);
     } catch (error) {
-      throw error;
+      throw new Error("Registration failed");
     }
   };
 
-  // Login function: makes an API call to your login endpoint
+  // Login function
   const login = async (email: string, password: string) => {
     try {
-      const res = await fetch(`${api}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Login failed");
-      }
-
-      const data = await res.json();
-      setUser(data.user);
+      const res = await apiClient.post(`/auth/login`, { email, password });
+      setUser(res.data.user);
     } catch (error) {
-      throw error;
+      throw new Error("Login failed");
     }
   };
 
-  // Logout function: makes an API call to your logout endpoint
+  // Logout function
   const logout = async () => {
     try {
-      await fetch(`${api}/auth/logout`, {
-        method: "POST",
-      });
+      await axios.post(`${api}/auth/logout`);
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);
@@ -140,25 +135,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
   }) => {
     try {
-      const res = await fetch(`${api}/instructors/become-instructor`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(data),
+      const res = await apiClient.post(`/instructors/become-instructor`, data);
+      setUser((prevUser) => {
+        if (!prevUser) return null;
+        return {
+          ...prevUser,
+          ...res.data.user,
+          role: "instructor",
+          socialLinks: {
+            ...prevUser.socialLinks,
+            ...res.data.user?.socialLinks,
+          },
+        };
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to submit instructor application");
-      }
-
-      const responseData = await res.json();
-      setUser(responseData.user);
-      return responseData;
+      return res.data;
     } catch (error) {
       console.error("Become instructor error:", error);
-      throw error;
+      throw new Error("Failed to submit instructor application");
     }
   };
 
@@ -174,56 +168,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
   }) => {
     try {
-      const res = await fetch(`${api}/instructors/update-profile`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
-  
-      if (!res.ok) {
-        throw new Error("Failed to update instructor profile");
-      }
-  
-      const responseData = await res.json();
-      
-      // Update the user state while preserving all existing properties
-      setUser(prev => ({
+      const res = await apiClient.patch(`/instructors/update-profile`, data);
+      setUser((prev) => ({
         ...prev,
-        ...responseData.user,
+        ...res.data.user,
         socialLinks: {
           ...prev?.socialLinks,
-          ...responseData.user?.socialLinks
-        }
+          ...res.data.user?.socialLinks,
+        },
       }));
-      
-      return responseData;
+      return res.data;
     } catch (error) {
       console.error("Update instructor error:", error);
-      throw error;
+      throw new Error("Failed to update instructor profile");
     }
   };
 
-  // Optional: Check if a user session exists when the component mounts
+  // Check for existing session on mount
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const res = await fetch(`${api}/users/profile`, {
-          credentials: "include",
+        const res = await axios.get(`${api}/users/profile`, {
+          withCredentials: true,
         });
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data.user);
-        }
+        setUser(res.data.user);
       } catch (error) {
         console.error("Not authenticated:", error);
       } finally {
         setLoading(false);
       }
     };
-
     checkUser();
   }, [api]);
 

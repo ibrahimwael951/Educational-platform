@@ -6,10 +6,9 @@ import { Link } from "@/i18n/navigation";
 import Loading from "@/components/loading";
 import { useRouter } from "next/navigation";
 
-
 export default function BecomeInstructorForm() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading ,becomeInstructor } = useAuth();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,11 +21,14 @@ export default function BecomeInstructorForm() {
   });
 
   useEffect(() => {
-      if (!loading && !user || user?.role == "instructor" ||user?.role == "admin" ) {
-        router.push("/dashboard");
-      }
-    }, [user, loading, router]);
-    
+    if (
+      (!loading && !user) ||
+      user?.role == "instructor" ||
+      user?.role == "admin"
+    ) {
+      router.push("/dashboard");
+    }
+  }, [user, loading, router]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -47,59 +49,61 @@ export default function BecomeInstructorForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!hasAtLeastOneSocialLink()) {
-      setError("Please provide at least one social media link.");
-      return;
+  if (!hasAtLeastOneSocialLink()) {
+    setError("Please provide at least one social media link.");
+    return;
+  }
+
+  const socialLinks: Record<string, string> = {};
+  ["linkedin", "twitter", "github", "facebook"].forEach((platform) => {
+    const value = formData[platform as keyof typeof formData];
+    if (value.trim()) {
+      socialLinks[platform] = value.trim();
     }
+  });
 
-    const socialLinks: Record<string, string> = {};
-    ["linkedin", "twitter", "github", "facebook"].forEach((platform) => {
-      const value = formData[platform as keyof typeof formData];
-      if (value.trim()) {
-        socialLinks[platform] = value.trim();
-      }
-    });
-
-    const payload = {
+  try {
+    await becomeInstructor({
       title: formData.title,
       bio: formData.bio,
-      socialLinks,
-    };
+      socialLinks
+    });
+    
+    setSuccess(true);
+    setError("");
+    setFormData({
+      title: "",
+      bio: "",
+      linkedin: "",
+      twitter: "",
+      github: "",
+      facebook: "",
+    });
+ 
+  } catch (err) {
+    setSuccess(false);
+    setError(err instanceof Error ? err.message : "Submission failed");
+  }
+};
 
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/instructors/become-instructor`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(payload),
-        }
-      );
 
-      if (!res.ok) throw new Error("Submission failed.");
-      console.log(JSON.stringify(payload));
-      setSuccess(true);
-      setError("");
-    } catch (err) {
-      console.error("Form submission error:", err);
-      setError("Failed to submit the form. Please try again.");
-      setSuccess(false);
-    }
-  };
-  if (loading && !user ||!user?.role||user?.role == "instructor" ||user?.role == "admin") return <Loading />;
+  if (
+    (loading && !user) ||
+    !user?.role ||
+    user?.role == "instructor" ||
+    user?.role == "admin"
+  )
+    return <Loading />;
   else if (success === true)
     return (
       <section className="min-h-screen w-full p-6 flex flex-col justify-center items-center text-center  rounded-2xl ">
         <h1 className=" text-neutral-900 dark:text-white">
-          Your instructor profile has been Send to Admin for Approval
+          congratulations you are now an instructor
         </h1>
         <p className="text-neutral-900 dark:text-white opacity-50">
-          You will receive an email once your profile has been approved
+          now u can make courses and earn money
         </p>
         <div className="mt-10 flex flex-wrap gap-7 items-center gap-x-6">
           <Link
