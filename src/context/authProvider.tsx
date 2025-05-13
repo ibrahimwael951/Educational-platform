@@ -99,6 +99,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
       setUser(res.data.user);
     } catch (error) {
+      console.error("Logout failed:", error);
       throw new Error("Registration failed");
     }
   };
@@ -109,6 +110,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const res = await apiClient.post(`/auth/login`, { email, password });
       setUser(res.data.user);
     } catch (error) {
+      console.error("Logout failed:", error);
       throw new Error("Login failed");
     }
   };

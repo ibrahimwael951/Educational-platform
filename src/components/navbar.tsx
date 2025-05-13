@@ -52,7 +52,7 @@ const Navbar = () => {
 
       {/* Search Bar */}
       <div className="hidden md:inline">
-        <SearchButton />
+        <SearchButton key={1} />
       </div>
 
       {/* links */}
@@ -168,7 +168,7 @@ const Navbar = () => {
           ${isSidebarVisible ? "translate-x-0" : " translate-x-full"}
         `}
       >
-        <SearchButton />
+        <SearchButton key={2}/>
 
         {user ? (
           <Link
