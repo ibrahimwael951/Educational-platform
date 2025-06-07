@@ -28,3 +28,12 @@ export type Course = {
   __v: number;
   rejectionReason?: string;
 };
+export type wishlistCard ={
+     id: number;
+    title: string;
+    description: string;
+    instructor: string ;
+    price: number;
+    image: string;
+    rating: number;
+}

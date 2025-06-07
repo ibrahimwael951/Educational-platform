@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaBookmark } from "react-icons/fa";
 import Link from "next/link";
-import { Course } from "@/types";
+import { wishlistCard } from "@/types";
 
 const WishlistPage = () => {
-  const [wishlist, setWishlist] = useState<Course[]>([]);
+  const [wishlist, setWishlist] = useState<wishlistCard[]>([]);
 
   // Get Course From Storage
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     if (storedWishlist) {
       try {
-        const parsedWishlist: Course[] = JSON.parse(storedWishlist);
+        const parsedWishlist: wishlistCard[] = JSON.parse(storedWishlist);
         setWishlist(parsedWishlist);
       } catch (error) {
         console.error("Error parsing wishlist from localStorage:", error);
