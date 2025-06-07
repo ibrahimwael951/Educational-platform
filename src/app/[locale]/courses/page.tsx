@@ -126,6 +126,7 @@ const CoursesPage = () => {
           <div className="flex flex-wrap gap-6 items-start justify-start select-none">
             {currentCourses.map((course) => (
               <CourseCard
+              loading={false}
                 key={course.id}
                 id={course.id.toString()}
                 image={course.image}

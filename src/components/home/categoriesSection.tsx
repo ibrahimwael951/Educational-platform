@@ -10,19 +10,19 @@ const CategoriesSection: React.FC = () => {
   const sectionRef = useRef(null);
 
   const categories = [
-    { id: 1, key: "business", icon: MdBusiness, bgColor: "#F7F3FF", borderColor: "#1B75E8" },
-    { id: 2, key: "arts", icon: MdPalette, bgColor: "#DCF5FF", borderColor: "#FF6881" },
-    { id: 3, key: "personalDevelopment", icon: MdSelfImprovement, bgColor: "#D1F5E4", borderColor: "#00BC65" },
-    { id: 4, key: "uiux", icon: MdDesignServices, bgColor: "#FFF3D9", borderColor: "#F2A700" },
-    { id: 5, key: "graphic", icon: MdPhoto, bgColor: "#F7F3FF", borderColor: "#4500D0" },
-    { id: 6, key: "marketing", icon: MdCampaign, bgColor: "#FFDAF0", borderColor: "#BB0064" },
-    { id: 7, key: "exclusive", icon: MdStar, bgColor: "#F3F4FE", borderColor: "#0011BB" },
-    { id: 8, key: "productDesign", icon: MdDevices, bgColor: "#FFECD9", borderColor: "#D16900" },
-    { id: 9, key: "video", icon: MdMovie, bgColor: "#DCF5FF", borderColor: "#00A9ED" },
+    { key: "business", icon: MdBusiness, bgColor: "#F7F3FF", borderColor: "#1B75E8" },
+    { key: "arts", icon: MdPalette, bgColor: "#DCF5FF", borderColor: "#FF6881" },
+    { key: "personalDevelopment", icon: MdSelfImprovement, bgColor: "#D1F5E4", borderColor: "#00BC65" },
+    { key: "uiux", icon: MdDesignServices, bgColor: "#FFF3D9", borderColor: "#F2A700" },
+    { key: "graphic", icon: MdPhoto, bgColor: "#F7F3FF", borderColor: "#4500D0" },
+    { key: "marketing", icon: MdCampaign, bgColor: "#FFDAF0", borderColor: "#BB0064" },
+    { key: "exclusive", icon: MdStar, bgColor: "#F3F4FE", borderColor: "#0011BB" },
+    { key: "productDesign", icon: MdDevices, bgColor: "#FFECD9", borderColor: "#D16900" },
+    { key: "video", icon: MdMovie, bgColor: "#DCF5FF", borderColor: "#00A9ED" },
   ];
 
   return (
-    <section ref={sectionRef} className="max-w-7xl mx-auto text-center px-5 md:px-10 md:py-20 pt-32 flex flex-col items-center">
+    <section id="service" ref={sectionRef} className="max-w-7xl mx-auto text-center px-5 md:px-10 md:py-20 flex flex-col items-center">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

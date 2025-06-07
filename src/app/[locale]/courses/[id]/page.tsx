@@ -79,7 +79,11 @@ export default function Page() {
     if (id) fetchCourse();
   }, [id]);
 
-  if (!course) return <p className="text-center mt-10 text-red-500">Course not found</p>;
+  if (!course) return (
+    <section className="min-h-screen w-full flex justify-center items-center">
+      <p className="">There is no course with that name or id</p>
+    </section>
+  );
 
   const handleAddToCart = () => isUserLoggedIn ? window.location.href = "/cart" : showSignInToast();
   const handleToCheckout = () => isUserLoggedIn ? window.location.href = "/checkout" : showSignInToast();
@@ -161,6 +165,7 @@ export default function Page() {
           {Array(3).fill(null).map((_, index) => (
             <CourseCard
               key={index}
+              loading={false}
               id={course._id}
               image={course.thumbnail}
               title={course.title}

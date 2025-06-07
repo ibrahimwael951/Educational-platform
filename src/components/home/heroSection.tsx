@@ -46,7 +46,7 @@ const HeroSection = () => {
             whileInView={{ opacity: 1 }} 
             transition={{ duration: 0.5, delay: 0.1}}
             viewport={{ once: true, amount: 0.2 }}
-            className="capitalize text-neutral-800 dark:text-slate-400 mt-4"
+            className="capitalize  text-neutral-500 dark:text-neutral-400 mt-4"
           >
             {t("description")}
           </motion.p>

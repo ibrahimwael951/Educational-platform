@@ -32,7 +32,7 @@ const Profile = () => {
       console.error("Logout failed:", error);
     }
   };
-  console.log(user);
+  // console.log(user);
   if (loading || !user)
     return (
       <section className="flex flex-col md:flex-row min-h-screen p-4">

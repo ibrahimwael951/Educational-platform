@@ -21,7 +21,7 @@ const AboutUsSection = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true, amount: 0.3 }}
-        className="hidden lg:inline w-2/6 max-w-[300px] md:max-w-[400px] lg:max-w-[600px]"
+        className="w-fit m-auto lg:w-2/4 select-none"
       >
         <Image
           src="/home/about.png"
@@ -29,6 +29,7 @@ const AboutUsSection = () => {
           height={500}
           alt="about"
           className="rounded-lg"
+          draggable={false}
         />
       </motion.div>
 
@@ -38,25 +39,25 @@ const AboutUsSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full flex flex-col gap-10 items-center text-center"
+        className=" w-full lg:w-2/4 flex flex-col gap-10 items-center text-center cursor-default"
       >
-        <p className="bg-gray-50 text-purple-500 w-fit px-4 py-2 rounded-md font-medium inline-block">
+        <p className="text-gray-50 bg-purple-500 w-fit px-4 py-2 rounded-md font-medium inline-block">
           {t("sectionTitle")}
         </p>
 
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-4 text-neutral-800 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-4 text-neutral-900 dark:text-white">
           {t("headline")}{" "}
           <span className="relative inline-block">{t("highlight")}</span>
           <br />
           {t("subheadline")}
         </h1>
 
-        <p className="text-neutral-800 dark:text-slate-300 mt-3 text-sm sm:text-base">
+        <p className="  text-neutral-500 dark:text-neutral-400 text-sm sm:text-base">
           {t("description")}
         </p>
 
         
-        <div className="flex flex-col md:flex-row gap-y-7 gap-x-4 mt-6 items-start justify-center w-fit">
+        <div className="flex flex-row gap-y-7 gap-x-4 mt-6 items-start justify-center w-fit">
           {["feature1", "feature2"].map((feature, index) => (
             <motion.div
               key={index}
@@ -64,12 +65,12 @@ const AboutUsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true, amount: 0.3 }}
-              className="w-96"
+              className="w-2/4 max-w-96"
             >
-              <h6 className="text-neutral-800 dark:text-white">
+              <h6 className="font-medium text-neutral-900 dark:text-white">
                 {t(`features.${feature}Title`)}
               </h6>
-              <p className="text-neutral-800 dark:text-slate-300">
+              <p className="  text-neutral-500 dark:text-neutral-400">
                 {t(`features.${feature}Description`)}
               </p>
             </motion.div>
