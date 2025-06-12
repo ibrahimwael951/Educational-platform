@@ -1,106 +1,105 @@
 {
   "navbar": [
-    
-      {
-        "title": "home",
-        "url": "/",
-        "description": "Return to Home page and site overview"
-      },
-      {
-        "title": "courses",
-        "url": "/courses",
-        "description": "Browse all available courses by category and popularity"
-      },
-      {
-        "title": "support",
-        "url": "/support",
-        "description": "Get help, FAQs, and contact customer service"
-      },
-      {
-        "title": "my-cart",
-        "url": "/cart",
-        "description": "View and manage courses added to your cart"
-      },
-      {
-        "title": "wishlist",
-        "url": "/wishlist",
-        "description": "Your saved courses for future purchase or enrollment"
-      },
-      {
-        "title": "account-setting",
-        "url": "/dashboard#setting",
-        "description": "Manage your profile settings, password, and preferences"
-      },
-      {
-        "title": "publicProfile",
-        "url": "/dashboard",
-        "description": "View and edit your public instructor or student profile"
-      },
-      {
-        "title": "become-instructor",
-        "url": "/auth/becomeInstructor",
-        "description": "Apply to become an instructor and share your knowledge"
-      }
+    {
+      "title": "home",
+      "url": "/",
+      "description": "Return to Home page and site overview"
+    },
+    {
+      "title": "courses",
+      "url": "/courses",
+      "description": "Browse all available courses by category and popularity"
+    },
+    {
+      "title": "support",
+      "url": "/support",
+      "description": "Get help, FAQs, and contact customer service"
+    },
+    {
+      "title": "my-cart",
+      "url": "/cart",
+      "description": "View and manage courses added to your cart"
+    },
+    {
+      "title": "wishlist",
+      "url": "/wishlist",
+      "description": "Your saved courses for future purchase or enrollment"
+    },
+    {
+      "title": "account-setting",
+      "url": "/dashboard#setting",
+      "description": "Manage your profile settings, password, and preferences"
+    },
+    {
+      "title": "publicProfile",
+      "url": "/dashboard",
+      "description": "View and edit your public instructor or student profile"
+    },
+    {
+      "title": "become-instructor",
+      "url": "/auth/becomeInstructor",
+      "description": "Apply to become an instructor and share your knowledge"
+    }
   ],
   "explore": [
     {
       "title": "business",
-      "url": "/business"
+      "url": "/search?q=Business"
     },
     {
       "title": "arts",
-      "url": "/arts"
+      "url": "/search?q=Arts & Design"
     },
     {
       "title": "personalDevelopment",
-      "url": "/personalDevelopment"
+      "url": "/search?q=Personal Development"
     },
     {
       "title": "uiux",
-      "url": "/uiux"
+      "url": "/search?q=Ui/Ux"
     },
     {
       "title": "graphic",
-      "url": "/graphic"
+      "url": "/search?q=Graphic Design"
     },
     {
       "title": "marketing",
-      "url": "/marketing"
+      "url": "/search?q=Marketing"
     },
     {
       "title": "exclusive",
-      "url": "/exclusive"
+      "url": "/search?q=Exclusive Man"
     },
     {
       "title": "productDesign",
-      "url": "/productDesign"
+      "url": "/search?q=Product Design"
     },
     {
       "title": "video",
-      "url": "/video"
+      "url": "/search?q=Video and Photography"
     }
   ],
   "footer": {
     "our_services": [
       {
         "title": "Web-Development",
-        "url": ""
+        "url": "/search?q=Web"
       },
       {
         "title": "Ui/Ux",
-        "url": ""
+        "url": "/search?q=Ui/Ux"
       },
       {
         "title": "Digital-Marketing",
-        "url": ""
+        "url": "/search?q=Marketing"
       },
       {
         "title": "Content-Writing",
-        "url": ""
+        "url": "/search?q=Content Creator"
       },
       {
         "title": "Management",
-        "url": ""
+        "url": "/search?q=Management"
       }
     ],
     "Quick_Links": [

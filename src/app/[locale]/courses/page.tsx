@@ -164,12 +164,12 @@ const CoursesPage = () => {
 
            {/* Pagination */}
           {totalPages > 1 && (
-            <Pagination className="mt-12">
+            <Pagination className="mt-12 select-none">
               <PaginationContent>
-                <PaginationItem>
+                <PaginationItem className="cursor-pointer">
                   <PaginationPrevious
                     onClick={() => handlePageChange(currentPage - 1)}
-                    className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+                    className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'hover:text-purple-600'}
                   />
                 </PaginationItem>
                 <PaginationItem>
@@ -177,10 +177,10 @@ const CoursesPage = () => {
                     Page {currentPage} of {totalPages}
                   </span>
                 </PaginationItem>
-                <PaginationItem>
+                <PaginationItem className="cursor-pointer">
                   <PaginationNext
                     onClick={() => handlePageChange(currentPage + 1)}
-                    className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+                    className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'hover:text-purple-600'}
                   />
                 </PaginationItem>
               </PaginationContent>
