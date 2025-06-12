@@ -165,7 +165,6 @@ export default function Page() {
           {Array(3).fill(null).map((_, index) => (
             <CourseCard
               key={index}
-              loading={false}
               id={course._id}
               image={course.thumbnail}
               title={course.title}

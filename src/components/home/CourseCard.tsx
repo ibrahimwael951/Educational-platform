@@ -12,16 +12,15 @@ import {
 import { LiaPoundSignSolid } from "react-icons/lia";
 import { FaStar } from "react-icons/fa";
 interface CourseCardProps {
-  id: string;
-  image: string;
-  title: string;
-  category: string;
-  price: number;
-  rating: string;
-  loading: boolean;
+  id?: string;
+  image?: string;
+  title?: string;
+  category?: string;
+  price?: number;
+  rating?: string;
   instructor: {
-    name: string;
-    avatar: string;
+    name?: string;
+    avatar?: string;
   };
 }
 
@@ -33,17 +32,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
   price,
   rating,
   instructor,
-  loading,
 }) => {
-  if (loading == true)
+  if ( !title || !image)
     return (
-      <div className="w-[300px] h-[300px]  bg-neutral-300 dark:bg-neutral-800 animate-pulse rounded-xl p-6 m-1" />
+      <div className="lg:w-[300px] overflow-hidden rounded-xl  animate-pulse m-1   bg-neutral-300" />
     );
   else
     return (
       <Link href={`/courses/${id}`}>
         <motion.div
           whileHover={{ scale: 1.02 }}
+          whileTap={{scale:0.97}}
           transition={{ type: "spring", stiffness: 300 }}
           className=" lg:w-[300px] overflow-hidden    rounded-xl m-1 justify-center items-center"
         >
@@ -71,7 +70,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
                     <h1 className="text-md">{title}</h1>
                   ) : (
                     <h1 className="text-md">
-                      {title.split(" ").slice(0, 2).join(" ") + "..."}
+                      {title.split(" ").slice(0, 3).join(" ") + "..."}
                     </h1>
                   )}
                   <p className="text-lg text-purple-700 flex items-center">
@@ -79,10 +78,13 @@ const CourseCard: React.FC<CourseCardProps> = ({
                     {price}
                   </p>
                 </div>
-                <div></div>
               </div>
             </HoverCardTrigger>
             <HoverCardContent className="lg:w-[300px] cursor-default">
+              <div className="my-2">
+                <h1 className="text-neutral-600">Title :</h1>
+                <h1 className="ml-2  text-neutral-900">{title}</h1>
+              </div>
               <div className="flex items-center gap-3">
                 <Avatar className="w-10 h-10">
                   <AvatarImage src={instructor.avatar} alt={instructor.name} />
@@ -107,9 +109,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
                   </p>
                 </div>
 
-                <button
-                  className="cursor-pointer p-2 items-center rounded-xl text-sm bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150"
-                >
+                <button className="cursor-pointer p-2 items-center rounded-xl text-sm bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150">
                   Details →
                 </button>
               </div>

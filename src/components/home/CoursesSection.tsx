@@ -106,7 +106,7 @@ const CoursesSection = () => {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <CourseCard
-                  loading={true}
+ 
                   id={""}
                   image={""}
                   title={""}
@@ -129,7 +129,6 @@ const CoursesSection = () => {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <CourseCard
-                  loading={false}
                   id={course._id}
                   image={course.thumbnail}
                   title={course.title}

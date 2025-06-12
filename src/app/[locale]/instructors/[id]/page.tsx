@@ -143,7 +143,6 @@ clear to me that I had to go back to coding. And that's what I did.`;
               .map((_, index) => (
                 <CourseCard
                   key={index}
-                  loading={false}
                   id={`${index}`}
                   image="/home/card1.png"
                   title={t("course.title")}

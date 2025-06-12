@@ -42,9 +42,17 @@ const allCourses: Course[] = [
   { id: '10', image: '/home/card2.png', title: 'Short Course on Vue.js', category: 'Development', price: 29, rating: 4.1, duration: 0.5, level: 'Beginner', language: 'French', createdAt: new Date('2023-11-11'), instructor: { name: 'Pierre Dubois', avatar: '/home/person2.png' } },
   { id: '11', image: '/home/card3.png', title: 'Extended Photoshop Guide', category: 'Design', price: 69, rating: 3.2, duration: 6.5, level: 'Beginner', language: 'English', createdAt: new Date('2023-05-19'), instructor: { name: 'Jane Smith', avatar: '/home/person3.png' } },
   { id: '12', image: '/home/card4.png', title: 'Agile & Scrum for PMs', category: 'Business', price: 149, rating: 4.8, duration: 3.5, level: 'Expert', language: 'English', createdAt: new Date('2023-11-12'), instructor: { name: 'Sam Wilson', avatar: '/home/person4.png' } },
+  { id: '9', image: '/home/card1.png', title: 'SQL for Data Science', category: 'IT & Software', price: 89, rating: 4.4, duration: 10, level: 'Intermediate', language: 'Arabic', createdAt: new Date('2023-10-25'), instructor: { name: 'Mohammed Ali', avatar: '/home/person1.png' } },
+  { id: '10', image: '/home/card2.png', title: 'Short Course on Vue.js', category: 'Development', price: 29, rating: 4.1, duration: 0.5, level: 'Beginner', language: 'French', createdAt: new Date('2023-11-11'), instructor: { name: 'Pierre Dubois', avatar: '/home/person2.png' } },
+  { id: '11', image: '/home/card3.png', title: 'Extended Photoshop Guide', category: 'Design', price: 69, rating: 3.2, duration: 6.5, level: 'Beginner', language: 'English', createdAt: new Date('2023-05-19'), instructor: { name: 'Jane Smith', avatar: '/home/person3.png' } },
+  { id: '12', image: '/home/card4.png', title: 'Agile & Scrum for PMs', category: 'Business', price: 149, rating: 4.8, duration: 3.5, level: 'Expert', language: 'English', createdAt: new Date('2023-11-12'), instructor: { name: 'Sam Wilson', avatar: '/home/person4.png' } },
+  { id: '9', image: '/home/card1.png', title: 'SQL for Data Science', category: 'IT & Software', price: 89, rating: 4.4, duration: 10, level: 'Intermediate', language: 'Arabic', createdAt: new Date('2023-10-25'), instructor: { name: 'Mohammed Ali', avatar: '/home/person1.png' } },
+  { id: '10', image: '/home/card2.png', title: 'Short Course on Vue.js', category: 'Development', price: 29, rating: 4.1, duration: 0.5, level: 'Beginner', language: 'French', createdAt: new Date('2023-11-11'), instructor: { name: 'Pierre Dubois', avatar: '/home/person2.png' } },
+  { id: '11', image: '/home/card3.png', title: 'Extended Photoshop Guide', category: 'Design', price: 69, rating: 3.2, duration: 6.5, level: 'Beginner', language: 'English', createdAt: new Date('2023-05-19'), instructor: { name: 'Jane Smith', avatar: '/home/person3.png' } },
+  { id: '12', image: '/home/card4.png', title: 'Agile & Scrum for PMs', category: 'Business', price: 149, rating: 4.8, duration: 3.5, level: 'Expert', language: 'English', createdAt: new Date('2023-11-12'), instructor: { name: 'Sam Wilson', avatar: '/home/person4.png' } },
 ];
 
-const COURSES_PER_PAGE = 6;
+const COURSES_PER_PAGE = 20;
 
 const CoursesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -141,10 +149,9 @@ const CoursesPage = () => {
           </p>
           {currentCourses.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {currentCourses.map((course) => (
+              {currentCourses.map((course , index) => (
                 <CourseCard
-                  loading={false}
-                  key={course.id}
+                  key={index}
                   id={course.id}
                   image={course.image}
                   title={course.title}
