@@ -21,10 +21,10 @@ const Footer = () => {
   return (
     <section className="p-10 bg-neutral-950 flex flex-col text-center justify-center items-center md:text-start md:flex-row md:justify-evenly md:items-start gap-20 lg:gap-5 ">
       <div className="flex flex-col gap-5">
-        <div className="flex items-center ">
+        <Link href="/" className="flex items-center ">
           <SiDatabricks className="w-15 text-purple-400" size="100%" />
           <h1 className="text-white">EduQuest</h1>
-        </div>
+        </Link>
         <p className="text-neutral-300 w-60 pl-5">
       {t("description")}
         </p>

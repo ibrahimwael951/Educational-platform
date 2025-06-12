@@ -1,125 +1,226 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { IoIosSearch } from "react-icons/io";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; 
+import { IoIosSearch } from "react-icons/io";
+import { FaChalkboardTeacher, FaBook, FaLayerGroup, FaArrowRight } from 'react-icons/fa';
+
+// --- TYPE DEFINITIONS ---
+type Course = {
+  id: string;
+  title: string;
+  category: string;
+};
 
 type Instructor = {
-  firstName: string;
-  lastName: string;
-  fullName: string;
   id: string;
+  name: string;
+  position: string;
 };
 
-type Course = {
-_id: string;
-  title: string;
-  description: string;
-  instructor: Instructor;
-  sections: Record<string, unknown>[];
-  price: number;
-  category: string;
-  level: string;
-  language: string[];
-  requirements: string[];
-  whatYouWillLearn: string[];
-  tags: string[];
-  thumbnail: string;
-  averageRating: number;
-  totalReviews: number;
-  totalStudents: number;
-  isPublished: boolean;
-  approvalStatus: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  rejectionReason?: string;
+type Category = {
+  id: string;
+  name: string;
 };
 
-const SearchButton = () => {
-const [showInput, setShowInput] = useState(false);
-const [query, setQuery] = useState("");
-const [courses, setCourses] = useState<Course[]>([]);
-console.log('courses: ', courses);
+type SearchResults = {
+  courses: Course[];
+  instructors: Instructor[];
+  categories: Category[];
+};
 
-const [showDropdown, setShowDropdown] = useState(false);
-const [isLoading, setIsLoading] = useState(false);
-const inputRef = useRef<HTMLInputElement>(null);
+// --- STATIC DEMO DATA
+const staticCourses: Course[] = [
+  { id: 'react-complete-guide', title: 'React - The Complete Guide 2025 (incl. Next.js, Redux)', category: 'Development' },
+  { id: 'ultimate-react-course', title: 'The Ultimate React Course 2025: React, Next.js, Redux & More', category: 'Development' },
+  { id: 'js-bootcamp', title: 'The Complete JavaScript Course 2024: From Zero to Expert!', category: 'Development' },
+  { id: 'web-dev-bootcamp', title: 'The Complete 2024 Web Development Bootcamp', category: 'Development' },
+  { id: 'next-js-course', title: 'Next.js 14 & React - The Complete Guide', category: 'Development' },
+];
 
-useEffect(() => {
-  const delayDebounce = setTimeout(async () => {
-    if (query.trim()) {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          `https://educational-platform-backend-production.up.railway.app/api/courses/?search=${query}`
-        );
-        const data = await res.json();
-        setCourses(data.courses || []);
-        setShowDropdown(true);
-      } catch (err) {
-        console.error("Fetch error:", err);
-      } finally {
-        setIsLoading(false);
+const staticInstructors: Instructor[] = [
+  { id: 'maximilian-schwarzmuller', name: "Maximilian Schwarzmüller", position: "Instructor" },
+  { id: 'jonas-schmedtmann', name: "Jonas Schmedtmann", position: "Instructor" },
+  { id: 'angela-yu', name: "Angela Yu", position: "Instructor" },
+];
+
+const staticCategories: Category[] = [
+    { id: "react-native", name: "React Native for Mobile Apps" },
+    { id: "full-stack", name: "Full-Stack Development with React" },
+    { id: "typescript", name: "React and TypeScript Projects" },
+    { id: "next-js", name: "React with Next.js and Redux" },
+];
+
+
+/**
+ * Custom hook that closes a dropdown when a click is detected outside of it.
+ */
+const useOnClickOutside = (ref: React.RefObject<HTMLElement | null>, handler: (event: MouseEvent | TouchEvent) => void) => {
+  useEffect(() => {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
+        return;
       }
-    } else {
-      setCourses([]);
-      setShowDropdown(false);
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+};
+
+const SearchBar = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<SearchResults>({ courses: [], instructors: [], categories: [] });
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  useOnClickOutside(searchContainerRef, () => setIsDropdownVisible(false));
+
+  // Debounced search effect
+  useEffect(() => {
+    if (query.trim() === "") {
+      setResults({ courses: [], instructors: [], categories: [] });
+      setIsDropdownVisible(false);
+      return;
     }
-  }, 400);
 
-  return () => clearTimeout(delayDebounce);
-}, [query]);
+    setIsDropdownVisible(true);
+    setIsLoading(true);
 
+    const debounceTimer = setTimeout(() => {
+      const lowerCaseQuery = query.toLowerCase();
+
+      const filteredCourses = staticCourses.filter(course =>
+        course.title.toLowerCase().includes(lowerCaseQuery)
+      );
+      const filteredInstructors = staticInstructors.filter(instructor =>
+        instructor.name.toLowerCase().includes(lowerCaseQuery)
+      );
+      const filteredCategories = staticCategories.filter(category =>
+        category.name.toLowerCase().includes(lowerCaseQuery)
+      );
+      
+      setResults({
+        courses: filteredCourses,
+        instructors: filteredInstructors,
+        categories: filteredCategories,
+      });
+
+      setIsLoading(false);
+    }, 400);
+
+    return () => clearTimeout(debounceTimer);
+  }, [query]);
+
+  // Handle form submission (e.g., pressing Enter)
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (query.trim()) {
+      setIsDropdownVisible(false);
+      // Navigate to the search page, passing the query in the URL
+      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  }
+  const handleLinkClick = () => {
+    setIsDropdownVisible(false);
+  };
+
+  const hasResults = results.courses.length > 0 || results.instructors.length > 0 || results.categories.length > 0;
 
   return (
-    <div className="w-full max-w-xl mx-auto relative">
-      <div
-        className={`bg-transparent border border-gray-900 dark:border-white rounded-full py-3 px-7 items-center gap-3 flex hover:bg-gray-100 dark:hover:bg-gray-400 focus-within:border-purple-500`}
-      >
-        <IoIosSearch
-          className="text-gray-900 dark:text-white cursor-pointer"
-        onClick={() => setShowInput(!showInput)}
-        />
-
+    <div ref={searchContainerRef} className="w-full max-w-xl mx-auto relative">
+      {/* The form handles the "Enter" key press to submit the search */}
+      <form onSubmit={handleSearchSubmit} className="relative">
+        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+          <IoIosSearch className="text-gray-500 dark:text-gray-400" size={20} />
+        </div>
         <input
-          ref={inputRef}
           type="text"
-          placeholder="Search for courses"
-          className={`outline-none bg-transparent w-full ${
-            showInput ? "block" : "hidden"
-          } sm:block`}
+          placeholder="Search for anything"
+          className="w-full h-12 pl-12 pr-4 bg-transparent border border-black dark:border-white rounded-full text-neutral-800 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => query && setIsDropdownVisible(true)}
         />
-        {isLoading && (
-          <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-900 dark:border-white" />
-        )}
-      </div>
+      </form>
 
-      {/* Dropdown List */}
-      {showDropdown && courses.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 rounded-md mt-2 shadow-md max-h-60 overflow-auto">
-          {courses.map((course: Course) => (
-            <li key={course._id} className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-              <Link
-                href={`/courses/${course._id}`}
-                onClick={() => {
-                  setQuery(course.title);
-                  setShowDropdown(false);
-                }}
-              >
-                <div className="flex justify-between items-center">
-                  <span>{course.title}</span>
-                  <span className="text-sm text-gray-500">→</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {/* Dropdown Results */}
+      {isDropdownVisible && (
+        <div className="absolute z-50 w-full bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg mt-2 shadow-lg max-h-[70vh] overflow-y-auto">
+          {isLoading ? (
+            <p className="p-4 text-center text-gray-500 dark:text-gray-400">Searching...</p>
+          ) : !hasResults ? (
+            <p className="p-4 text-center text-gray-500 dark:text-gray-400">No results found for &quot;{query}&quot;.</p>
+          ) : (
+            <div className="p-2 space-y-2">
+              {/* Courses Section */}
+              {results.courses.length > 0 && (
+                <section>
+                  <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase flex items-center gap-2"><FaBook /> Courses</h3>
+                  <ul>
+                    {results.courses.slice(0, 5).map((course) => ( // Show top 5
+                      <li key={course.id}>
+                        <Link href={`/courses/${course.id}`} onClick={handleLinkClick} className="flex justify-between items-center w-full text-left px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200">
+                          <div>
+                            <p className="text-neutral-800 dark:text-white font-medium">{course.title}</p>
+                            <p className="text-sm text-gray-500">{course.category}</p>
+                          </div>
+                          <FaArrowRight className="text-gray-400 ml-4 flex-shrink-0" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Instructors Section */}
+              {results.instructors.length > 0 && (
+                <section>
+                  <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase flex items-center gap-2"><FaChalkboardTeacher /> Instructors</h3>
+                  <ul>
+                    {results.instructors.map((instructor) => (
+                      <li key={instructor.id}>
+                        <Link href={`/instructors/${instructor.id}`} onClick={handleLinkClick} className="flex justify-between items-center w-full text-left px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200">
+                            <div>
+                              <p className="text-neutral-800 dark:text-white font-medium">{instructor.name}</p>
+                            </div>
+                          <FaArrowRight className="text-gray-400 ml-4 flex-shrink-0" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Categories Section */}
+              {results.categories.length > 0 && (
+                <section>
+                    <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase flex items-center gap-2"><FaLayerGroup /> Categories</h3>
+                    <ul>
+                        {results.categories.map((category) => (
+                            <li key={category.id}>
+                                <Link href={`/courses?category=${category.id}`} onClick={handleLinkClick} className="flex justify-between items-center w-full text-left px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200">
+                                    <p className="text-neutral-800 dark:text-white font-medium">{category.name}</p>
+                                    <FaArrowRight className="text-gray-400 ml-4 flex-shrink-0" />
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+              )}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
 };
 
-export default SearchButton;
+export default SearchBar;
