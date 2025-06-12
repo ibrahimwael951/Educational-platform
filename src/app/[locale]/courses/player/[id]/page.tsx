@@ -1,25 +1,19 @@
-
+"use client"
 import Link from 'next/link';
-import { ArrowLeft} from 'lucide-react';
-import { EnrolledCourse } from '@/components/my-learning/EnrolledCourseCard';
+import { ArrowLeft } from 'lucide-react';
+import { useParams } from "next/navigation";
 
-// Use the same mock data source as your my-learning page, or fetch from an API
-const enrolledCoursesData: EnrolledCourse[] = [
+
+const enrolledCoursesData = [
   { id: '1', title: 'The Web Front End Learning Guide', instructorName: 'Hassan Fulaih', thumbnailUrl: '/home/card1.png', progress: 11, userRating: 0 },
   { id: '2', title: 'Advanced React and GraphQL', instructorName: 'Jane Smith', thumbnailUrl: '/home/card2.png', progress: 75, userRating: 4 },
   { id: '3', title: 'Complete Python Bootcamp From Zero to Hero', instructorName: 'John Doe', thumbnailUrl: '/home/card3.png', progress: 100, userRating: 5 },
   { id: '4', title: 'UI/UX Design Essentials', instructorName: 'Emily White', thumbnailUrl: '/home/card4.png', progress: 0, userRating: 0 },
 ];
 
-interface CoursePlayPageProps {
-  params: {
-    courseId: string;
-  };
-}
-
-const CoursePlayPage = ({ params }: CoursePlayPageProps) => {
-  // Find the course data based on the ID from the URL
-  const course = enrolledCoursesData.find(c => c.id === params.courseId);
+export default function CoursePlayPage() {
+  const params = useParams();
+  const course = enrolledCoursesData.find((b) => b.id.toString() === params.id);
 
   if (!course) {
     return (
@@ -35,21 +29,18 @@ const CoursePlayPage = ({ params }: CoursePlayPageProps) => {
   }
 
   return (
-    <main className="bg-gray-100 dark:bg-neutral-900 min-h-screen p-4 sm:p-6 lg:p-8">
+    <main className="bg-gray-100 dark:bg-neutral-900 min-h-screen p-4 sm:p-6 lg:p-8 mt-20">
       <div className="max-w-7xl mx-auto">
         <Link href="/my-learning" className="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to My Learning
         </Link>
-        
+
         <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{course.title}</h1>
         <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-1">by {course.instructorName}</p>
 
-        {/* Main Content Area */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Video and Tabs Section */}
           <div className="lg:col-span-2">
-            {/* Video Player */}
             <div className="aspect-video w-full bg-black rounded-lg overflow-hidden">
               <video className="w-full h-full" controls poster={course.thumbnailUrl}>
                 <source src="/sample-video.mp4" type="video/mp4" />
@@ -57,7 +48,6 @@ const CoursePlayPage = ({ params }: CoursePlayPageProps) => {
               </video>
             </div>
 
-            {/* Tabs Navigation */}
             <div className="mt-6 border-b border-neutral-200 dark:border-neutral-700">
               <nav className="flex space-x-8">
                 {['Overview', 'Notes', 'Reviews', 'Resources'].map((tab) => (
@@ -71,14 +61,12 @@ const CoursePlayPage = ({ params }: CoursePlayPageProps) => {
               </nav>
             </div>
 
-            {/* Tab Content */}
             <div className="mt-6 prose dark:prose-invert max-w-none">
               <h2>About this course</h2>
               <p>Course description and learning objectives would appear here.</p>
             </div>
           </div>
 
-          {/* Course Sections Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
               <div className="p-4 border-b dark:border-neutral-700">
@@ -100,6 +88,4 @@ const CoursePlayPage = ({ params }: CoursePlayPageProps) => {
       </div>
     </main>
   );
-};
-
-export default CoursePlayPage;
+}
