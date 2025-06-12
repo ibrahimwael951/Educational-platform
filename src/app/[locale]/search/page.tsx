@@ -46,7 +46,13 @@ const searchQuery = searchParams.get("q") || "";
 const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
 
   // State for sidebar filters, updated by the FilterCourses component
-const [sidebarFilters, setSidebarFilters] = useState<any>({});
+type SidebarFilters = {
+category?: string[];
+priceRange?: number;
+rating?: number;
+};
+
+const [sidebarFilters, setSidebarFilters] = useState<SidebarFilters>({});
 
   // State for pagination
 const [currentPage, setCurrentPage] = useState(1);
@@ -66,14 +72,14 @@ useEffect(() => {
     }
 
     // Apply filters
-    if (sidebarFilters.category) {
-    results = results.filter(course => course.category === sidebarFilters.category);
+    if (sidebarFilters.category && sidebarFilters.category.length > 0) {
+    results = results.filter(course => sidebarFilters.category!.includes(course.category));
     }
-    if (sidebarFilters.priceRange) {
-    results = results.filter(course => course.price <= sidebarFilters.priceRange);
+    if (typeof sidebarFilters.priceRange === "number") {
+    results = results.filter(course => course.price <= sidebarFilters.priceRange!);
     }
-    if (sidebarFilters.rating) {
-    results = results.filter(course => course.rating >= sidebarFilters.rating);
+    if (typeof sidebarFilters.rating === "number") {
+    results = results.filter(course => course.rating >= sidebarFilters.rating!);
     }
 
     setFilteredCourses(results);
@@ -89,7 +95,7 @@ useEffect(() => {
 }, [currentPage, filteredCourses]);
 
 
-const handleFilterChange = (filters: any) => {
+const handleFilterChange = (filters: SidebarFilters) => {
     setSidebarFilters(filters);
 };
 
