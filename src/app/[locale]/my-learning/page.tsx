@@ -55,11 +55,11 @@ const handlePageChange = (page: number) => {
 };
 
 return (
-    <main>
+    <main className='mt-20'>
       {/* Header Section with Dark Background */}
     <header className="bg-neutral-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-serif font-bold">My learning</h1>
+        <h1 className="text-4xl text-white font-serif font-bold">My learning</h1>
         <MyLearningTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </header>
