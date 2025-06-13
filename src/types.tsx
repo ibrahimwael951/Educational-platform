@@ -29,7 +29,7 @@ export type Course = {
   rejectionReason?: string;
 };
 export type wishlistCard ={
-     id: number;
+    id: number;
     title: string;
     description: string;
     instructor: string ;
