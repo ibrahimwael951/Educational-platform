@@ -12,15 +12,15 @@ import {
 import { LiaPoundSignSolid } from "react-icons/lia";
 import { FaStar } from "react-icons/fa";
 interface CourseCardProps {
-  id?: string;
+  id: string;
   image?: string;
   title?: string;
-  category?: string;
-  price?: number;
-  rating?: string;
+  category: string;
+  price: number;
+  rating: string;
   instructor: {
-    name?: string;
-    avatar?: string;
+    name: string;
+    avatar: string;
   };
 }
 
@@ -33,7 +33,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   rating,
   instructor,
 }) => {
-  if ( !title || !image)
+  if (!title || !image)
     return (
       <div className="lg:w-[300px] overflow-hidden rounded-xl  animate-pulse m-1   bg-neutral-300" />
     );
@@ -42,7 +42,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
       <Link href={`/courses/${id}`}>
         <motion.div
           whileHover={{ scale: 1.02 }}
-          whileTap={{scale:0.97}}
+          whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 300 }}
           className=" lg:w-[300px] overflow-hidden    rounded-xl m-1 justify-center items-center"
         >
@@ -74,8 +74,14 @@ const CourseCard: React.FC<CourseCardProps> = ({
                     </h1>
                   )}
                   <p className="text-lg text-purple-700 flex items-center">
-                    <LiaPoundSignSolid size={20} />
-                    {price}
+                    {price == 0 ? (
+                      "Free"
+                    ) : (
+                      <>
+                        <LiaPoundSignSolid size={20} />
+                        {price}
+                      </>
+                    )}
                   </p>
                 </div>
               </div>

@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="flex flex-col gap-5">
         <Link href="/" className="flex items-center ">
           <SiDatabricks className="w-15 text-purple-400" size="100%" />
-          <h1 className="text-white">EduQuest</h1>
+          <h1 className="text-white text-2xl">EduQuest</h1>
         </Link>
         <p className="text-neutral-300 w-60 pl-5">
       {t("description")}
@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h1 className="text-white">our services</h1>
+        <h1 className="text-white text-2xl">our services</h1>
         <div className="flex flex-col gap-4 pl-5">
           {data.footer.our_services.map((item, index) => (
             <Link
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        <h1 className="text-white">Quick Links</h1>
+        <h1 className="text-white text-2xl">Quick Links</h1>
         <div className="flex flex-col gap-4 pl-5">
           {data.footer.Quick_Links.map((item, index) => (
             <Link
