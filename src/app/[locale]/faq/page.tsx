@@ -20,7 +20,7 @@ const FAQPage = () => {
           {faqs.map((faq: { question: string; answer: string }, index: number) => (
             <div key={index} className="border rounded-lg overflow-hidden">
               <button
-                className="w-full text-left p-4 bg-[gray-200] hover:bg-[#7768E5] cursor-pointer flex justify-between group duration-150"
+                className="w-full text-left p-4 bg-[gray-200] hover:bg-purple-500 cursor-pointer flex justify-between group duration-150"
                 onClick={() => toggleFAQ(index)}
               >
                 <span className="font-medium text-neutral-800 dark:text-white group-hover:text-white">
