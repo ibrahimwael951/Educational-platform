@@ -1,8 +1,10 @@
 "use client";
+
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useWeb3Forms from "@web3forms/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type FormValues = {
   name: string;
@@ -12,7 +14,8 @@ type FormValues = {
 };
 
 export default function Contact() {
-    const t = useTranslations("supportPage");
+  const t = useTranslations("supportPage");
+
   const {
     register,
     handleSubmit,
@@ -30,8 +33,8 @@ export default function Contact() {
   const { submit: onSubmit } = useWeb3Forms<FormValues>({
     access_key: apiKey,
     settings: {
-      from_name: "Acme Inc",
-      subject: "New Contact Message from your Website",
+      from_name: "EduQuest",
+      subject: "New Contact from EduQuest client",
     },
     onSuccess: (msg) => {
       setIsSuccess(true);
@@ -45,16 +48,34 @@ export default function Contact() {
   });
 
   return (
-    <section className="px-5 h-fit py-32 max-w-2xl m-auto flex flex-col gap-10">
-      <div className="text-center">
-        <h1 className="text-4xl text-neutral-900 dark:text-white mb-2">
-          {t("title")}
-        </h1>
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="px-5 h-fit py-32 max-w-2xl m-auto flex flex-col gap-10"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-center"
+      >
+        <h1 className="text-4xl text-purple-400 mb-2">{t("title")}</h1>
         <p className="text-neutral-900 dark:text-white opacity-50">
           {t("description")}
         </p>
-      </div>
-      <form onSubmit={handleSubmit(onSubmit as SubmitHandler<FormValues>)}>
+      </motion.div>
+
+      <motion.form
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FormValues>)}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: { staggerChildren: 0.1 },
+          },
+        }}
+      >
         <input
           type="checkbox"
           className="hidden"
@@ -62,58 +83,116 @@ export default function Contact() {
           {...register("botcheck")}
         />
 
-        <div className="mb-5">
-          <input
+        {/* Name */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          className="mb-5"
+        >
+          <motion.input
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileFocus={{
+              rotate: 1,
+            }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             type="text"
             placeholder={t("inpName")}
             autoComplete="off"
-            className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-neutral-800 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 focus:border-purple-400 dark:bg-neutral-800 focus:ring-4 ${
               errors.name
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                 : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
             }`}
             {...register("name", {
-              required:t("inpNameError"),
+              required: t("inpNameError"),
               maxLength: 80,
             })}
           />
-          {errors.name && (
-            <div className="mt-1 text-red-600">
-              <small>{errors.name.message}</small>
-            </div>
-          )}
-        </div>
+          <AnimatePresence>
+            {errors.name && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="mt-1 text-red-600"
+              >
+                <small>{errors.name.message}</small>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        <div className="mb-5">
-          <input
+        {/* Email */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          className="mb-5"
+        >
+          <motion.input
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileFocus={{
+              rotate: 1,
+            }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             id="email_address"
             type="email"
             placeholder={t("inpEmail")}
             autoComplete="off"
-            className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200  dark:bg-neutral-800 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200  dark:bg-neutral-800 focus:ring-4 ${
               errors.email
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                 : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
             }`}
             {...register("email", {
-              required:t("inpEmailError"),
+              required: t("inpEmailError"),
               pattern: {
                 value: /^\S+@\S+$/i,
                 message: t("inpEmailError"),
               },
             })}
           />
-          {errors.email && (
-            <div className="mt-1 text-red-600">
-              <small>{errors.email.message}</small>
-            </div>
-          )}
-        </div>
+          <AnimatePresence>
+            {errors.email && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="mt-1 text-red-600"
+              >
+                <small>{errors.email.message}</small>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        <div className="mb-3">
-          <textarea
+        {/* Message */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          className="mb-3"
+        >
+          <motion.textarea
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileFocus={{
+              rotate: 1,
+            }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             placeholder={t("inpMessage")}
-            className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-neutral-800 rounded-md outline-none h-36 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-neutral-800 rounded-md outline-none h-36 focus:ring-4 ${
               errors.message
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
                 : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
@@ -122,16 +201,38 @@ export default function Contact() {
               required: t("inpMessageError"),
             })}
           />
-          {errors.message && (
-            <div className="mt-1 text-red-600">
-              <small>{errors.message.message}</small>
-            </div>
-          )}
-        </div>
+          <AnimatePresence>
+            {errors.message && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="mt-1 text-red-600"
+              >
+                <small>{errors.message.message}</small>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        <button
+        {/* Submit Button */}
+        <motion.button
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          whileHover={{
+            scale: 1.02,
+            letterSpacing:"5px",
+          }}
+          whileTap={{
+            scale: 0.9,
+            letterSpacing:0
+          }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
           type="submit"
-          className="w-full py-4 font-semibold text-white bg-purple-600 rounded-md  outline-none focus:ring-offset-2 focus:ring ring-purple-600 px-7"
+          className="w-full py-4 font-semibold text-white bg-purple-600 rounded-md  outline-none focus:ring-offset-2 focus:ring ring-purple-600 px-7 cursor-pointer"
         >
           {isSubmitting ? (
             <svg
@@ -155,21 +256,26 @@ export default function Contact() {
               ></path>
             </svg>
           ) : (
-          t("inpSubmit")
+            t("inpSubmit")
           )}
-        </button>
-      </form>
+        </motion.button>
+      </motion.form>
 
-      {isSubmitSuccessful && isSuccess && (
-        <div className="mt-3 text-sm text-center text-green-500">
-          {message || t("successSend") }
-        </div>
-      )}
-      {isSubmitSuccessful && !isSuccess && (
-        <div className="mt-3 text-sm text-center text-red-500">
-          {message || t("FeildSend") }
-        </div>
-      )}
-    </section>
+      {/* Success/Error Message */}
+      <AnimatePresence>
+        {isSubmitSuccessful && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className={`mt-3 text-sm text-center ${
+              isSuccess ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {message || (isSuccess ? t("successSend") : t("FeildSend"))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
   );
 }
