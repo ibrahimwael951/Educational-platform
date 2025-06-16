@@ -53,10 +53,10 @@ export default function AuthPage() {
     try {
       if (isLogin) {
         await login(email, password);
-        setSuccessMessage("Login successful! 🎉");
+        setSuccessMessage("Login successful");
       } else {
         await register(firstName, lastName, email, password);
-        setSuccessMessage("Registration successful! 🎉");
+        setSuccessMessage("Registration successful");
       }
       setErrorMessage("");
       clearMessages();
@@ -81,14 +81,39 @@ export default function AuthPage() {
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
       <div className="text-center">
-        <h1 className="text-2xl text-purple-600 mb-2">
-          {isLogin ? "Login" : "Register"} Form
-        </h1>
-        <p className="text-neutral-950 dark:text-white opacity-75">
-          {isLogin
-            ? "Enter your email and password to login"
-            : "Create your account by filling in the details"}
-        </p>
+        <AnimatePresence mode="wait">
+          <div className="text-3xl text-purple-500 dark:text-purple-500 mb-2">
+            {isLogin ? (
+              <motion.h1
+                key={isLogin ? "login" : "register"}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
+                className="inline mr-2 text-purple-500 dark:text-purple-500"
+              >
+                Login
+              </motion.h1>
+            ) : (
+              <motion.h1
+                key={isLogin ? "login" : "register"}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
+                className="inline mr-2 text-purple-500 dark:text-purple-500"
+              >
+                Register
+              </motion.h1>
+            )}
+            Form
+          </div>
+          <p className="text-neutral-950 dark:text-white opacity-75">
+            {isLogin
+              ? "Enter your email and password to login"
+              : "Create your account by filling in the details"}
+          </p>
+        </AnimatePresence>
       </div>
 
       <AnimatePresence mode="wait">
@@ -98,42 +123,70 @@ export default function AuthPage() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.4, stiffness: 300 }}
           className="flex flex-col gap-5 w-full"
         >
           {!isLogin && (
             <>
-              <input
+              <motion.input
+                whileHover={{
+                  scale: 1.02,
+                }}
+                whileFocus={{
+                  rotate: 1,
+                }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
                 type="firstName"
                 placeholder="your First Name"
-                className="p-2 focus:ring-1 ring-neutral-900 dark:ring-white rounded-xl dark:bg-neutral-800"
+                className="w-full px-4 py-3 outline-none border-2 focus:border-purple-400 rounded-xl dark:bg-neutral-800 dark:ring-0 ring-gray-100 focus:ring-4"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
 
-              <input
+              <motion.input
+                whileHover={{
+                  scale: 1.02,
+                }}
+                whileFocus={{
+                  rotate: 1,
+                }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
                 type="lastName"
                 placeholder="your Last Name"
-                className="p-2 focus:ring-1 ring-neutral-900 dark:ring-white rounded-xl dark:bg-neutral-800"
+                className="w-full px-4 py-3 outline-none border-2 focus:border-purple-400 rounded-xl dark:bg-neutral-800 dark:ring-0 ring-gray-100 focus:ring-4"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </>
           )}
-          <input
+          <motion.input
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileFocus={{
+              rotate: 1,
+            }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             type="email"
             placeholder="Email"
-            className="p-2 focus:ring-1 ring-neutral-900 dark:ring-white rounded-xl dark:bg-neutral-800"
+            className="w-full px-4 py-3 outline-none border-2 focus:border-purple-400 rounded-xl dark:bg-neutral-800 dark:ring-0 ring-gray-100 focus:ring-4"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
+          <motion.input
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileFocus={{
+              rotate: 1,
+            }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             type="password"
             placeholder="Password"
-            className="p-2 focus:ring-1 ring-neutral-900 dark:ring-white rounded-xl dark:bg-neutral-800"
+            className="w-full px-4 py-3 outline-none border-2 focus:border-purple-400 rounded-xl dark:bg-neutral-800 dark:ring-0 ring-gray-100 focus:ring-4"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -142,16 +195,14 @@ export default function AuthPage() {
           <motion.button
             whileHover={{
               scale: 1.02,
-              letterSpacing: "10px",
-              
+              fontSize: "18px",
             }}
             whileTap={{
-              scale: 0.98,
-              letterSpacing:"0px"
+              scale: 0.9,
             }}
-          transition={{ duration: 0.6 , type: "spring", stiffness: 300 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             type="submit"
-            className="p-2 outline-none rounded-xl bg-purple-600 text-white hover:bg-purple-700 cursor-pointer"
+            className="w-full py-4 font-semibold text-white bg-purple-500 rounded-2xl  outline-none px-7 cursor-pointer"
           >
             {isLogin ? "Login" : "Register"}
           </motion.button>

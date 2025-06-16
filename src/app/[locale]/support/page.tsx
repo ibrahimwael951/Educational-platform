@@ -60,7 +60,9 @@ export default function Contact() {
         transition={{ delay: 0.1 }}
         className="text-center"
       >
-        <h1 className="text-4xl text-purple-400 mb-2">{t("title")}</h1>
+        <h1 className="text-4xl text-purple-400 dark:text-purple-400 mb-2">
+          {t("title")}
+        </h1>
         <p className="text-neutral-900 dark:text-white opacity-50">
           {t("description")}
         </p>
@@ -102,10 +104,10 @@ export default function Contact() {
             type="text"
             placeholder={t("inpName")}
             autoComplete="off"
-            className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 focus:border-purple-400 dark:bg-neutral-800 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 placeholder:text-neutral-800 dark:text-white rounded-2xl outline-none dark:placeholder:text-neutral-200 focus:border-purple-400 dark:bg-neutral-800 focus:ring-4 ${
               errors.name
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                : "border-neutral-300 focus:border-neutral-600 ring-neutral-100 dark:border-neutral-600 dark:focus:border-white dark:ring-0"
             }`}
             {...register("name", {
               required: t("inpNameError"),
@@ -147,10 +149,10 @@ export default function Contact() {
             type="email"
             placeholder={t("inpEmail")}
             autoComplete="off"
-            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200  dark:bg-neutral-800 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-neutral-800 dark:text-white rounded-2xl outline-none dark:placeholder:text-neutral-200  dark:bg-neutral-800 focus:ring-4 ${
               errors.email
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                : "border-neutral-300 focus:border-neutral-600 ring-neutral-100 dark:border-neutral-600 dark:focus:border-white dark:ring-0"
             }`}
             {...register("email", {
               required: t("inpEmailError"),
@@ -192,10 +194,10 @@ export default function Contact() {
             }}
             transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
             placeholder={t("inpMessage")}
-            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-neutral-800 rounded-md outline-none h-36 focus:ring-4 ${
+            className={`w-full px-4 py-3 border-2 focus:border-purple-400 placeholder:text-neutral-800 dark:text-white dark:placeholder:text-neutral-200 dark:bg-neutral-800 rounded-2xl outline-none h-36 focus:ring-4 ${
               errors.message
                 ? "border-red-600 focus:border-red-600 ring-red-100 dark:ring-0"
-                : "border-gray-300 focus:border-gray-600 ring-gray-100 dark:border-gray-600 dark:focus:border-white dark:ring-0"
+                : "border-neutral-300 focus:border-neutral-600 ring-neutral-100 dark:border-neutral-600 dark:focus:border-white dark:ring-0"
             }`}
             {...register("message", {
               required: t("inpMessageError"),
@@ -224,15 +226,14 @@ export default function Contact() {
           }}
           whileHover={{
             scale: 1.02,
-            letterSpacing:"5px",
+            fontSize:"18px"
           }}
           whileTap={{
             scale: 0.9,
-            letterSpacing:0
           }}
           transition={{ duration: 0.6, type: "spring", stiffness: 300 }}
           type="submit"
-          className="w-full py-4 font-semibold text-white bg-purple-600 rounded-md  outline-none focus:ring-offset-2 focus:ring ring-purple-600 px-7 cursor-pointer"
+          className="w-full py-4 font-semibold text-white bg-purple-500 rounded-2xl  outline-none px-7 cursor-pointer"
         >
           {isSubmitting ? (
             <svg
