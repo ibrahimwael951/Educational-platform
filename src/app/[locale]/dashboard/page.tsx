@@ -14,12 +14,6 @@ import { CiLinkedin, CiStar, CiHeart, CiPlay1 } from "react-icons/ci";
 import { RiContactsLine } from "react-icons/ri";
 import { IoSchoolOutline } from "react-icons/io5";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
-
 const Profile = () => {
   const { user, loading, logout } = useAuth();
   const t = useTranslations("profileSection");
