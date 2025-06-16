@@ -35,6 +35,7 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  apiAvailable: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   register: (
@@ -72,6 +73,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [apiAvailable, setApiAvailable] = useState(true);
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   // axios instance with default credentials
@@ -194,12 +196,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           withCredentials: true,
         });
         setUser(res.data.user);
+        setApiAvailable(true); 
       } catch (error) {
-        console.error("Not authenticated:", error);
+        console.error("API unavailable, using fallback mode:", error);
+        setApiAvailable(false); // API is NOT working
+
+        // Optional: set dummy fallback user
+        setUser({
+          profile: "",
+          firstName: "Guest",
+          lastName: "User",
+          fullName: "Guest User",
+          _id: "offline-mode",
+          email: "guest@example.com",
+          createdAt: new Date().toISOString(),
+          isActive: false,
+          myCourses: [],
+          enrolledCourses: [],
+          bio: "Offline mode user",
+          title: "Guest",
+          role: "student",
+          socialLinks: {},
+        });
       } finally {
         setLoading(false);
       }
     };
+
     checkUser();
   }, [api]);
 
@@ -208,6 +231,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{
         user,
         loading,
+        apiAvailable,
         login,
         logout,
         register,
