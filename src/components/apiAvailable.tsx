@@ -42,7 +42,7 @@ const ApiUnavailableModal = () => {
           </button>
         </div>
         <p className="text-neutral-700 dark:text-neutral-300">
-          We couldn't connect to the server. You're now browsing in offline
+          We could not connect to the server. You are now browsing in offline
           mode. Some features may be disabled until the connection is restored.
         </p>
       </motion.div>
