@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/themeToggole";
@@ -12,6 +13,12 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { CiLinkedin, CiStar, CiHeart, CiPlay1 } from "react-icons/ci";
 import { RiContactsLine } from "react-icons/ri";
 import { IoSchoolOutline } from "react-icons/io5";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 },
+};
 
 const Profile = () => {
   const { user, loading, logout } = useAuth();
@@ -35,7 +42,11 @@ const Profile = () => {
   // console.log(user);
   if (loading || !user)
     return (
-      <section className="flex flex-col md:flex-row min-h-screen p-4">
+      <motion.section
+        className="flex flex-col md:flex-row min-h-screen p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <aside className="bg-neutral-100 shadow-2xl dark:bg-neutral-800  w-full md:w-2/6 p-4 rounded-lg   overflow-hidden h-screen  animate-pulse"></aside>
         <main className="flex-1 px-4 w-full md:w-4/6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 lg:m-0  animate-pulse">
@@ -50,16 +61,27 @@ const Profile = () => {
             ></div>
           ))}
         </main>
-      </section>
+      </motion.section>
     );
   return (
     <section className="flex flex-col md:flex-row min-h-screen pt-30 p-4">
       {/* Sidebar */}
-      <aside className={`
-          ${user?.role == "admin" && "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"}
-          ${user?.role =="instructor" && "bg-gradient-to-bl dark:bg-gradient-to-br from-purple-600 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900  "}
+      <motion.aside
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`
+          ${
+            user?.role == "admin" &&
+            "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"
+          }
+          ${
+            user?.role == "instructor" &&
+            "bg-gradient-to-bl dark:bg-gradient-to-br from-purple-600 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900  "
+          }
           ${user?.role == "student" && "bg-neutral-100 dark:bg-neutral-800"}
-            shadow-2xl w-full  md:w-fit p-4 rounded-lg overflow-hidden `}>
+            shadow-2xl w-full  md:w-fit p-4 rounded-lg overflow-hidden `}
+      >
         <div className="flex  flex-col m-auto md:mx-0 md:flex-row text-center md:text-start justify-center items-center mb-4  w-fit gap-3 cursor-default ">
           <div className="relative w-14 h-14 mx-auto  bg-gradient-to-r from-blue-400   via-purple-600 to-purple-600 text-white text-4xl flex items-center justify-center rounded-full">
             {user?.isActive && (
@@ -124,12 +146,17 @@ const Profile = () => {
             <FaSignOutAlt className="mx-2" /> {t("logout")}
           </li>
         </ul>
-      </aside>
+      </motion.aside>
 
       {/* Main Content */}
-      <main className="flex-1 px-4">
+      <main className="flex-1 md:px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 lg:m-0">
-          <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
+          >
             <CiStar className="text-4xl text-purple-500" />
             <p className="text-neutral-800 dark:text-white text-3xl font-bold">
               {0}
@@ -137,10 +164,15 @@ const Profile = () => {
             <p className="text-neutral-800 dark:text-white opacity-50">
               {t("certified")}
             </p>
-          </div>
+          </motion.div>
 
           {user?.myCourses && (
-            <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 , delay: 0}}
+              className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
+            >
               <CiPlay1 className="text-4xl text-purple-500" />
               <p className="text-neutral-800 dark:text-white text-3xl font-bold">
                 {user?.myCourses.length}
@@ -148,62 +180,102 @@ const Profile = () => {
               <p className="text-neutral-800 dark:text-white opacity-50">
                 {t("training")}
               </p>
-            </div>
+            </motion.div>
           )}
         </div>
         {user?.role == "instructor" && (
-          <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 , delay: 0.1}}
+            className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
+          >
             <div className="w-8/12">
               <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
                 your Title
               </h1>
-              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">{user?.title}</p>
+              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">
+                {user?.title}
+              </p>
             </div>
-            <Link href="/auth/update-instructor" className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150">
+            <Link
+              href="/auth/update-instructor"
+              className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
+            >
               edit ur title
             </Link>
-          </div>
+          </motion.div>
         )}
         {user?.role == "instructor" && (
-          <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 , delay: 0.2}}
+            className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
+          >
             <div className="w-8/12">
               <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
                 your bio
               </h1>
-              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">{user?.bio}</p>
+              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">
+                {user?.bio}
+              </p>
             </div>
-            <Link href="/auth/update-instructor" className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150">
+            <Link
+              href="/auth/update-instructor"
+              className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
+            >
               edit ur bio
             </Link>
-          </div>
+          </motion.div>
         )}
         {user?.role == "student" && (
-          <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg mt-4 shadow-lg flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 , delay: 0.3}}
+            className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg mt-4 shadow-lg flex justify-between items-center"
+          >
             <p className="text-neutral-800 dark:text-white opacity-50">
               do u wanna be a part of our community teachers?
             </p>
             <Link
               href="/auth/becomeInstructor"
-              className="p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
+              className="p-2 w-20 text-center bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
             >
-              Become Instructor
+              lets Go
             </Link>
-          </div>
+          </motion.div>
         )}
-        <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 , delay: 0.4}}
+          className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
+        >
           <p className="text-neutral-800 dark:text-white">
             {t("change-language")}
           </p>
           <LocaleSwitcher />
-        </div>
+        </motion.div>
 
-        <div className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 , delay: 0.5}}
+          className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
+        >
           <p className="text-neutral-800 dark:text-white">
             {t("change-Theme")}
           </p>
           <ModeToggle />
-        </div>
-        <div className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 , delay: 0.6}}
+          className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
+        >
           <p className="text-neutral-800 dark:text-white">
             {t("user_id")} : <span className="font-bold">{user?._id}</span>
           </p>
@@ -214,7 +286,7 @@ const Profile = () => {
             <p>{t("join-date")}</p>
             {user?.createdAt.slice(0, 10)}
           </div>
-        </div>
+        </motion.div>
       </main>
     </section>
   );
