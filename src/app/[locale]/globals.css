@@ -9,7 +9,7 @@
     @apply selection:bg-purple-500 selection:text-white
 }
 body {
-    @apply overflow-x-hidden duration-150 scroll-smooth bg-slate-100 dark:bg-neutral-900
+    @apply overflow-x-hidden duration-150 scroll-smooth bg-neutral-100 dark:bg-neutral-900
 }
 
 h1 {
@@ -46,7 +46,7 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-30%) ;
+    transform: tranneutralX(-50%) tranneutralY(-30%) ;
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -73,7 +73,7 @@ h1 {
     position: absolute;
     top: 50%;   
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: tranneutral(-50%, -50%);
     padding: 10px;
     background-color: #FFD25D;
     color: #333931;

@@ -11,7 +11,7 @@ const isValidEmail = (email: string) =>
 
 export default function AuthPage() {
   const router = useRouter();
-  const { login, register, user, loading } = useAuth();
+  const { login, register, user, loading ,apiAvailable } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
 
   const [email, setEmail] = useState("");
@@ -23,8 +23,10 @@ export default function AuthPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (!loading && user) {
-      router.push("/dashboard");
+    if (apiAvailable) {
+      if (!loading && user) {
+        router.push("/dashboard");
+      }
     }
   }, [user, loading, router]);
 
@@ -75,8 +77,9 @@ export default function AuthPage() {
       clearMessages();
     }
   };
-
-  if (loading || user) return <Loading />;
+  if (apiAvailable) {
+    if (loading || user) return <Loading />;
+  }
 
   return (
     <section className="px-5 min-h-screen max-w-2xl m-auto flex flex-col gap-10 justify-center items-center">
@@ -108,7 +111,7 @@ export default function AuthPage() {
             )}
             Form
           </div>
-          <p className="text-neutral-950 dark:text-white opacity-75">
+          <p className="text-neutral-950 dark:text-white opacity-75 ">
             {isLogin
               ? "Enter your email and password to login"
               : "Create your account by filling in the details"}

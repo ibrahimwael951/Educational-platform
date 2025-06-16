@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 //components
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import ApiAvailable from "@/components/apiAvailable";
 
 //use that while u make testing
 // import Testing from "@/components/testing";
@@ -53,6 +54,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <ApiAvailable/>
             <Navbar />
             {/* <Testing /> */}
             {children}
