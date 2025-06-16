@@ -28,7 +28,7 @@ export default function AuthPage() {
         router.push("/dashboard");
       }
     }
-  }, [user, loading, router]);
+  }, [user, loading, router ,apiAvailable]);
 
   const clearMessages = () => {
     setTimeout(() => {
