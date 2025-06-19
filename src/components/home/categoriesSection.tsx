@@ -112,18 +112,19 @@ const CategoriesSection: React.FC = () => {
           visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } },
         }}
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full sm:w-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-7 mt-5 justify-items-center"
+        className="w-full sm:w-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-7 mt-5 justify-items-center overflow-hidden md:overflow-visible"
       >
         {categories.map((category, index) => (
           <motion.div
             key={index}
             whileHover={{
-              scale: 1.05,
+              scale: 1.1,
               boxShadow: "0px 10px 20px rgba(0,0,0,0.1)",
             }}
+            whileTap={{scale:0.9 , boxShadow:"none"}}
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            whileInView={{ opacity: 1, y: 0  ,transition:{duration:0.6}}}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true, amount: 0.3 }}
             className="w-full sm:w-60 p-5 flex items-center gap-1 rounded-xl cursor-pointer"
             style={{ backgroundColor: category.bgColor }}

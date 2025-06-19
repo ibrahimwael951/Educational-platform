@@ -53,7 +53,7 @@ const InstructorDetails = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          Please check the instructor's ID and try again.
+          Please check the instructors ID and try again.
         </motion.p>
         <div className="flex  justify-center items-center w-full ">
           {[
