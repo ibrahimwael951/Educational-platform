@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import CourseCard from "@/components/home/CourseCard";
 import { Instructors } from "@/defaultData";
 import Link from "next/link";
+import CustomButton from "@/components/ui/CustomButton";
 
 const InstructorDetails = () => {
   const t = useTranslations("CoursesSection");
@@ -29,7 +30,7 @@ const InstructorDetails = () => {
 
   if (!instructor) {
     return (
-      <div className="  min-h-screen flex flex-col justify-center items-center gap-5">
+      <div className="relative  min-h-screen flex flex-col justify-center items-center gap-5">
         <div className="text-7xl w-fit mb-2 mx-auto flex gap-5  flex-wrap justify-center">
           {["Instructor", "not", "found"].map((Item, i) => (
             <motion.h1
@@ -55,29 +56,28 @@ const InstructorDetails = () => {
         >
           Please check the instructors ID and try again.
         </motion.p>
-        <div className="flex  justify-center items-center w-full ">
+          <div className="mt-5 flex justify-center items-center gap-10">
           {[
             { href: "/", title: "Back to Home" },
             { href: "/instructors", title: "Instructors" },
-          ].map((items, i) => (
-            <motion.button
-              key={i}
-              whileHover={{scale:1.1 , fontSize:"18px"}}
-              whileTap={{scale:0.9 , fontSize:"16px"}}
-              viewport={{ once: true, amount: 0.4 }}
-              initial={{ x: -60, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 , transition:{ delay: i===1 ?  1  : 0.7 } }}
-              
-              className=" my-5  mx-3"
-            >
-              <Link href={items.href} className={`  p-3 rounded-2xl w-fit 
-                ${i === 1 ? " border border-purple-500 text-purple-500": "bg-purple-500 text-white "}
-                `}  >
-                {items.title}
-              </Link>
-            </motion.button>
+          ].map((items, i) => ( 
+          <CustomButton 
+          key={i}
+          delay={i===1 ?  1  : 0.7 }
+          x={-60}
+          y={0}
+          title={items.title} href={items.href}  bg={i==1 ? true : false} />
           ))} 
         </div>
+            <motion.span  
+                  viewport={{once:true, amount:0.5}}
+                  initial={{opacity:0 , y:60}}
+                  whileInView={{opacity:0.2, y:0}}
+                  transition={{delay: 0.2, duration:0.5}}
+                  className="absolute top-2/4 left-2/4 -translate-2/4 text-[60vw] lg:text-[40vw] -z-10 text-neutral-500"
+                >
+                    404
+              </motion.span>
       </div>
     );
   }
