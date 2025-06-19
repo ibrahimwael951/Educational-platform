@@ -16,9 +16,11 @@ import CourseCard from "@/components/home/CourseCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/authProvider";
 import CoursesLoading from "@/components/Courses-Loading";
+import { motion } from "framer-motion";
 
 // default data
-import {Courses} from "@/defaultData"
+import { Courses } from "@/defaultData";
+import CustomButton from "@/components/ui/CustomButton";
 
 interface Course {
   _id: string;
@@ -98,8 +100,43 @@ export default function Page() {
   if (loading) return <CoursesLoading />;
   if (!course)
     return (
-      <section className="min-h-screen w-full flex justify-center items-center">
-        <p className="">There is no course with that name or id</p>
+      <section className=" relative overflow-hidden min-h-screen w-full flex flex-col justify-center items-center py-32 px-10">
+        <div className="flex flex-wrap justify-center items-center gap-3 text-5xl">
+          {["There", "is", " no" ,"Course" , "with" , "that", "Name", "or" , "Id"].map((item,i)=>(
+            <motion.h1  
+              viewport={{once:true, amount:0.5}}
+              initial={{opacity:0 , y:60}}
+              whileInView={{opacity:1, y:0}}
+              transition={{delay: 0.1*i, duration:0.5}}
+              key={i}
+              className={`w-fit ${item === "Course" && "dark:text-purple-500 text-purple-500"}`} 
+            >
+             {item}
+          </motion.h1>
+
+          ))}
+        </div>
+        <motion.p 
+         viewport={{once:true, amount:0.5}}
+              initial={{opacity:0 , x:-60}}
+              whileInView={{opacity:1, x:0}}
+              transition={{delay: 0.6, duration:0.5}}
+        className="mt-3 text-xl text-neutral-800 dark:text-neutral-300">Please check the Course ID and try again.</motion.p>
+
+        <motion.span  
+          viewport={{once:true, amount:0.5}}
+          initial={{opacity:0 , y:60}}
+          whileInView={{opacity:0.2, y:0}}
+          transition={{delay: 0.2, duration:0.5}}
+          className="absolute top-2/4 left-2/4 -translate-2/4 text-[60vw] lg:text-[40vw] -z-10 text-neutral-500"
+        >
+            404
+        </motion.span>
+        <div className="mt-5 flex justify-center items-center gap-10">
+
+        <CustomButton title="Go Back to Home" href="/" />
+        <CustomButton title="Courses" href="/courses"  bg={true}/>
+        </div>
       </section>
     );
   return (
@@ -254,5 +291,3 @@ export default function Page() {
     </section>
   );
 }
-
- 
