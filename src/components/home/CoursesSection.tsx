@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CourseCard from "./CourseCard";
 import axios from "axios";
-import Link from "next/link";
 
 // types for courses
 import type { Course } from "@/types";

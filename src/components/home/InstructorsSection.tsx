@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import ShareButton from "@/components/shareButton";
 import { motion } from "framer-motion";
 import CustomButton from "../ui/CustomButton";
