@@ -16,7 +16,7 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto my-5 px-5 md:px-10 md:py-20 pt-32 flex flex-col lg:flex-row justify-between items-center gap-10 cursor-default">
+    <section className="max-w-7xl mx-auto my-5 px-5 md:px-10 md:py-20 pt-32 flex flex-col lg:flex-row justify-between items-center gap-10 cursor-default overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}

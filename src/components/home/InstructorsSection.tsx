@@ -34,7 +34,7 @@ const InstructorsSection = () => {
   const t = useTranslations("InstructorsSection");
 
   return (
-    <section className="max-w-7xl mx-auto relative my-15 px-5 md:px-10 py-32">
+    <section className="max-w-7xl mx-auto relative my-15 px-5 md:px-10 py-32 overflow-x-hidden">
       <motion.div
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
