@@ -1,6 +1,6 @@
 "use client";
-
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import {
@@ -14,6 +14,7 @@ import {
 import { useTranslations } from "next-intl";
 import CourseCard from "@/components/home/CourseCard";
 import { Instructors } from "@/defaultData";
+import Link from "next/link";
 
 const InstructorDetails = () => {
   const t = useTranslations("CoursesSection");
@@ -28,7 +29,56 @@ const InstructorDetails = () => {
 
   if (!instructor) {
     return (
-      <div className="text-center text-red-500">Instructor not found!</div>
+      <div className="  min-h-screen flex flex-col justify-center items-center gap-5">
+        <div className="text-7xl w-fit mb-2 mx-auto flex gap-5  flex-wrap justify-center">
+          {["Instructor", "not", "found"].map((Item, i) => (
+            <motion.h1
+              key={i}
+              viewport={{ once: true, amount: 0.4 }}
+              initial={{
+                y: i === 1 ? 60 : -60,
+                opacity: 0,
+                color: i === 1 ? "oklch(0.627 0.265 303.9)" : "",
+              }}
+              whileInView={{ y: 0, opacity: 1 }}
+              className="w-fit"
+            >
+              {Item}
+            </motion.h1>
+          ))}
+        </div>
+        <motion.p
+          viewport={{ once: true, amount: 0.4 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          Please check the instructor's ID and try again.
+        </motion.p>
+        <div className="flex  justify-center items-center w-full ">
+          {[
+            { href: "/", title: "Back to Home" },
+            { href: "/instructors", title: "Instructors" },
+          ].map((items, i) => (
+            <motion.button
+              key={i}
+              whileHover={{scale:1.1 , fontSize:"18px"}}
+              whileTap={{scale:0.9 , fontSize:"16px"}}
+              viewport={{ once: true, amount: 0.4 }}
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 , transition:{ delay: i===1 ?  1  : 0.7 } }}
+              
+              className=" my-5  mx-3"
+            >
+              <Link href={items.href} className={`  p-3 rounded-2xl w-fit 
+                ${i === 1 ? " border border-purple-500 text-purple-500": "bg-purple-500 text-white "}
+                `}  >
+                {items.title}
+              </Link>
+            </motion.button>
+          ))} 
+        </div>
+      </div>
     );
   }
 
