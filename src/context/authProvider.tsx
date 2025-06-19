@@ -267,7 +267,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     };
     init();
-  }, [api]);
+  }, [api ,checkUser, checkCourses]);
 
   const fetchCourseById = async (id: string) => {
   try {
@@ -276,7 +276,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
     setSelectedCourse(res.data.course);
   } catch (error) {
-    console.warn("API unavailable, trying fallback for course detail");
+    console.warn("API unavailable, trying fallback for course detail" , error);
 
     const fallback = defaultCourses.find((c) => c._id === id);
     if (fallback) {
