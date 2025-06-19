@@ -1,5 +1,5 @@
 // this file for default data thats replace the broken api server  
-export const Courses =[
+export const Courses = [
   {
     _id: "1",
     title: "React for Beginners",
@@ -25,6 +25,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-10-20"),
+    duration: 12,
   },
   {
     _id: "2",
@@ -51,6 +53,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-11-01"),
+    duration: 25,
   },
   {
     _id: "3",
@@ -77,6 +81,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-09-15"),
+    duration: 5,
   },
   {
     _id: "4",
@@ -103,6 +109,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-11-05"),
+    duration: 40,
   },
   {
     _id: "5",
@@ -129,6 +137,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-08-10"),
+    duration: 15,
   },
   {
     _id: "6",
@@ -155,6 +165,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-11-10"),
+    duration: 8,
   },
   {
     _id: "7",
@@ -181,6 +193,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-07-22"),
+    duration: 22,
   },
   {
     _id: "8",
@@ -207,6 +221,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-06-30"),
+    duration: 50,
   },
   {
     _id: "9",
@@ -233,6 +249,8 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-10-25"),
+    duration: 10,
   },
   {
     _id: "10",
@@ -259,60 +277,64 @@ export const Courses =[
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-11-11"),
+    duration: 0.5,
   },
-  {
+   {
     _id: "11",
-    title: "Extended Photoshop Guide",
-    description:
-      "Comprehensive guide to mastering Photoshop tools and features.",
+    title: "SQL for Data Science",
+    description: "Learn SQL basics and data querying for data science.",
     instructor: {
-      _id: "instructor11",
-      firstName: "Jane",
-      lastName: "Smith",
-      fullName: "Jane Smith",
-      profilePic: "/home/person3.png",
+      _id: "instructor9",
+      firstName: "Mohammed",
+      lastName: "Ali",
+      fullName: "Mohammed Ali",
+      profilePic: "/home/person1.png",
     },
     sections: [],
-    price: 69,
-    category: "Design",
-    level: "Beginner",
-    language: ["English"],
+    price: 89,
+    category: "IT & Software",
+    level: "Intermediate",
+    language: ["Arabic"],
     requirements: [],
     whatYouWillLearn: [],
     tags: [],
-    thumbnail: "/home/card3.png",
-    averageRating: 3.2,
+    thumbnail: "/home/card1.png",
+    averageRating: 4.4,
     totalReviews: 0,
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-10-25"),
+    duration: 10,
   },
   {
     _id: "12",
-    title: "Agile & Scrum for PMs",
-    description:
-      "Master Agile methodologies and Scrum practices for project managers.",
+    title: "Complete Python Bootcamp",
+    description: "Become a Python expert with this all-in-one bootcamp.",
     instructor: {
-      _id: "instructor12",
-      firstName: "Sam",
-      lastName: "Wilson",
-      fullName: "Sam Wilson",
+      _id: "instructor4",
+      firstName: "Emily",
+      lastName: "White",
+      fullName: "Emily White",
       profilePic: "/home/person4.png",
     },
     sections: [],
-    price: 149,
-    category: "Business",
-    level: "Expert",
+    price: 199,
+    category: "IT & Software",
+    level: "All Levels",
     language: ["English"],
     requirements: [],
     whatYouWillLearn: [],
     tags: [],
     thumbnail: "/home/card4.png",
-    averageRating: 4.8,
+    averageRating: 4.7,
     totalReviews: 0,
     totalStudents: 0,
     isPublished: true,
     approvalStatus: "approved",
+    createdAt: new Date("2023-11-05"),
+    duration: 40,
   },
 ];
 
@@ -320,4 +342,4 @@ export const Instructors = Array.from(
   new Map(
     Courses.map((course) => [course.instructor._id, course.instructor])
   ).values()
-);
+);//hahahahaha hahahahahahahahahahahahahahahahahahahahahahahahahahahahahahhaha

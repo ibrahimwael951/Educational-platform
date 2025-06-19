@@ -7,8 +7,8 @@ import React, {
   ReactNode,
 } from "react";
 import axios from "axios";
+import { Courses as defaultCourses } from "@/defaultData"; 
 
-// Define a type for your user (adjust as needed)
 interface User {
   profile: string;
   firstName: string;
@@ -31,7 +31,36 @@ interface User {
   };
 }
 
-// Define the shape of the context
+interface Course {
+  _id: string;
+  title: string;
+  description: string;
+  instructor: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
+    profilePic: string;
+  };
+  sections: Record<string, unknown>[];
+  price: number;
+  category: string;
+  level: string;
+  language: string[];
+  requirements: string[];
+  whatYouWillLearn: string[];
+  tags: string[];
+  thumbnail: string;
+  averageRating: number;
+  totalReviews: number;
+  totalStudents: number;
+  isPublished: boolean;
+  approvalStatus: string;
+  rejectionReason?: string;
+  createdAt:Date;
+  duration:number
+}
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;
@@ -64,28 +93,31 @@ interface AuthContextType {
       facebook?: string;
     };
   }) => Promise<void>;
+  courses: Course[];
+selectedCourse: Course | null;
+fetchCourseById: (id: string) => void;
 }
 
-// Create the context with an undefined default value
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// AuthProvider component that wraps your app and makes auth object available via context
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [apiAvailable, setApiAvailable] = useState(true);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  // axios instance with default credentials
   const apiClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    baseURL: api,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  // Register function
   const register = async (
     firstName: string,
     lastName: string,
@@ -101,23 +133,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
       setUser(res.data.user);
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error("Register failed:", error);
       throw new Error("Registration failed");
     }
   };
 
-  // Login function
   const login = async (email: string, password: string) => {
     try {
       const res = await apiClient.post(`/auth/login`, { email, password });
       setUser(res.data.user);
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error("Login failed:", error);
       throw new Error("Login failed");
     }
   };
 
-  // Logout function
   const logout = async () => {
     try {
       await axios.post(`${api}/auth/logout`);
@@ -127,7 +157,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Become instructor function
   const becomeInstructor = async (data: {
     title: string;
     bio: string;
@@ -152,7 +181,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           },
         };
       });
-
       return res.data;
     } catch (error) {
       console.error("Become instructor error:", error);
@@ -160,7 +188,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Update instructor profile function
   const updateInstructor = async (data: {
     title?: string;
     bio?: string;
@@ -188,43 +215,78 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Check for existing session on mount
-  useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const res = await axios.get(`${api}/users/profile`, {
-          withCredentials: true,
-        });
-        setUser(res.data.user);
-        setApiAvailable(true); 
-      } catch (error) {
-        console.error("API unavailable, using fallback mode:", error);
-        setApiAvailable(false); // API is NOT working
+  const checkUser = async () => {
+    try {
+      const res = await axios.get(`${api}/users/profile`, {
+        withCredentials: true,
+      });
+      setUser(res.data.user);
+      setApiAvailable(true);
+    } catch (error) {
+      console.error("API unavailable, using fallback user.", error);
+      setApiAvailable(false);
+      setUser({
+        profile: "",
+        firstName: "Guest",
+        lastName: "User",
+        fullName: "Guest User",
+        _id: "offline-mode",
+        email: "guest@example.com",
+        createdAt: new Date().toISOString(),
+        isActive: false,
+        myCourses: [],
+        enrolledCourses: [],
+        bio: "Offline mode user",
+        title: "Guest",
+        role: "student",
+        socialLinks: {},
+      });
+    }
+  };
 
-        // Optional: set dummy fallback user
-        setUser({
-          profile: "",
-          firstName: "Guest",
-          lastName: "User",
-          fullName: "Guest User",
-          _id: "offline-mode",
-          email: "guest@example.com",
-          createdAt: new Date().toISOString(),
-          isActive: false,
-          myCourses: [],
-          enrolledCourses: [],
-          bio: "Offline mode user",
-          title: "Guest",
-          role: "student",
-          socialLinks: {},
-        });
-      } finally {
-        setLoading(false);
+  const checkCourses = async () => {
+    try {
+      const res = await axios.get(`${api}/courses`, {
+        withCredentials: true,
+      });
+      if (res.data?.courses?.length > 0) {
+        setCourses(res.data.courses);
+      } else {
+        setCourses(defaultCourses);
       }
-    };
+    } catch (error) {
+      console.error("Course API unavailable. Using fallback data.", error);
+      setCourses(defaultCourses);
+    }
+  };
 
-    checkUser();
+  useEffect(() => {
+    const init = async () => {
+      await checkUser();
+      await checkCourses();
+      setLoading(false);
+    };
+    init();
   }, [api]);
+
+  const fetchCourseById = async (id: string) => {
+  try {
+    const res = await axios.get(`${api}/courses/${id}`, {
+      withCredentials: true,
+    });
+    setSelectedCourse(res.data.course);
+  } catch (error) {
+    console.warn("API unavailable, trying fallback for course detail");
+
+    const fallback = defaultCourses.find((c) => c._id === id);
+    if (fallback) {
+      setSelectedCourse(fallback);
+    } else {
+      setSelectedCourse(null);
+    }
+  }
+};
+
 
   return (
     <AuthContext.Provider
@@ -237,6 +299,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         register,
         becomeInstructor,
         updateInstructor,
+        courses,
+           selectedCourse,
+    fetchCourseById,
       }}
     >
       {children}
@@ -244,7 +309,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Custom hook to use the auth context
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {
