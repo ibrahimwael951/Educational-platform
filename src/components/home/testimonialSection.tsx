@@ -22,7 +22,7 @@ const TestimonialSection = () => {
       className="max-w-7xl mx-auto flex flex-col gap-20 items-center justify-center text-center px-5 md:px-10 md:py-20 pt-32 bg-cover bg-center"
     >
       <div className="w-full max-w-4xl flex flex-col gap-10 items-center justify-center">
-        <p className="bg-gray-50 text-purple-500 px-4 py-2 font-medium inline-block uppercase">
+        <p className="text-purple-500 px-4 py-2 font-medium inline-block uppercase">
           {t("title")}
         </p>
         <h1 className="text-center text-neutral-800 dark:text-white">

@@ -11,6 +11,7 @@ import Link from "next/link";
 
 // types for courses
 import type { Course } from "@/types";
+import CustomButton from "../ui/CustomButton";
  
 
 const CoursesSection = () => {
@@ -75,13 +76,9 @@ const CoursesSection = () => {
           viewport={{ once: true, amount: 0.3 }}
           className="mt-4 md:mt-0"
         >
-          <Link
-            href="/courses"
-            className="w-60 px-6 py-3 md:px-5 md:py-2 text-base md:text-lg rounded-xl bg-purple-500 hover:bg-purple-700 text-white duration-150 text-center block"
-          >
-            {t("button")} →
-          </Link>
+           
         </motion.div>
+        <CustomButton title={t("button")} href="/courses" bg={true} width={true}/>
       </div>
 
       {/* Courses Grid */}

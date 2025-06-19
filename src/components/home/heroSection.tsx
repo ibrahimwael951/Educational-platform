@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import CustomButton from "../ui/CustomButton";
 
 const HeroSection = () => {
   const t = useTranslations("HeroSection");
@@ -49,19 +50,10 @@ const HeroSection = () => {
             {t("description")}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Link
-              href="/courses"
-              className="w-fit p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
-            >
-              {t("button")}
-            </Link>
-          </motion.div>
+
+            <CustomButton title={t("button")} href="/courses" bg={true} />
+
+          
         </motion.div>
 
         <motion.div

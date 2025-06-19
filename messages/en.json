@@ -39,7 +39,7 @@
     "welcome": "Welcome EduQuest Online Courses",
     "title": "Achieving Your Dreams Through Education",
     "description": "We are experienced in educational platform and skilled strategies for the success of our online learning.",
-    "button": "Find Courses →",
+    "button": "Find Courses ",
     "instructor": "Instructor",
     "instructorCount": "200+"
   },
@@ -148,8 +148,8 @@
     "title": "Our Instructors",
     "headline": "Meet Our Expert \nInstructors",
     "description": "Our experienced instructors are dedicated to providing high-quality education and practical insights to help you achieve your learning goals.",
-    "contactUs": "Contact Us →",
-    "findInstructor": "Find Instructor →"
+    "contactUs": "Contact Us",
+    "findInstructor": "Find Instructor"
   },
   "courses": {
     "title": "EduQuest Courses",

@@ -24,7 +24,7 @@ const WhyChooseUsSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         className="w-full lg:w-4/6 flex flex-col items-center lg:items-start gap-10"
       >
-        <div className="bg-[#E9E2FF] text-purple-500 text-xs sm:text-sm font-bold uppercase px-4 py-2 rounded-md">
+        <div className=" text-purple-500 text-xs sm:text-sm font-bold uppercase px-4 py-2 rounded-md">
           {t("title")}
         </div>
 

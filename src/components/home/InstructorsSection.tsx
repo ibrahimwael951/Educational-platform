@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import ShareButton from "@/components/shareButton";
 import { motion } from "framer-motion";
+import CustomButton from "../ui/CustomButton";
 
 const instructors = [
   {
@@ -43,24 +44,14 @@ const InstructorsSection = () => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-center"
       >
         <div className="p-6">
-          <p className=" bg-gray-50 text-purple-500 px-4 py-2 font-medium inline-block uppercase">
+          <p className=" text-purple-500 px-4 py-2 font-medium inline-block uppercase">
             {t("title")}
           </p>
-          <h1 className="text-neutral-800 dark:text-white">{t("headline")}</h1>
-          <p className="text-neutral-800 dark:text-slate-300 mt-12 leading-7">{t("description")}</p>
-          <div className="flex gap-[7px] m-[5px]">
-            <a
-              href="support"
-              className="p-3 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
-            >
-              {t("contactUs")}
-            </a>
-            <Link
-              href="/instructors"
-              className="p-3 rounded-xl bg-purple-600 mt-6 inline-block hover:bg-purple-700 text-white duration-150"
-            >
-              {t("findInstructor")}
-            </Link>
+          <h1 className="text-neutral-800 dark:text-white text-4xl">{t("headline")}</h1>
+          <p className="text-neutral-800 dark:text-slate-300 mt-8 leading-7">{t("description")}</p>
+          <div className="flex gap-[7px] m-[5px] mt-6 ">
+            <CustomButton title={t("contactUs")} href="/support"/>
+            <CustomButton title={t("findInstructor")} href="/instructors" bg={true}/>
           </div>
         </div>
 
@@ -89,7 +80,7 @@ const InstructorsSection = () => {
                 <h2 className="text-base md:text-sm dark:text-white">{instructor.name}</h2>
                 <div className="flex justify-between items-center mt-1">
                   <p className="text-sm text-purple-700 dark:text-purple-500">{instructor.position}</p>
-                  <FaArrowRight className="bg-gray-50 text-purple-500 text-xs md:text-sm rounded-full p-[3px]" />
+                  <FaArrowRight className="bg-neutral-50 text-purple-500 text-xs md:text-sm rounded-full p-[3px]" />
                 </div>
               </div>
             </motion.div>
