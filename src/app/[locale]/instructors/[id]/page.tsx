@@ -14,7 +14,6 @@ import {
 import { useTranslations } from "next-intl";
 import CourseCard from "@/components/home/CourseCard";
 import { Instructors } from "@/defaultData";
-import Link from "next/link";
 import CustomButton from "@/components/ui/CustomButton";
 
 const InstructorDetails = () => {
