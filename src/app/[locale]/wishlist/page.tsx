@@ -2,84 +2,126 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaBookmark } from "react-icons/fa";
 import Link from "next/link";
-import { wishlistCard } from "@/types";
+import { FaHeart, FaStar } from "react-icons/fa";
+
+interface wishlistCard {
+  id: number;
+  title: string;
+  instructor: string;
+  image: string; 
+  rating: number;
+  reviews: number;
+  totalHours: number;
+  lectures: number;
+}
+
+// Preview data of courses to simulate a real data source
+const previewCourses: wishlistCard[] = [
+  {
+    id: 1,
+    title: "React Js beginner Course",
+    instructor: "Cesar Yoc",
+    image: "/home/card1.png",
+    rating: 5.0,
+    reviews: 1,
+    totalHours: 2.5,
+    lectures: 16,
+  },
+  {
+    id: 2,
+    title: "React Js beginner Course",
+    instructor: "Jane Smith",
+    image: "/home/card1.png", 
+    rating: 4.7,
+    reviews: 245,
+    totalHours: 18,
+    lectures: 64,
+  },
+];
 
 const WishlistPage = () => {
   const [wishlist, setWishlist] = useState<wishlistCard[]>([]);
 
-  // Get Course From Storage
+
   useEffect(() => {
-    const storedWishlist = localStorage.getItem("wishlist");
-    if (storedWishlist) {
-      try {
-        const parsedWishlist: wishlistCard[] = JSON.parse(storedWishlist);
-        setWishlist(parsedWishlist);
-      } catch (error) {
-        console.error("Error parsing wishlist from localStorage:", error);
-        setWishlist([]);
-      }
-    }
+    setWishlist(previewCourses);
   }, []);
 
-  // Remove Course
+  // Function to remove a course from the wishlist state
   const removeFromWishlist = (id: number) => {
     const updatedWishlist = wishlist.filter((course) => course.id !== id);
     setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    console.log(`Removed course with id: ${id} from wishlist.`);
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 mt-10">
-      <h1 className="text-3xl font-bold mb-6">Wishlist</h1>
-      {wishlist.length === 0 ? (
-        <div className="text-center py-10">
-          <p className="text-gray-500 text-lg">
-            You have no courses in your wishlist.
-          </p>
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-2 gap-6">
-          {wishlist.map((course) => (
-            <div
-              key={course.id}
-              className="bg-white shadow-md rounded-lg overflow-hidden flex"
-            >
-              <Image
-                src={course.image}
-                alt={course.title}
-                width={200}
-                height={200}
-                className="w-32 h-32 object-cover"
-              />
-              <div className="p-4 flex-1">
-                <h2 className="text-xl font-semibold">{course.title}</h2>
-                <p className="text-gray-600 text-sm">{course.instructor}</p>
-                <div className="flex items-center gap-2 text-purple-500 mt-1">
-                  <span className="font-bold">{course.rating}</span>
-                  {/* <span className="text-gray-500">({course.reviews} reviews)</span> */}
-                </div>
-                <div className="inline-block items-center mt-3">
-                  <Link
-                    href={"/checkout"}
-                    className="p-2 rounded-xl bg-purple-500 mt-6 inline-block hover:bg-purple-700 text-white font-bold text-center cursor-pointer"
-                  >
-                    Enroll
+      <div className="max-w-5xl mx-auto p-6 mt-20">
+      <h1 className="text-3xl font-bold mb-6">My Wishlist</h1>
+        {wishlist.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-lg shadow-sm">
+            <p className="text-gray-600 text-xl">Your wishlist is empty.</p>
+            <Link href="/courses" className="text-purple-600 hover:underline mt-2 inline-block font-semibold">
+                Discover new courses
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+            {wishlist.map((course) => (
+              <div key={course.id} className="w-full">
+                {/* The 'group' class enables the hover effect on child elements */}
+                <div className="group relative">
+                  {/* The image is a link to the course details page */}
+                  <Link href={`/courses/${course.id}`}>
+                      <Image
+                        src={course.image}
+                        alt={course.title}
+                        width={300}
+                        height={169} // Maintain a 16:9 aspect ratio
+                        className="w-full h-auto object-cover"
+                      />
                   </Link>
-                  <div className="flex gap-3 p-2 mt-2 rounded-xl bg-red-500 hover:bg-red-700 text-white font-bold text-center cursor-pointer">
-                    <button
-                      onClick={() => removeFromWishlist(course.id)}
-                    ></button>
-                    <FaBookmark className="w-5 h-5" /> Remove From Wishlist
+
+                  {/* Heart icon button to remove from wishlist. It appears on hover. */}
+                  <button
+                    onClick={() => removeFromWishlist(course.id)}
+                    className="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-purple-700 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out hover:bg-purple-800"
+                    aria-label="Remove from wishlist"
+                  >
+                    <FaHeart className="w-5 h-5 text-white" />
+                  </button>
+                </div>
+                
+                {/* Text Content below the image */}
+                <div className="pt-3">
+                  <h3 className="font-bold text-black text-base leading-tight">
+                    <Link href={`/courses/${course.id}`} className="dark:text-white text-black transition-colors">
+                        {course.title}
+                    </Link>
+                  </h3>
+                  <p className="text-gray-500 text-xs mt-1">{course.instructor}</p>
+                  
+                  {/* Rating Section */}
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <span className="font-bold text-sm text-orange-800">{course.rating.toFixed(1)}</span>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} size={14} />
+                      ))}
+                    </div>
+                    <span className="text-xs text-gray-500">({course.reviews.toLocaleString()})</span>
                   </div>
+                  
+                  {/* Course Details */}
+                  <p className="text-xs text-gray-500 mt-1">
+                    {course.totalHours} total hours · {course.lectures} lectures
+                  </p>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
   );
 };
 
