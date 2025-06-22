@@ -76,6 +76,104 @@
       "duration": "١٩ ساعة و٣٠ دقيقة",
       "students": "٢٠+ طالب",
       "instructor": "سامانثا"
+    },
+      "hoverTitle": "العنوان",
+      "hoverDetails": "التفاصيل",
+      "freeCourse": "مجاني"
+  },
+  "coursesPage": {
+    "title_part1": "جميع",
+    "title_part2": "الدورات",
+    "description": "استكشف مجموعتنا الواسعة من الدورات لتعزيز مهاراتك.",
+    "results_showing": "عرض",
+    "results_of": "من",
+    "results_suffix": "نتائج",
+    "noCourses_title": "لم يتم العثور على دورات",
+    "noCourses_description": "حاول تعديل فلاتر البحث للعثور على ما تبحث عنه.",
+    "pagination_page": "صفحة",
+    "pagination_of": "من"
+  },
+    "coursesData": [
+    { "id": "1", "title": "React للمبتدئين", "category": "تطوير" },
+    { "id": "2", "title": "CSS و Sass المتقدم", "category": "تصميم" },
+    { "id": "3", "title": "مقدمة في التسويق الرقمي", "category": "تسويق" },
+    { "id": "4", "title": "دورة Python الكاملة", "category": "تكنولوجيا المعلومات والبرمجيات" },
+    { "id": "5", "title": "ماستركلاس التصوير الفوتوغرافي", "category": "تصوير فوتوغرافي" },
+    { "id": "6", "title": "أساسيات الأعمال", "category": "أعمال" },
+    { "id": "7", "title": "أساسيات تصميم واجهة وتجربة المستخدم", "category": "تصميم" },
+    { "id": "8", "title": "JavaScript للمحترفين", "category": "تطوير" },
+    { "id": "9", "title": "SQL لعلم البيانات", "category": "تكنولوجيا المعلومات والبرمجيات" },
+    { "id": "10", "title": "دورة قصيرة في Vue.js", "category": "تطوير" },
+    { "id": "11", "title": "دليل Photoshop الموسع", "category": "تصميم" },
+    { "id": "12", "title": "Agile و Scrum لمديري المشاريع", "category": "أعمال" }
+  ],
+    "filters": {
+    "title": "فلترة",
+    "sortBy_options": {
+      "highest_rated": "الأعلى تقييماً",
+      "newest": "الأحدث"
+    },
+    "ratings_title": "التقييمات",
+    "ratings_and_up": "{rate} وأعلى",
+    "duration_title": "مدة الفيديو",
+    "price_title": "السعر",
+    "language_title": "اللغة",
+    "level_title": "المستوى",
+    "category_title": "الفئة",
+    "show_more": "عرض المزيد",
+    "show_less": "عرض أقل",
+    "price_options": [
+      { "value": "Paid", "label": "مدفوع" },
+      { "value": "Free", "label": "مجاني" }
+    ],
+    "duration_options": [
+      { "value": "0-1 Hour", "label": "0-1 ساعة" },
+      { "value": "1-3 Hours", "label": "1-3 ساعات" },
+      { "value": "3-6 Hours", "label": "3-6 ساعات" },
+      { "value": "6-17 Hours", "label": "6-17 ساعة" }
+    ],
+    "language_options": [
+      { "value": "English", "label": "الإنجليزية" },
+      { "value": "Arabic", "label": "العربية" },
+      { "value": "French", "label": "الفرنسية" }
+    ],
+    "level_options": [
+      { "value": "All Levels", "label": "جميع المستويات" },
+      { "value": "Beginner", "label": "مبتدئ" },
+      { "value": "Intermediate", "label": "متوسط" },
+      { "value": "Expert", "label": "خبير" }
+    ],
+    "category_options": [
+      { "value": "Development", "label": "تطوير" },
+      { "value": "Business", "label": "أعمال" },
+      { "value": "IT & Software", "label": "تكنولوجيا المعلومات" },
+      { "value": "Design", "label": "تصميم" },
+      { "value": "Marketing", "label": "تسويق" },
+      { "value": "Photography", "label": "تصوير" }
+    ]
+  },
+  "courseDetails": {
+    "addToCart": "أضف إلى السلة",
+    "addToWishlist": "أضف إلى قائمة الرغبات",
+    "enroll": "سجل الآن",
+    "sections": "{count} أقسام",
+    "quizzes": "{count} اختبارات",
+    "courseDescription": "وصف الدورة",
+    "courseContent": "تعلم أساسيات React في هذه الدورة التدريبية المناسبة للمبتدئين.",
+    "whatYouWillLearn": "ماذا ستتعلم من هذه الدورة",
+    "learningPlaceholder": "سيتم إدراج أهداف التعلم التفصيلية لهذه الدورة هنا قريبًا. نحن نعمل على تحديث هذا القسم.",
+    "instructor": "المعلم",
+    "instructorRole": "معلم",
+    "relatedCourses": "دورات ذات صلة",
+    "signInToast": {
+      "message": "يجب عليك تسجيل الدخول!",
+      "link": "تسجيل الدخول"
+    },
+    "notFound": {
+      "title": "لا توجد دورة بهذا الاسم أو المعرف",
+      "description": "يرجى التحقق من معرف الدورة والمحاولة مرة أخرى.",
+      "homeButton": "العودة للرئيسية",
+      "coursesButton": "الدورات"
     }
   },
   "AboutUsSection": {
@@ -255,5 +353,129 @@
     "addBtn": "اضف الكورس",
     "successMessage": "تم اضافة الكورس بنجاح!",
     "errorMessage": "تعذر اضافة الكورس , قم بالتجربة مرة اخرى !"
+  },
+  "wishlistPage": {
+  "title": "قائمة رغباتى",
+  "emptyWishlist": "قائمة رغباتك فارغة.",
+  "discoverCourse": "اكتشف دورات جديدة.",
+  "noCoursesFound": "لم يتم العثور على دورات في قائمة رغباتك."
+},
+"cartPage": {
+    "title": "عربة التسوق",
+    "total": "الإجمالي:",
+    "checkoutButton": "المتابعة للدفع",
+    "item": {
+      "author": "بواسطة د. أنجيلا يو، مطورة",
+      "bestseller": "الأكثر مبيعاً",
+      "ratingsText": "{rating} ({count} تقييم)",
+      "detailsText": "{hours} ساعة إجمالية • {lectures} محاضرة • جميع المستويات",
+      "remove": "إزالة",
+      "moveToWishlist": "نقل إلى قائمة الأمنيات"
+    },
+    "itemsData": [
+      {
+        "id": 1,
+        "name": "الدورة التدريبية الكاملة لتطوير الويب"
+      }
+    ],
+    "emptyCart": {
+        "title": "عربة التسوق فارغة",
+        "description": "يبدو أنك لم تقم بإضافة أي شيء إلى عربة التسوق الخاصة بك حتى الآن.",
+        "button": "تصفح الدورات"
+    }
+  },
+    "checkoutPage": {
+    "title": "الدفع",
+    "countryLabel": "الدولة",
+    "countryPlaceholder": "اختر دولة",
+    "paymentMethod": "طريقة الدفع",
+    "cardsLabel": "البطاقات",
+    "saveCardLabel": "احفظ هذه البطاقة بأمان لعمليات الشراء التالية",
+    "orderDetails": "تفاصيل الطلب",
+    "orderSummaryTitle": "ملخص الطلب",
+    "originalPrice": "السعر الأصلي:",
+    "discounts": "الخصومات (خصم 83%):",
+    "total": "الإجمالي (دورة واحدة):",
+    "payButton": "ادفع {amount}",
+    "terms": {
+      "prefix": "بإتمام عملية الشراء، فإنك توافق على",
+      "link": "شروط الاستخدام"
+    },
+    "guarantee": {
+      "title": "ضمان استرداد الأموال لمدة 30 يومًا",
+      "description": "غير راضٍ؟ احصل على استرداد كامل للمبلغ في غضون 30 يومًا. الأمر بسيط ومباشر!"
+    },
+    "placeholders": {
+      "cardNumber": "1234 5678 9012 3456",
+      "expiry": "شهر/سنة",
+      "cvc": "CVC",
+      "nameOnCard": "الاسم على البطاقة"
+    }
+  },
+  "instructorsPage": {
+    "title": "مدربينا الخبراء"
+  },
+  "instructorDetails": {
+    "label": "معلم",
+    "role": "مدرس",
+    "stats": {
+      "totalLearners": "إجمالي المتعلمين",
+      "reviews": "تقييمات"
+    },
+    "aboutMeTitle": "عني:",
+    "aboutMeContent": "أحب كتابة الأكواد وأحب تعليم الآخرين. لقد أحببت البرمجة دائمًا، وأحب الغوص في المشاكل المعقدة وحلها وما زلت أعتقد أنه شعور رائع حقًا أن ترى تطبيقًا أو برنامجًا قمت ببنائه من الصفر.\n\nقد تعتقد أنني درست البرمجة وحصلت على شهادة في علوم الحاسوب - لكنني لم أفعل! لقد أحببت البرمجة دائمًا وكانت هواية رائعة ولكني في الواقع اخترت 'الهندسة الطبية الحيوية' عندما حان وقت الذهاب إلى الجامعة. وأنا لا أندم على ذلك! لقد كان وقتًا ممتعًا واستمتعت بكل الأشياء التي تعلمتها هناك. ولكن بعد فترة وجيزة من اتخاذ خطواتي الأولى في وظائف الهندسة الطبية الحيوية التقليدية، كان من الواضح جدًا بالنسبة لي أنه يجب علي العودة إلى البرمجة. وهذا ما فعلته.",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "myCoursesTitle": "دوراتي",
+    "notFound": {
+      "title": "المعلم غير موجود",
+      "description": "يرجى التحقق من معرف المعلم والمحاولة مرة أخرى.",
+      "homeButton": "العودة للرئيسية",
+      "instructorsButton": "المعلمين"
+    }
+  },
+   "servicesPage": {
+    "header": {
+      "title": "خدماتنا",
+      "description": "نحن نقدم دورات عالية الجودة يمكنك الوصول إليها في أي وقت ومن أي مكان. <br/> كمدرب، يمكنك مشاركة معرفتك وإلهام المتعلمين في جميع أنحاء العالم."
+    },
+    "instructorSection": {
+      "mainFeature": {
+        "title": "كن مدربًا",
+        "description": "سواء كنت تدرس منذ سنوات أو كانت هذه هي المرة الأولى لك، يمكنك إنشاء دورة تدريبية جذابة. لقد قمنا بتجميع الموارد وأفضل الممارسات لمساعدتك على الوصول إلى المستوى التالي، بغض النظر عن نقطة البداية.",
+        "imageAlt": "مدرب يخطط لدورة على السبورة"
+      },
+      "videoFeature": {
+        "title": "ابدأ مع الفيديو",
+        "description": "يمكن لمحاضرات الفيديو عالية الجودة أن تميز دورتك. استخدم مواردنا لتعلم الأساسيات.",
+        "link": "ابدأ الآن",
+        "imageAlt": "امرأة تسجل محاضرة فيديو"
+      },
+      "connectFeature": {
+        "title": "تواصل مع المدربين",
+        "description": "احصل على الإلهام، شارك الأفكار، وننمو معًا",
+        "link": "اكتشف المدربين",
+        "imageAlt": "امرأة تبني جمهورًا عبر الإنترنت"
+      }
+    },
+    "studentSection": {
+      "title": "هل أنت مستعد لبدء التعلم؟",
+      "description": "ادخل إلى عالم من المعرفة. منصتنا تقدم كل ما تحتاجه لتحقيق أهدافك التعليمية.",
+      "features": [
+        {
+          "title": "دورات يقودها خبراء",
+          "description": "تعلم من محترفي الصناعة والخبراء الشغوفين في آلاف الموضوعات."
+        },
+        {
+          "title": "تعلم بالسرعة التي تناسبك",
+          "description": "استمتع بوصول مدى الحياة للدورات على الويب والجوال. تعلم في أي وقت وفي أي مكان."
+        },
+        {
+          "title": "تعلم عملي تطبيقي",
+          "description": "طبق ما تعلمته من خلال الاختبارات والواجبات والمشاريع العملية."
+        }
+      ],
+      "browseButton": "تصفح جميع الدورات"
+    }
   }
 }

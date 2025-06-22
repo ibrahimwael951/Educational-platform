@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +43,7 @@ const previewCourses: wishlistCard[] = [
 ];
 
 const WishlistPage = () => {
+  const t = useTranslations("wishlistPage");
   const [wishlist, setWishlist] = useState<wishlistCard[]>([]);
 
 
@@ -57,12 +60,12 @@ const WishlistPage = () => {
 
   return (
       <div className="max-w-5xl mx-auto p-6 mt-20">
-      <h1 className="text-3xl font-bold mb-6">My Wishlist</h1>
+      <h1 className="text-3xl font-bold mb-6">{t("title")}</h1>
         {wishlist.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-lg shadow-sm">
-            <p className="text-gray-600 text-xl">Your wishlist is empty.</p>
+            <p className="text-gray-600 text-xl">{t("emptyWishlist")}</p>
             <Link href="/courses" className="text-purple-600 hover:underline mt-2 inline-block font-semibold">
-                Discover new courses
+              {t("discoverCourse")}
             </Link>
           </div>
         ) : (

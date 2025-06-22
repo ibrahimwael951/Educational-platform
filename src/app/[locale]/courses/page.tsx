@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useCallback } from "react";
+import { useTranslations, useLocale  } from "next-intl"; 
 import CourseCard from "@/components/home/CourseCard";
 import FilterCourses, { FilterState } from "./FilterCourses";
 import { ToastContainer } from "react-toastify";
@@ -55,6 +56,8 @@ const allCourses: Course[] = [
 const COURSES_PER_PAGE = 20;
 
 const CoursesPage = () => {
+  const t = useTranslations("coursesPage");
+  const locale = useLocale(); 
   const [currentPage, setCurrentPage] = useState(1);
   const [activeFilters, setActiveFilters] = useState<FilterState | null>(null);
 
@@ -129,11 +132,16 @@ const CoursesPage = () => {
   return (
     <section className="container mx-auto px-5 py-10 mt-20">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
-      <div className="text-center lg:text-left mb-10">
+      <div 
+        className={`mb-10 text-center ${locale === 'ar' ? 'lg:text-right' : 'lg:text-left'}`}
+      >
         <h1 className="text-3xl font-bold text-neutral-800 dark:text-white">
-          All <span className="text-purple-500">Courses</span>
+          {t('title_part1')}{' '}
+          <span className="text-purple-500">{t('title_part2')}</span>
         </h1>
-        <p className="text-neutral-600 dark:text-neutral-400 mt-2">Explore our wide range of courses to boost your skills.</p>
+        <p className="text-neutral-600 dark:text-neutral-400 mt-2">
+          {t('description')}
+        </p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-10 mt-10">
@@ -144,8 +152,12 @@ const CoursesPage = () => {
 
         {/* Courses Cards & Pagination */}
         <div className="flex-1">
-          <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-300">
-            Showing <span className="font-bold">{currentCourses.length}</span> of <span className="font-bold">{filteredCourses.length}</span> results
+        <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-300">
+            {t('results_showing')}{' '}
+            <span className="font-bold">{currentCourses.length}</span>{' '}
+            {t('results_of')}{' '}
+            <span className="font-bold">{filteredCourses.length}</span>{' '}
+            {t('results_suffix')}
           </p>
           {currentCourses.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -163,9 +175,9 @@ const CoursesPage = () => {
               ))}
             </div>
           ) : (
-          <div className="text-center py-20 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                <h3 className="text-xl font-semibold">No Courses Found</h3>
-                <p className="text-neutral-500 mt-2">Try adjusting your filters to find what you&apos;re looking for.</p>
+            <div className="text-center py-20 bg-gray-50 dark:bg-neutral-800 rounded-lg">
+                <h3 className="text-xl font-semibold">{t('noCourses_title')}</h3>
+                <p className="text-neutral-500 mt-2">{t('noCourses_description')}</p>
             </div>
           )}
 
@@ -181,7 +193,7 @@ const CoursesPage = () => {
                 </PaginationItem>
                 <PaginationItem>
                 <span className="px-4 py-2 text-sm">
-                    Page {currentPage} of {totalPages}
+                    {t('pagination_page')} {currentPage} {t('pagination_of')} {totalPages}
                   </span>
                 </PaginationItem>
                 <PaginationItem className="cursor-pointer">

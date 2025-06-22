@@ -73,6 +73,104 @@
       "duration": "19h 30m",
       "students": "20+ Students",
       "instructor": "Samantha"
+    },
+      "hoverTitle": "Title",
+      "hoverDetails": " Details →",
+      "freeCourse": "Free"
+  },
+  "coursesPage": {
+    "title_part1": "All",
+    "title_part2": "Courses",
+    "description": "Explore our wide range of courses to boost your skills.",
+    "results_showing": "Showing",
+    "results_of": "of",
+    "results_suffix": "results",
+    "noCourses_title": "No Courses Found",
+    "noCourses_description": "Try adjusting your filters to find what you're looking for.",
+    "pagination_page": "Page",
+    "pagination_of": "of"
+  },
+  "coursesData": [
+    { "id": "1", "title": "React for Beginners", "category": "Development" },
+    { "id": "2", "title": "Advanced CSS and Sass", "category": "Design" },
+    { "id": "3", "title": "Intro to Digital Marketing", "category": "Marketing" },
+    { "id": "4", "title": "Complete Python Bootcamp", "category": "IT & Software" },
+    { "id": "5", "title": "Photography Masterclass", "category": "Photography" },
+    { "id": "6", "title": "Business Fundamentals", "category": "Business" },
+    { "id": "7", "title": "UI/UX Design Essentials", "category": "Design" },
+    { "id": "8", "title": "Expert JavaScript", "category": "Development" },
+    { "id": "9", "title": "SQL for Data Science", "category": "IT & Software" },
+    { "id": "10", "title": "Short Course on Vue.js", "category": "Development" },
+    { "id": "11", "title": "Extended Photoshop Guide", "category": "Design" },
+    { "id": "12", "title": "Agile & Scrum for PMs", "category": "Business" }
+  ],
+    "filters": {
+    "title": "Filter",
+    "sortBy_options": {
+      "highest_rated": "Highest Rated",
+      "newest": "Newest"
+    },
+    "ratings_title": "Ratings",
+    "ratings_and_up": "{rate} & up",
+    "duration_title": "Video Duration",
+    "price_title": "Price",
+    "language_title": "Language",
+    "level_title": "Level",
+    "category_title": "Category",
+    "show_more": "Show more",
+    "show_less": "Show less",
+    "price_options": [
+      { "value": "Paid", "label": "Paid" },
+      { "value": "Free", "label": "Free" }
+    ],
+    "duration_options": [
+      { "value": "0-1 Hour", "label": "0-1 Hour" },
+      { "value": "1-3 Hours", "label": "1-3 Hours" },
+      { "value": "3-6 Hours", "label": "3-6 Hours" },
+      { "value": "6-17 Hours", "label": "6-17 Hours" }
+    ],
+    "language_options": [
+      { "value": "English", "label": "English" },
+      { "value": "Arabic", "label": "Arabic" },
+      { "value": "French", "label": "French" }
+    ],
+    "level_options": [
+      { "value": "All Levels", "label": "All Levels" },
+      { "value": "Beginner", "label": "Beginner" },
+      { "value": "Intermediate", "label": "Intermediate" },
+      { "value": "Expert", "label": "Expert" }
+    ],
+    "category_options": [
+      { "value": "Development", "label": "Development" },
+      { "value": "Business", "label": "Business" },
+      { "value": "IT & Software", "label": "IT & Software" },
+      { "value": "Design", "label": "Design" },
+      { "value": "Marketing", "label": "Marketing" },
+      { "value": "Photography", "label": "Photography" }
+    ]
+  },
+    "courseDetails": {
+    "addToCart": "Add To Cart",
+    "addToWishlist": "Add To Wishlist",
+    "enroll": "Enroll",
+    "sections": "{count} Sections",
+    "quizzes": "{count} Quizzes",
+    "courseDescription": "Course Description",
+    "courseContent": "Learn the basics of React in this beginner-friendly course.",
+    "whatYouWillLearn": "What You Will Learn",
+    "learningPlaceholder": "Detailed learning objectives for this course will be listed here soon. We are working on updating this section.",
+    "instructor": "Instructor",
+    "instructorRole": "Instructor",
+    "relatedCourses": "Related Courses",
+    "signInToast": {
+      "message": "You must sign in!",
+      "link": "Sign In"
+    },
+    "notFound": {
+      "title": "There is no Course with that Name or Id",
+      "description": "Please check the Course ID and try again.",
+      "homeButton": "Go Back to Home",
+      "coursesButton": "Courses"
     }
   },
   "AboutUsSection": {
@@ -255,5 +353,129 @@
     "addBtn": "Add Course",
     "successMessage": "Course Added successfully!",
     "errorMessage": "Add Course failed. Please try again."
+  },
+  "wishlistPage": {
+    "title": "My Wishlist",
+    "emptyWishlist": "Your wishlist is empty.",
+    "discoverCourse": " Discover new courses.",
+    "noCoursesFound": "No courses found in your wishlist."
+  },
+  "cartPage": {
+    "title": "Shopping Cart",
+    "total": "Total:",
+    "checkoutButton": "Proceed to Checkout",
+    "item": {
+      "author": "By Dr. Angela Yu, Developer",
+      "bestseller": "Bestseller",
+      "ratingsText": "{rating} ({count} ratings)",
+      "detailsText": "{hours} total hours • {lectures} lectures • All Levels",
+      "remove": "Remove",
+      "moveToWishlist": "Move to Wishlist"
+    },
+    "itemsData": [
+      {
+        "id": 1,
+        "name": "The Complete Full-Stack Web Development Bootcamp"
+      }
+    ],
+    "emptyCart": {
+        "title": "Your cart is empty",
+        "description": "Looks like you haven't added anything to your cart yet.",
+        "button": "Browse Courses"
+    }
+  },
+  "checkoutPage": {
+    "title": "Checkout",
+    "countryLabel": "Country",
+    "countryPlaceholder": "Select a country",
+    "paymentMethod": "Payment method",
+    "cardsLabel": "Cards",
+    "saveCardLabel": "Securely save this card for my later purchase",
+    "orderDetails": "Order Details",
+    "orderSummaryTitle": "Order summary",
+    "originalPrice": "Original Price:",
+    "discounts": "Discounts (83% Off):",
+    "total": "Total (1 course):",
+    "payButton": "Pay {amount}",
+    "terms": {
+      "prefix": "By completing your purchase, you agree to these",
+      "link": "Terms of Use"
+    },
+    "guarantee": {
+      "title": "30-Day Money-Back Guarantee",
+      "description": "Not satisfied? Get a full refund within 30 days. Simple and straightforward!"
+    },
+    "placeholders": {
+      "cardNumber": "1234 5678 9012 3456",
+      "expiry": "MM/YY",
+      "cvc": "CVC",
+      "nameOnCard": "Name on card"
+    }
+  },
+  "instructorsPage": {
+    "title": "Our Expert Instructors"
+  },
+  "instructorDetails": {
+    "label": "INSTRUCTOR",
+    "role": "TEACHER",
+    "stats": {
+      "totalLearners": "Total learners",
+      "reviews": "Reviews"
+    },
+    "aboutMeTitle": "About Me:",
+    "aboutMeContent": "I love writing code and I love teaching others. I always loved coding, I love diving into complex problems and solving and I still think that it's really an amazing feeling to see an app or program you built from scratch.\n\nYou might think that I studied programming and that I got a CS degree - but I didn't! I always liked coding and it was a great hobby but I actually went for 'Biomedical Engineering' when it was time to go to university. And I don't regret it! It was a fun time and I enjoyed all the things taught there. But soon after taking my first steps in typical Biomedical Engineering jobs, it was very clear to me that I had to go back to coding. And that's what I did.",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "myCoursesTitle": "My courses",
+    "notFound": {
+      "title": "Instructor not found",
+      "description": "Please check the instructor's ID and try again.",
+      "homeButton": "Back to Home",
+      "instructorsButton": "Instructors"
+    }
+  },
+    "servicesPage": {
+    "header": {
+      "title": "Our Services",
+      "description": "We offer high-quality courses that you can access anytime, from anywhere. <br/> As an instructor, you can share your knowledge and inspire learners worldwide."
+    },
+    "instructorSection": {
+      "mainFeature": {
+        "title": "Become An Instructor",
+        "description": "Whether you've been teaching for years or are teaching for the first time, you can make an engaging course. We've compiled resources and best practices to help you get to the next level, no matter where you're starting.",
+        "imageAlt": "Instructor planning a course on a board"
+      },
+      "videoFeature": {
+        "title": "Get Started with Video",
+        "description": "Quality video lectures can set your course apart. Use our resources to learn the basics.",
+        "link": "Get Started",
+        "imageAlt": "Woman recording a video lecture"
+      },
+      "connectFeature": {
+        "title": "Connect with Instructors",
+        "description": "Get Inspired, Share Ideas, and Grow Together",
+        "link": "Discover Instructors",
+        "imageAlt": "Woman building an online audience"
+      }
+    },
+    "studentSection": {
+      "title": "Ready to Start Learning?",
+      "description": "Access a world of knowledge. Our platform offers everything you need to achieve your learning goals.",
+      "features": [
+        {
+          "title": "Expert-Led Courses",
+          "description": "Learn from industry professionals and passionate experts on thousands of topics."
+        },
+        {
+          "title": "Learn at Your Pace",
+          "description": "Enjoy lifetime access to courses on web and mobile. Learn anytime, anywhere."
+        },
+        {
+          "title": "Hands-On Learning",
+          "description": "Apply what you learn with quizzes, assignments, and practical projects."
+        }
+      ],
+      "browseButton": "Browse All Courses"
+    }
   }
 }

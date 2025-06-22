@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -39,6 +40,7 @@ const instructors = [
 
 // Slider
 const InstructorsSlider = () => {
+  const t = useTranslations("instructorsPage");
   const router = useRouter();
 
   const settings = {
@@ -74,7 +76,7 @@ const InstructorsSlider = () => {
   return (
     <section className="max-w-7xl mx-auto relative my-15 px-5 md:px-10 py-32">
       <h1 className="text-neutral-800 dark:text-white text-center mb-10">
-    Our Expert Instructors
+        {t("title")}
       </h1>
 
       <Slider {...settings} className="instructor-slider">

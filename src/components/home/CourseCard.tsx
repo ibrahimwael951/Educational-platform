@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,7 +36,8 @@ const CourseCard: React.FC<CourseCardProps> = ({
   rating,
   instructor,
 }) => {
- 
+  const t = useTranslations("CoursesSection");
+  
     return (
       <Link href={`/courses/${id}`}>
         <motion.div
@@ -71,7 +75,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
                   )}
                   <p className="text-lg text-purple-700 flex items-center">
                     {price == 0 ? (
-                      "Free"
+                      t("freeCourse")
                     ) : (
                       <>
                         <LiaPoundSignSolid size={20} />
@@ -84,7 +88,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             </HoverCardTrigger>
             <HoverCardContent className="lg:w-[300px] cursor-default">
               <div className="my-2">
-                <h1 className="text-neutral-600">Title :</h1>
+                <h1 className="text-neutral-600">{t("hoverTitle")}</h1>
                 <h1 className="ml-2  text-neutral-900">{title}</h1>
               </div>
               <div className="flex items-center gap-3">
@@ -112,7 +116,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
                 </div>
 
                 <button className="cursor-pointer p-2 items-center rounded-xl text-sm bg-purple-500 inline-block hover:bg-purple-700 text-white duration-150">
-                  Details →
+                {t("hoverDetails")}
                 </button>
               </div>
             </HoverCardContent>
