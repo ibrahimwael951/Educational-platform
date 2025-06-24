@@ -13,6 +13,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { CiLinkedin, CiStar, CiHeart, CiPlay1 } from "react-icons/ci";
 import { RiContactsLine } from "react-icons/ri";
 import { IoSchoolOutline } from "react-icons/io5";
+import CustomButton from "@/components/ui/CustomButton";
 
 const Profile = () => {
   const { user, loading, logout } = useAuth();
@@ -44,14 +45,14 @@ const Profile = () => {
         <aside className="bg-neutral-100 shadow-2xl dark:bg-neutral-800  w-full md:w-2/6 p-4 rounded-lg   overflow-hidden h-screen  animate-pulse"></aside>
         <main className="flex-1 px-4 w-full md:w-4/6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 lg:m-0  animate-pulse">
-            <div className="bg-slate-100 h-40 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"></div>
-            <div className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"></div>
+            <div className="bg-neutral-100 h-40 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"></div>
+            <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"></div>
           </div>
 
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="bg-slate-100 h-32 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center animate-pulse"
+              className="bg-neutral-100 h-32 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center animate-pulse"
             ></div>
           ))}
         </main>
@@ -66,7 +67,7 @@ const Profile = () => {
         transition={{ duration: 0.6 }}
         className={`
           ${
-            user?.role == "admin" &&
+            user?.role == "admin" &&      
             "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"
           }
           ${
@@ -149,7 +150,7 @@ const Profile = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
+            className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
           >
             <CiStar className="text-4xl text-purple-500" />
             <p className="text-neutral-800 dark:text-white text-3xl font-bold">
@@ -164,8 +165,8 @@ const Profile = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 , delay: 0}}
-              className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
+              transition={{ duration: 0.6, delay: 0 }}
+              className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
             >
               <CiPlay1 className="text-4xl text-purple-500" />
               <p className="text-neutral-800 dark:text-white text-3xl font-bold">
@@ -181,8 +182,8 @@ const Profile = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 , delay: 0.1}}
-            className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
           >
             <div className="w-8/12">
               <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
@@ -192,20 +193,19 @@ const Profile = () => {
                 {user?.title}
               </p>
             </div>
-            <Link
+            <CustomButton
+              title="Edit Ur Title"
               href="/auth/update-instructor"
-              className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
-            >
-              edit ur title
-            </Link>
+              bg={true}
+            />
           </motion.div>
         )}
         {user?.role == "instructor" && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 , delay: 0.2}}
-            className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
           >
             <div className="w-8/12">
               <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
@@ -215,60 +215,61 @@ const Profile = () => {
                 {user?.bio}
               </p>
             </div>
-            <Link
+            <CustomButton
+              title="Edit Ur Bio"
               href="/auth/update-instructor"
-              className=" p-2 bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
-            >
-              edit ur bio
-            </Link>
+              bg={true}
+            />
           </motion.div>
         )}
         {user?.role == "student" && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 , delay: 0.3}}
-            className="bg-slate-100 dark:bg-neutral-800 p-6 rounded-lg mt-4 shadow-lg flex justify-between items-center"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-lg mt-4 shadow-lg flex justify-between items-center"
           >
             <p className="text-neutral-800 dark:text-white opacity-50">
               do u wanna be a part of our community teachers?
             </p>
-            <Link
+            <CustomButton
+              title="lets Go"
               href="/auth/becomeInstructor"
-              className="p-2 w-20 text-center bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700 rounded-xl text-white hover:scale-105 duration-150"
-            >
-              lets Go
-            </Link>
+              bg={true}
+            />
           </motion.div>
         )}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 , delay: 0.4}}
-          className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
-        >
-          <p className="text-neutral-800 dark:text-white">
-            {t("change-language")}
-          </p>
-          <LocaleSwitcher />
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 ">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-neutral-100  dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col justify-between items-center"
+          >
+            <p className="text-neutral-800 dark:text-white">
+              {t("change-language")}
+            </p>
+            <LocaleSwitcher />
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="bg-neutral-100  dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col justify-between items-center"
+
+          >
+            <p className="text-neutral-800 dark:text-white">
+              {t("change-Theme")}
+            </p>
+            <ModeToggle />
+          </motion.div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 , delay: 0.5}}
-          className="flex justify-between items-center bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
-        >
-          <p className="text-neutral-800 dark:text-white">
-            {t("change-Theme")}
-          </p>
-          <ModeToggle />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 , delay: 0.6}}
-          className="bg-slate-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center"
         >
           <p className="text-neutral-800 dark:text-white">
             {t("user_id")} : <span className="font-bold">{user?._id}</span>

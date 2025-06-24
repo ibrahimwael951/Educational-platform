@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
+import { fadeUp , animation , hoverScale } from "@/animation";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -9,14 +11,15 @@ export function ModeToggle() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
   return (
-    <div className="">
-      <button
-        className="p-3 rounded-xl bg-gradient-to-tr from-purple-600  via-purple-600 to-blue-700  mt-6 inline-block hover:bg-purple-700 text-white duration-150 cursor-pointer"
-        onClick={toggleTheme}
-      >
-         {theme === "dark" ? "Light" : "Dark"} Mode
-      </button>
-       
-    </div>
+    <motion.button 
+    {...animation}
+    {...fadeUp}
+    {...hoverScale}
+
+      className="p-3 rounded-xl bg-purple-500 mt-6 text-white   cursor-pointer"
+      onClick={toggleTheme}
+    >
+      {theme === "dark" ? "Light" : "Dark"} Mode
+    </motion.button>
   );
 }

@@ -211,4 +211,4 @@ export default function UpdateInstructorProfile() {
       </form>
     </section>
   );
-}
+} 
