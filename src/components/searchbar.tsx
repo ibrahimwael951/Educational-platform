@@ -126,10 +126,15 @@ const SearchBar = () => {
       setIsDropdownVisible(false);
       // Navigate to the search page, passing the query in the URL
       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      
+      setQuery("");
     }
   }
+
+  // This handler is called when a user clicks on a result link
   const handleLinkClick = () => {
     setIsDropdownVisible(false);
+    
   };
 
   const hasResults = results.courses.length > 0 || results.instructors.length > 0 || results.categories.length > 0;
