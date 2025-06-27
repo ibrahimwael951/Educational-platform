@@ -13,7 +13,7 @@ import { IoLanguage } from "react-icons/io5";
 import { Link } from "@/i18n/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CourseCard from "@/components/home/CourseCard";
+import CourseCard from "@/components/ui/CourseCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/authProvider";
 import CoursesLoading from "@/components/Courses-Loading";
@@ -217,7 +217,7 @@ export default function Page() {
       <motion.h1 {...animation} {...fromRight} className="text-2xl my-2 text-neutral-900 dark:text-white mt-10">{t("relatedCourses")}</motion.h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
         {relatedCourses.map((related) => (
-          <CourseCard key={related._id} id={related._id} image={related.thumbnail} title={related.title} category={related.category} price={related.price} rating={String(related.averageRating)} instructor={{ name: related.instructor.fullName, avatar: related.instructor.profilePic }} />
+          <CourseCard key={related._id} id={related._id} image={related.thumbnail} title={related.title} category={related.category} price={related.price} rating={String(related.averageRating)} instructor={{ name: related.instructor.fullName, avatar: related.instructor.profilePic }} description={related.description} />
         ))}
       </div>
     </section>

@@ -95,11 +95,12 @@ const Profile = () => {
         </div>
         <ul className="space-y-1">
           {[
-            { title: "courses", icon: IoSchoolOutline },
-            { title: "certificates", icon: CiStar },
-            { title: "favorites", icon: CiHeart },
+            { title: "courses", icon: IoSchoolOutline, href:"/dashboard/my-learning" },
+            { title: "certificates", icon: CiStar, href:"" },
+            { title: "favorites", icon: CiHeart , href:""},
           ].map((item, index) => (
-            <li
+            <Link
+              href={item.href}
               key={index}
               className="flex justify-between items-center p-1  lg:opacity-50 hover:opacity-100 cursor-pointer duration-150"
             >
@@ -110,7 +111,7 @@ const Profile = () => {
                 {t(item.title)}
               </div>
               <MdKeyboardDoubleArrowRight />
-            </li>
+            </Link>
           ))}
           <p className="mt-8 mb-3 text-neutral-800 dark:text-white lg:opacity-50">
             Contact

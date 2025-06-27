@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CourseCard from "./CourseCard";
+import CourseCard from "../ui/CourseCard";
 import CustomButton from "../ui/CustomButton";
 import { useAuth } from "@/context/authProvider";
 const CoursesSection = () => {
@@ -86,6 +86,7 @@ const CoursesSection = () => {
                   category={course.category}
                   price={course.price}
                   rating={String(course.averageRating)}
+                  description={course.description}
                   instructor={{
                     name: course.instructor.fullName,
                     avatar: course.instructor.profilePic,

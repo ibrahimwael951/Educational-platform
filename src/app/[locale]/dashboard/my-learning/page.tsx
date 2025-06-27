@@ -72,7 +72,7 @@ return (
               {/* The grid now maps over `currentCourses` instead of the full list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {currentCourses.map((course) => (
-                  <EnrolledCourseCard key={course.id} course={course} />
+                  <EnrolledCourseCard key={course.id} course={course}  />
                 ))}
               </div>
 

@@ -26,8 +26,8 @@
       "description": "Your saved courses for future purchase or enrollment"
     },
     {
-      "title": "account-setting",
-      "url": "/dashboard#setting",
+      "title": "my-learning",
+      "url": "/dashboard/my-learning",
       "description": "Manage your profile settings, password, and preferences"
     },
     {

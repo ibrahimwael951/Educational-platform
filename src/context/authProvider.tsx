@@ -4,10 +4,11 @@ import React, {
   useState,
   useContext,
   useEffect,
+  useCallback,
   ReactNode,
 } from "react";
 import axios from "axios";
-import { Courses as defaultCourses } from "@/defaultData"; 
+import { Courses as defaultCourses } from "@/defaultData";
 
 interface User {
   profile: string;
@@ -57,8 +58,8 @@ interface Course {
   isPublished: boolean;
   approvalStatus: string;
   rejectionReason?: string;
-  createdAt:Date;
-  duration:number
+  createdAt: Date;
+  duration: number;
 }
 
 interface AuthContextType {
@@ -71,8 +72,9 @@ interface AuthContextType {
     firstName: string,
     lastName: string,
     email: string,
-    password: string
+    password: string,
   ) => Promise<void>;
+  deactivateAccount:() => Promise<void>;
   becomeInstructor: (data: {
     title: string;
     bio: string;
@@ -94,8 +96,8 @@ interface AuthContextType {
     };
   }) => Promise<void>;
   courses: Course[];
-selectedCourse: Course | null;
-fetchCourseById: (id: string) => void;
+  selectedCourse: Course | null;
+  fetchCourseById: (id: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -107,7 +109,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
-
   const api = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const apiClient = axios.create({
@@ -117,6 +118,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       "Content-Type": "application/json",
     },
   });
+
+  const checkUser = useCallback(async () => {
+    try {
+      const res = await axios.get(`${api}/users/profile`, {
+        withCredentials: true,
+      });
+      setUser(res.data.user);
+      setApiAvailable(true);
+    } catch (error) {
+      console.error("API unavailable, using fallback user.", error);
+    
+    }
+  }, [api]);
+
+  const deactivateAccount = async () => {
+    try {
+      await apiClient.post('/users/deactivate');
+      setUser((prevUser) => {
+        if (!prevUser) return null;
+        return {
+          ...prevUser,
+          isActive: false,
+        };
+      });
+    } catch (error) {
+      console.error("Account deactivation failed:", error);
+      throw new Error("Failed to deactivate account");
+    }
+  };
 
   const register = async (
     firstName: string,
@@ -214,37 +244,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       throw new Error("Failed to update instructor profile");
     }
   };
-
-  const checkUser = async () => {
-    try {
-      const res = await axios.get(`${api}/users/profile`, {
-        withCredentials: true,
-      });
-      setUser(res.data.user);
-      setApiAvailable(true);
-    } catch (error) {
-      console.error("API unavailable, using fallback user.", error);
-      setApiAvailable(false);
-      setUser({
-        profile: "",
-        firstName: "Guest",
-        lastName: "User",
-        fullName: "Guest User",
-        _id: "offline-mode",
-        email: "guest@example.com",
-        createdAt: new Date().toISOString(),
-        isActive: false,
-        myCourses: [],
-        enrolledCourses: [],
-        bio: "Offline mode user",
-        title: "Guest",
-        role: "student",
-        socialLinks: {},
-      });
-    }
-  };
-
-  const checkCourses = async () => {
+  const checkCourses = useCallback(async () => {
     try {
       const res = await axios.get(`${api}/courses`, {
         withCredentials: true,
@@ -258,7 +258,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.error("Course API unavailable. Using fallback data.", error);
       setCourses(defaultCourses);
     }
-  };
+  }, [api]);
 
   useEffect(() => {
     const init = async () => {
@@ -267,26 +267,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     };
     init();
-  }, [api ,checkUser, checkCourses]);
+  }, [checkUser, checkCourses]);
 
-  const fetchCourseById = async (id: string) => {
-  try {
-    const res = await axios.get(`${api}/courses/${id}`, {
-      withCredentials: true,
-    });
-    setSelectedCourse(res.data.course);
-  } catch (error) {
-    console.warn("API unavailable, trying fallback for course detail" , error);
+  const fetchCourseById = useCallback(
+    async (id: string) => {
+      try {
+        const res = await axios.get(`${api}/courses/${id}`, {
+          withCredentials: true,
+        });
+        setSelectedCourse(res.data.course);
+      } catch (error) {
+        console.warn( 
+          "API unavailable, trying fallback for course detail",
+          error
+        );
 
-    const fallback = defaultCourses.find((c) => c._id === id);
-    if (fallback) {
-      setSelectedCourse(fallback);
-    } else {
-      setSelectedCourse(null);
-    }
-  }
-};
-
+        const fallback = defaultCourses.find((c) => c._id === id);
+        if (fallback) {
+          setSelectedCourse(fallback);
+        } else {
+          setSelectedCourse(null);
+        }
+      }
+    },
+    [api]
+  );
 
   return (
     <AuthContext.Provider
@@ -300,8 +305,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         becomeInstructor,
         updateInstructor,
         courses,
-           selectedCourse,
-    fetchCourseById,
+        selectedCourse,
+        deactivateAccount,
+        fetchCourseById,
       }}
     >
       {children}

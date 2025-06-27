@@ -103,10 +103,16 @@ function NavigationMenuViewport({
   className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+  const [dir, setDir] = React.useState<"ltr" | "rtl">("ltr");
+
+  React.useEffect(() => {
+    const dirAttr = document.documentElement.getAttribute("dir");
+    setDir(dirAttr === "rtl" ? "rtl" : "ltr");
+  }, []);
   return (
     <div
       className={cn(
-        "absolute top-full right-0 isolate z-50 flex justify-center"
+        ` ${dir === "ltr" ? "right-0":"left-0"} absolute top-full  isolate z-50 flex justify-center`
       )}
     >
       <NavigationMenuPrimitive.Viewport

@@ -77,7 +77,7 @@ export default function CoursePlayPage() {
   return (
   <main className="bg-gray-100 dark:bg-neutral-900 min-h-screen p-4 sm:p-6 lg:p-8 mt-20">
 <div className="max-w-7xl mx-auto">
-  <Link href="/my-learning" className="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline mb-6">
+  <Link href="/dashboard/my-learning" className="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline mb-6">
     <ArrowLeft className="mr-2 h-4 w-4" />
     Back to My Learning
   </Link>

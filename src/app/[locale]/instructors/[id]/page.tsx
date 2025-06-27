@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaArrowUp, FaArrowDown } from "react-icons/fa";
-import CourseCard from "@/components/home/CourseCard";
+import CourseCard from "@/components/ui/CourseCard";
 import { Instructors } from "@/defaultData";
 import CustomButton from "@/components/ui/CustomButton";
 
@@ -100,7 +100,7 @@ const InstructorDetails = () => {
             <p className="mt-4 text-neutral-700 font-bold dark:text-white">
               23,707 <br /> {t("stats.reviews")}
             </p>
-          </div>
+          </div>+
 
           <h1 className="mt-6 text-xl font-bold dark:text-white">{t("aboutMeTitle")}</h1>
           <div className="relative">
@@ -110,7 +110,7 @@ const InstructorDetails = () => {
                 showMore ? "max-h-full" : "max-h-40 overflow-hidden"
               }`}
             >
-              {t("aboutMeContent")}
+              {t("aboutMeContent")} 
             </p>
             {/* Gradient fade-out effect from reference */}
             {!showMore && <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent pointer-events-none" />}
@@ -128,7 +128,7 @@ const InstructorDetails = () => {
           </button>
 
           <h1 className="mt-6 text-xl font-bold dark:text-white">{t("myCoursesTitle")}</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-5 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 w-fit gap-5 mt-4">
             {Array(3).fill(null).map((_, index) => (
               <CourseCard
                 key={index}
@@ -137,6 +137,7 @@ const InstructorDetails = () => {
                 title={tCourses("course.title")}
                 category={tCourses("course.category")}
                 price={22}
+                description={" "}
                 rating={tCourses("course.rating")}
                 instructor={{ name: tCourses("course.instructor"), avatar: "/home/person1.png" }}
               />

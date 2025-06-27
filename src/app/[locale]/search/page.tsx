@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ToastContainer } from "react-toastify";
-import CourseCard from "@/components/home/CourseCard";
+import CourseCard from "@/components/ui/CourseCard";
 import {
   Pagination,
   PaginationContent,
