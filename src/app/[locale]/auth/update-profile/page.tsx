@@ -5,6 +5,7 @@ import { useAuth } from "@/context/authProvider";
 import { Link } from "@/i18n/navigation";
 import Loading from "@/components/loading";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function UpdateInstructorProfile() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function UpdateInstructorProfile() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
-    title: "",
+    title: "",    
     bio: "",
     linkedin: "",
     twitter: "",
@@ -36,7 +37,7 @@ export default function UpdateInstructorProfile() {
         twitter: user.socialLinks?.twitter || "",
         github: user.socialLinks?.github || "",
         facebook: user.socialLinks?.facebook || "",
-      });
+      }); 
     }
   }, [user]);
 
@@ -60,12 +61,12 @@ export default function UpdateInstructorProfile() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!hasAtLeastOneSocialLink()) {
       setError("Please provide at least one social media link.");
       return;
     }
-  
+
     const socialLinks: Record<string, string> = {};
     ["linkedin", "twitter", "github", "facebook"].forEach((platform) => {
       const value = formData[platform as keyof typeof formData];
@@ -73,7 +74,7 @@ export default function UpdateInstructorProfile() {
         socialLinks[platform] = value.trim();
       }
     });
-  
+
     try {
       setError("");
       await updateInstructor({
@@ -81,94 +82,118 @@ export default function UpdateInstructorProfile() {
         bio: formData.bio,
         socialLinks,
       });
-      
+
       setSuccess(true);
     } catch (err) {
-        console.error("Form submission error:", err);
-        setError(
-          err instanceof Error 
-            ? err.message 
-            : "Failed to update profile. Please try again."
-        );
-        setSuccess(false);
-      }
+      console.error("Form submission error:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to update profile. Please try again."
+      );
+      setSuccess(false);
+    }
   };
-  
-  if (loading && !user||user?.role !== "instructor") return <Loading />;
-  if (success) {
-    return (
-      <section className="min-h-screen w-full p-6 flex flex-col justify-center items-center text-center rounded-2xl">
-        <h1 className="text-neutral-900 dark:text-white">
-          Your instructor profile has been updated successfully!
-        </h1>
-        <div className="mt-10 flex flex-wrap gap-7 items-center gap-x-6">
-          <Link
-            href="/dashboard"
-            className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition"
-          >
-            Go to Dashboard
-          </Link>
-          <Link
-            href="/support"
-            className="text-sm font-semibold text-gray-900 dark:text-white border-2 py-3 px-6 rounded-lg border-purple-600 hover:text-white hover:bg-purple-600 duration-150"
-          >
-            Contact support
-          </Link>
-        </div>
-      </section>
-    );
-  }
 
+  if ((loading && !user) ) return <Loading />;
   return (
     <section className="mt-20 max-w-2xl mx-auto p-6 rounded-2xl">
+      <AnimatePresence>
+        {success && (
+          <div className="fixed top-0 left-0 w-full h-screen">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.8 }}
+              className="absolute top-0 left-0 w-full h-screen  bg-white  dark:bg-black "
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="absolute top-2/4 left-2/4 -translate-2/4 bg-neutral-100 dark:bg-neutral-900 p-5 rounded-2xl  border border-purple-500 "
+            >
+              <h1 className="text-2xl">
+                Your instructor profile has been updated
+                <span className="text-purple-500"> Successfully </span>!
+              </h1>
+              <div className="mt-10 flex flex-wrap gap-7 items-center gap-x-6">
+                <Link
+                  href="/dashboard"
+                  className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700 transition"
+                >
+                  Go to Dashboard
+                </Link>
+                <button
+                  onClick={() => setSuccess(false)}
+                  className=" font-bold text-purple-500 dark:text-white border-2 py-3 px-6 rounded-lg border-purple-600 hover:text-white hover:bg-purple-600 duration-150"
+                >
+                  Continue Edit
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
       <h1 className="text-3xl text-neutral-900 dark:text-white font-bold mb-6 text-center">
-        Update Instructor Profile
+        Update <span className="text-purple-500"> Profile </span> 
       </h1>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block mb-1 font-semibold">Job Title</label>
+          <label className="block mb-1 font-semibold text-2xl">
+            Job Title
+          </label>
           <select
             name="title"
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full p-3 border bg-white dark:bg-neutral-900 border-gray-300 rounded-xl"
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl"
           >
-            <option value="">Select your role</option>
-            <option value="Web Developer">Web Developer</option>
-            <option value="Data Scientist">Data Scientist</option>
-            <option value="UX Designer">UX Designer</option>
-            <option value="Mobile Developer">Mobile Developer</option>
-            <option value="DevOps Engineer">DevOps Engineer</option>
-            <option value="AI/ML Engineer">AI/ML Engineer</option>
-            <option value="Other">Other</option>
+            {[
+              "Select your role",
+              "Web Developer",
+              "Data Scientist",
+              "UX Designer",
+              "Mobile Developer",
+              "DevOps Engineer",
+              "AI/ML Engineer",
+              "Other",
+            ].map((item, i) => (
+              <option className="bg-white text-black dark:bg-neutral-900 dark:text-white" key={i} value={item === "Select your role" ? "" : item}>
+                {item}
+              </option> 
+            ))}
+             
           </select>
         </div>
 
         <div>
-          <label className="block mb-1 font-semibold">Bio</label>
-          <textarea
+          <label className="block mb-1 font-semibold  text-2xl">
+            Bio
+          </label>
+          <motion.textarea
+            required
             name="bio"
             value={formData.bio}
             onChange={handleChange}
             rows={4}
-            required
-            className="w-full p-3 border border-gray-300 rounded-xl"
+            maxLength={500}
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl"
             placeholder="Tell us about yourself..."
           />
         </div>
 
         <div className="border-t pt-4">
-          <p className="font-semibold mb-2">
+          <h1 className=" block mb-1 font-semibold  text-2xl">
             Social Media Links (at least one required)
-          </p>
+          </h1>
 
           <input
             type="url"
             name="linkedin"
             value={formData.linkedin}
             onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl my-2"
             placeholder="LinkedIn"
           />
 
@@ -177,7 +202,7 @@ export default function UpdateInstructorProfile() {
             name="twitter"
             value={formData.twitter}
             onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl my-2"
             placeholder="Twitter"
           />
 
@@ -186,7 +211,7 @@ export default function UpdateInstructorProfile() {
             name="github"
             value={formData.github}
             onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl my-2"
             placeholder="GitHub"
           />
 
@@ -195,7 +220,7 @@ export default function UpdateInstructorProfile() {
             name="facebook"
             value={formData.facebook}
             onChange={handleChange}
-            className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
+            className="w-full p-3 border border-purple-500 focus:border-purple-500 outline-none rounded-xl my-2"
             placeholder="Facebook"
           />
         </div>
@@ -203,12 +228,12 @@ export default function UpdateInstructorProfile() {
         {error && <p className="text-red-600 font-semibold">{error}</p>}
 
         <button
-          type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition"
-        >
-          Update Profile
-        </button>
+            type="submit"
+            className="w-full py-4 font-semibold text-white bg-purple-500 rounded-2xl outline-none px-7 cursor-pointer"
+          >
+             Update Profile
+          </button>
       </form>
     </section>
   );
-} 
+}

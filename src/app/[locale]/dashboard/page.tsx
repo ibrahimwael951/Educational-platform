@@ -13,6 +13,7 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { CiLinkedin, CiStar, CiHeart, CiPlay1 } from "react-icons/ci";
 import { RiContactsLine } from "react-icons/ri";
 import { IoSchoolOutline } from "react-icons/io5";
+import { FiEdit2 } from "react-icons/fi";
 import CustomButton from "@/components/ui/CustomButton";
 
 const Profile = () => {
@@ -67,14 +68,13 @@ const Profile = () => {
         transition={{ duration: 0.6 }}
         className={`
           ${
-            user?.role == "admin" &&      
-            "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"
+            user?.role == "admin"
+              ? "bg-gradient-to-bl dark:bg-gradient-to-br from-yellow-300 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900"
+              : user?.role == "instructor"
+              ? "bg-gradient-to-bl dark:bg-gradient-to-br from-purple-600 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900  "
+              : "bg-neutral-100 dark:bg-neutral-800"
           }
-          ${
-            user?.role == "instructor" &&
-            "bg-gradient-to-bl dark:bg-gradient-to-br from-purple-600 via-neutral-100 to-white dark:via-neutral-900 dark:to-neutral-900  "
-          }
-          ${user?.role == "student" && "bg-neutral-100 dark:bg-neutral-800"}
+ 
             shadow-2xl w-full  md:w-fit p-4 rounded-lg overflow-hidden `}
       >
         <div className="flex  flex-col m-auto md:mx-0 md:flex-row text-center md:text-start justify-center items-center mb-4  w-fit gap-3 cursor-default ">
@@ -95,9 +95,14 @@ const Profile = () => {
         </div>
         <ul className="space-y-1">
           {[
-            { title: "courses", icon: IoSchoolOutline, href:"/dashboard/my-learning" },
-            { title: "certificates", icon: CiStar, href:"" },
-            { title: "favorites", icon: CiHeart , href:""},
+            {
+              title: "courses",
+              icon: IoSchoolOutline,
+              href: "/dashboard/my-learning",
+            },    
+            {title:"edit-profile" ,icon: FiEdit2 , href:"/auth/update-profile"},
+            { title: "certificates", icon: CiStar, href: "" },
+            { title: "favorites", icon: CiHeart, href: "" },
           ].map((item, index) => (
             <Link
               href={item.href}
@@ -179,50 +184,7 @@ const Profile = () => {
             </motion.div>
           )}
         </div>
-        {user?.role == "instructor" && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
-          >
-            <div className="w-8/12">
-              <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
-                your Title
-              </h1>
-              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">
-                {user?.title}
-              </p>
-            </div>
-            <CustomButton
-              title="Edit Ur Title"
-              href="/auth/update-instructor"
-              bg={true}
-            />
-          </motion.div>
-        )}
-        {user?.role == "instructor" && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-lg shadow-lg text-center flex   justify-between items-center"
-          >
-            <div className="w-8/12">
-              <h1 className="w-fit text-xl text-neutral-800 dark:text-white my-2">
-                your bio
-              </h1>
-              <p className="text-neutral-800 dark:text-white  bg-neutral-300  dark:bg-neutral-900 px-3 py-2 rounded-xl w-10/12 min-h-20 h-fit text-start opacity-70 hover:opacity-100 duration-100">
-                {user?.bio}
-              </p>
-            </div>
-            <CustomButton
-              title="Edit Ur Bio"
-              href="/auth/update-instructor"
-              bg={true}
-            />
-          </motion.div>
-        )}
+       
         {user?.role == "student" && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -258,7 +220,6 @@ const Profile = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="bg-neutral-100  dark:bg-neutral-800 p-6 rounded-lg shadow-lg flex flex-col justify-between items-center"
-
           >
             <p className="text-neutral-800 dark:text-white">
               {t("change-Theme")}

@@ -25,7 +25,7 @@ type Course = {
   imageUrl: string;
 };
 
-// --- MOCK DATA ---
+ 
 const allCourses: Course[] = [
   {
     id: "react-complete-guide",
@@ -208,6 +208,7 @@ const SearchResultsComponent = () => {
                   title={course.title}
                   category={course.category}
                   price={course.price}
+                  description={""}
                   rating={course.rating.toString()}
                   instructor={{
                     name: course.instructor,

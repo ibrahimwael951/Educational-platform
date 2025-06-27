@@ -164,6 +164,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(res.data.user);
     } catch (error) {
       console.error("Register failed:", error);
+      checkUser();
       throw new Error("Registration failed");
     }
   };
@@ -172,6 +173,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await apiClient.post(`/auth/login`, { email, password });
       setUser(res.data.user);
+      checkUser();
     } catch (error) {
       console.error("Login failed:", error);
       throw new Error("Login failed");
@@ -211,6 +213,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           },
         };
       });
+      checkUser();
       return res.data;
     } catch (error) {
       console.error("Become instructor error:", error);
@@ -238,6 +241,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           ...res.data.user?.socialLinks,
         },
       }));
+      checkUser();
       return res.data;
     } catch (error) {
       console.error("Update instructor error:", error);

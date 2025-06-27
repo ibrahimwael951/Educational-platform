@@ -17,12 +17,12 @@
     },
     {
       "title": "my-cart",
-      "url": "/cart",
+      "url": "/dashboard/cart",
       "description": "View and manage courses added to your cart"
     },
     {
       "title": "wishlist",
-      "url": "/wishlist",
+      "url": "/dashboard/wishlist",
       "description": "Your saved courses for future purchase or enrollment"
     },
     {
